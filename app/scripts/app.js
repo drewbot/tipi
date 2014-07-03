@@ -1,10 +1,10 @@
 App = Ember.Application.create();
 
+/// Routers
+
 App.Router.map(function(){
 	this.resource('new');
-	this.resource('drafts', function(){
-		this.resource('draft', {path: ':draft_id'});
-	});
+	this.resource('draft', {path: ':draft_id'});
 	this.resource('queue');
 });
 
@@ -23,7 +23,9 @@ App.Store = DS.Store.extend({
 });
 //////////////////////////////////////////////////////
 
-App.DraftsRoute = Ember.Route.extend({
+/// Routes
+
+App.Route = Ember.Route.extend({
 	model: function(){
 		return $.getJSON('http://tiny-pizza-server.herokuapp.com/collections/ember-practice')
 	}

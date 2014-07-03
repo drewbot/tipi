@@ -25,35 +25,34 @@
         <![endif]-->
 
         <script type="text/x-handlebars">
-          <div class="nav">
-            <a href="#">Tipi</a>
-            <ul>
-              <li>{{#link-to 'new'}}New{{/link-to}}</li>
-              <li>{{#link-to 'drafts'}}Drafts{{/link-to}}</li>
-              <li>{{#link-to 'queue'}}Queue{{/link-to}}</li>
-            </ul>
+          <div class="container">
+            <div class="header">
+              <a href="#">Tipi</a>
+            </div>
+            <div class="nav">
+              <ul>
+                <li>{{#link-to 'new'}}New{{/link-to}}</li>
+                <li class="drafts-list">Drafts</li>
+                  <div class="drafts-container">
+                    {{#each}}
+                      <div class="draft-link">
+                        {{#link-to 'draft' this}}
+                          {{title}}
+                        {{/link-to}}
+                      </div>
+                    {{/each}}
+                  </div>
+                <li>{{#link-to 'queue'}}Queue{{/link-to}}</li>
+              </ul>
+            </div>
+            <div class="main-container">
+              {{outlet}}
+            </div>
           </div>
-          {{outlet}}
         </script>
 
         <script type="text/x-handlebars" id="new">
           <p>New</p>
-        </script>
-
-        <script type="text/x-handlebars" id="drafts">
-          <div class="drafts-container">
-            <p>Drafts</p>
-            {{#each}}
-              <div class="draft-link">
-                {{#link-to 'draft' this}}
-                  {{title}}
-                {{/link-to}}
-              </div>
-            {{/each}}
-            <div class="draft">
-              {{outlet}}
-            </div>
-          </div>
         </script>
 
         <script type="text/x-handlebars" id="draft">

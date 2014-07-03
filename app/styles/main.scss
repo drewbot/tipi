@@ -1,11 +1,60 @@
 // bower:scss
 // endbower
 
+// *, *:before, *:after {
+//   -moz-box-sizing: border-box; 
+//   -webkit-box-sizing: border-box; 
+//   box-sizing: border-box;
+
+//   margin: 0 auto;
+// }
+
 body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
+
+.container {
+    position: relative;
+    height: 100%;
+}
+
+.nav, .main-container {
+    position: absolute;
+    display: inline-block;
+    top: 20px;
+}
+
+.nav {
+    width: 25%;
+}
+
+.main-container {
+    position: absolute;
+    display: inline-block;
+    left: 25%;
+}
+
+.drafts-list {
+    background-color: lightgrey;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+///////////////////////////// HAZARD ZONE ///////////////////////////
+.drafts-container {
+    // display: none;
+}
+
+// Trying to toggleClass on drafts-container
+
+.show-drafts {
+    display: inline-block;
+}
+/////////////////////////////////////////////////////////////////////
 
 .draft-link {
     display: block;
