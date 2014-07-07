@@ -45,6 +45,9 @@
                 <li>{{#link-to 'queue'}}Queue{{/link-to}}</li>
               </ul>
             </div>
+            <div class="dash-container">
+              <h3>Dashboard</h3>
+            </div>
             <div class="main-container">
               {{outlet}}
             </div>
@@ -90,6 +93,8 @@
           {{else}}
             <button {{action 'edit'}}>Edit</button>
           {{/if}}
+          <button {{action "completeDraft"}}>Complete</button>
+          <button {{action "removeProject"}} class="destroy">Delete</button>
         </script>
 
         <script type="text/x-handlebars" id="draft/_edit">
