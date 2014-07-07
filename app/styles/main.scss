@@ -1,15 +1,18 @@
 // bower:scss
 // endbower
 
-// *, *:before, *:after {
-//   -moz-box-sizing: border-box; 
-//   -webkit-box-sizing: border-box; 
-//   box-sizing: border-box;
+*, *:before, *:after {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
 
-//   margin: 0 auto;
-// }
+  margin: 0 auto;
+}
 
 body {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
@@ -17,35 +20,65 @@ body {
 
 .container {
     position: relative;
-    height: 100%;
+}
+
+.header {
+    padding: 20px;
+    height: 60px;
+    background-color: lightgrey;
+     
+    & a {
+        text-decoration: none;
+    }
 }
 
 .nav, .main-container {
     position: absolute;
     display: inline-block;
-    top: 20px;
+    top: 60px;
 }
 
 .nav {
     width: 25%;
+    background-color: grey;
+    text-decoration: none;
+    color: white;
+
+    & ul {
+        padding: 20px;
+    }
+
+    & li {
+        padding: 5px 0 5px 0;
+        list-style-type: none;
+    }
+
+    & a {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.draft-link {
+
+    padding: 3px 0 3px 0;
+
+    & a {
+        padding-left: 10px;
+        text-decoration: none;
+        color: white;
+    }
 }
 
 .main-container {
+    padding: 20px;
     position: absolute;
     display: inline-block;
     left: 25%;
 }
 
-.drafts-list {
-    background-color: lightgrey;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-
 ///////////////////////////// HAZARD ZONE ///////////////////////////
-.drafts-container {
+.draft-container {
     // display: none;
 }
 

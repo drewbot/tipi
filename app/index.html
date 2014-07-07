@@ -33,7 +33,7 @@
               <ul>
                 <li>{{#link-to 'new'}}New{{/link-to}}</li>
                 <li class="drafts-list">Drafts</li>
-                  <div class="drafts-container">
+                  <div class="draft-container">
                     {{#each}}
                       <div class="draft-link">
                         {{#link-to 'draft' this}}
@@ -52,31 +52,54 @@
         </script>
 
         <script type="text/x-handlebars" id="new">
-          <p>New</p>
-          <input type="text" placeholder="title" class="title-input"></input>
-          <button class="save-file">Save</button>
+          <h3>New</h3>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="title" class="col-sm-2 control-label">Title</label>
+              <div class="col-sm-10">
+                <input type="title" class="form-control" id="title" name="title" placeholder="Title" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description" class="col-sm-2 control-label">description</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="description" name="description" placeholder="short description of the project" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="body" class="col-sm-2 control-label">body</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="body" name="body" placeholder="main content" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" {{action 'save'}}>Save Project</button>
+              </div>
+            </div>
+        </form>
         </script>
 
         <script type="text/x-handlebars" id="draft">
-        {{#if isEditing}}
-          {{partial 'draft/edit'}}
-          <button {{action 'doneEditing'}}>Done</button>
-        {{else}}
-          <button {{action 'edit'}}>Edit</button>
-        {{/if}}
           <h3>{{title}}</h3>
           <p>{{description}}</p>
           <p>{{body}}</p>
+          {{#if isEditing}}
+            {{partial 'draft/edit'}}
+            <button {{action 'doneEditing'}}>Done</button>
+          {{else}}
+            <button {{action 'edit'}}>Edit</button>
+          {{/if}}
         </script>
 
         <script type="text/x-handlebars" id="draft/_edit">
-          <p>{{input type="text" value=title}}</p>
-          <p>{{input type="text" value=description}}</p>
-          <p>{{textarea value=body}}</p>
+          <p>title: {{input type="text" value=title}}</p>
+          <p>description: {{input type="text" value=description}}</p>
+          <p>body: {{textarea value=body}}</p>
         </script>
 
         <script type="text/x-handlebars" id="queue">
-          <p>Queue</p>
+          <h3>Queue</h3>
         </script>
 
 

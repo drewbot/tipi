@@ -6,11 +6,11 @@ var title = $('.title-input').val();
 
 
 /////////////////////////////////////// HAZARD ZONE ///////
-$('.drafts').click(function(){
-	$('.drafts-container').show();
+$('.drafts-list').click(function(){
+	$('.draft-container').show();
 });
 
-$('.drafts').click(function(){
-	$('.drafts-container').toggleClass('show-drafts');
+$('.drafts-list').click(function(){
+	$('.draft-container').toggleClass('show-drafts');
 });
 ///////////////////////////////////////////////////////////
