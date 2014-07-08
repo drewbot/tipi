@@ -1,7 +1,9 @@
 {
   "name": "tipi",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "emberfire": "^1.0.13"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.5.0",

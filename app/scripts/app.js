@@ -1,36 +1,12 @@
 App = Ember.Application.create();
 
-// App Adapter 
-///////////////// Should understand that new model instances should save to the host url
+// // App Adapter 
 
-// App.ApplicationAdapter = DS.RESTAdapter.extend({
-//   host: 'http://tiny-pizza-server.herokuapp.com/collections/ember-practice'
-// });
+App.ApplicationAdapter = DS.FirebaseAdapter.extend({
+    firebase: new Firebase("https://sizzling-fire-4203.firebaseio.com")
+  });
 
-// ///////// Attempting to change _id to id /////////
-
-App.ApplicationSerializer = DS.RESTSerializer.extend({
-  primaryKey: "_id"
-});
-
-// App.adapter is being used below instead of App.ApplicationAdapter and 
-// App.ApplicationSerializer above. Not sure if it will effect adversely when
-// working correctly because both throw the same errors and don't do what they're supposed to
-
-/////////// Attempting to change _id to id /////////
-
-DS.RESTAdapter.reopen({
-  host: 'http://tiny-pizza-server.herokuapp.com',
-  namespace: 'ember-collections'
-});
-
-App.Adapter = DS.RESTAdapter;
-
-App.ApplicationStore = DS.Store.extend({
-  revision: 11,
-  adapter: 'App.Adapter'
-});
-//////////////////////////////////////////////////////
+App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 
 /// Routers
 
@@ -43,21 +19,15 @@ App.Router.map(function(){
 /// Routes
 
 App.Route = Ember.Route.extend({
-	model: function(){
-		return $.getJSON('http://tiny-pizza-server.herokuapp.com/ember-collections/projects')
-	}
-	// model: function() {
-	//     return this.store.find('project'); // Error while loading route: Error: No model was found for '0'
-	// }
-	// model: function() {
-	//     return this.store.find('projects'); // Error while loading route: Error: No model was found for 'projects'
-	// }
+      model: function(params) {
+        return this.store.findAll("project");
+      }
 });
 
 App.DraftRoute = Ember.Route.extend({
-	model: function(params){
-		return $.getJSON('http://tiny-pizza-server.herokuapp.com/ember-collections/projects/'+params.draft_id+'')
-	}
+    model: function(params) {
+      return this.store.find("project", params.draft_id);
+    }
 });
 
 /// Models
