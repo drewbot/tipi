@@ -42,11 +42,13 @@
                 <li class="drafts-list">Review</li>
                   <div class="draft-container">
                     {{#each}}
-                      <div class="draft-link">
-                        {{#link-to 'draft' this}}
-                          {{title}}
-                        {{/link-to}}
-                      </div>
+                      {{#unless isCompleted}}
+                        <div class="draft-link">
+                          {{#link-to 'draft' this}}
+                            {{title}}
+                          {{/link-to}}
+                        </div>
+                      {{/unless}}
                     {{/each}}
                   </div>
                 <li class="queue-list">Queue</li> <!--queue should only show completed projects -->
@@ -112,7 +114,7 @@
           {{else}}
             <button {{action 'edit'}}>Edit</button>
           {{/if}}
-          <button {{action "completeDraft"}}>Complete</button>
+          <button {{action "isCompleted"}}>Complete</button>
           <button {{action "removeProject"}} class="destroy">Delete</button>
         </script>
 

@@ -71,7 +71,7 @@ App.NewController = Ember.ObjectController.extend({
             submittedOn : submittedOn
         });
         project.save();
-        this.transitionToRoute('index');
+        this.transitionToRoute('dashboard');
     }
  }
 });
@@ -90,15 +90,32 @@ App.DraftController = Ember.ObjectController.extend({
 			this.set('isEditing', false);
 		},
 
-		completeDraft: function(){
-			var project = this.get('model');
-			project.set('isComplete', true);
-		},
-
 		removeProject: function() {
 		    var project = this.get('model');
 		    project.deleteRecord();
 		    project.save();
+		    this.transitionToRoute('dashboard');
+		},
+
+		isCompleted: function(){
+			var project = this.get('model');
+		    project.set('isCompleted', true);
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
+		//     var model = this.get('model');
+
+		//     if (value === undefined) {
+		//       	// property being used as a getter
+		//       return model.get('isCompleted');
+		//     } else {
+		//       	// property being used as a setter
+		//       	model.set('isCompleted', value);
+		//       	model.save();
+		//       	return value;
+		//     }
+		// }.property('model.isCompleted')
 	}
 })
+
+
