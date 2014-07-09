@@ -13,13 +13,9 @@ App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 App.Router.map(function(){
 	this.resource('login');
 	this.resource('app', function(){
+		this.resource('dashboard');
 		this.resource('new');
-		this.resource('review', function(){
-			this.resource('draft', {path: ':draft_id'});
-		});
-		this.resource('queue', function(){
-			this.resource('projects');
-		});
+		this.resource('draft', {path: ':draft_id'});
 	});
 });
 

@@ -27,14 +27,14 @@
         <script type="text/x-handlebars" id="login">
           <div class="landing-container">
             <h2>Welcome to TIPI</h2>
-            <div>{{#link-to 'app'}}enter{{/link-to}}</div>
+            <div>{{#link-to 'dashboard'}}enter{{/link-to}}</div>
           </div>
         </script>
 
         <script type="text/x-handlebars" id="app">
           <div class="app-container">
             <div class="header">
-              <div>{{#link-to 'app'}}Tipi{{/link-to}}</div>
+              <div>{{#link-to 'dashboard'}}Tipi{{/link-to}}</div>
             </div>
             <div class="nav">
               <ul>
@@ -49,16 +49,28 @@
                       </div>
                     {{/each}}
                   </div>
-                <li>{{#link-to 'queue'}}Queue{{/link-to}}</li>
+                <li class="queue-list">Queue</li> <!--queue should only show completed projects -->
+                  <div class="draft-container">
+                    {{#each}}
+                      {{#if isCompleted}}
+                        <div class="draft-link">
+                          {{#link-to 'draft' this}}
+                            {{title}}
+                          {{/link-to}}
+                        </div>
+                      {{/if}}
+                    {{/each}}
+                  </div>
               </ul>
-            </div>
-            <div class="dash-container">
-              <h3>Dashboard</h3>
             </div>
             <div class="main-container">
               {{outlet}}
             </div>
           </div>
+        </script>
+
+        <script type="text/x-handlebars" id="dashboard">
+          <h3>Dashboard</h3>
         </script>
 
         <script type="text/x-handlebars" id="new">
