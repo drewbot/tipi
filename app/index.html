@@ -24,15 +24,22 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <script type="text/x-handlebars">
-          <div class="container">
+        <script type="text/x-handlebars" id="login">
+          <div class="landing-container">
+            <h2>Welcome to TIPI</h2>
+            <div>{{#link-to 'app'}}enter{{/link-to}}</div>
+          </div>
+        </script>
+
+        <script type="text/x-handlebars" id="app">
+          <div class="app-container">
             <div class="header">
-              <a href="#">Tipi</a>
+              <div>{{#link-to 'app'}}Tipi{{/link-to}}</div>
             </div>
             <div class="nav">
               <ul>
                 <li>{{#link-to 'new'}}New{{/link-to}}</li>
-                <li class="drafts-list">Drafts</li>
+                <li class="drafts-list">Review</li>
                   <div class="draft-container">
                     {{#each}}
                       <div class="draft-link">

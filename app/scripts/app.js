@@ -11,17 +11,24 @@ App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 /// Routers
 
 App.Router.map(function(){
-	this.resource('new');
-	this.resource('draft', {path: ':draft_id'});
-	this.resource('queue');
+	this.resource('login');
+	this.resource('app', function(){
+		this.resource('new');
+		this.resource('review', function(){
+			this.resource('draft', {path: ':draft_id'});
+		});
+		this.resource('queue', function(){
+			this.resource('projects');
+		});
+	});
 });
 
 /// Routes
 
 App.Route = Ember.Route.extend({
-      model: function(params) {
-        return this.store.findAll("project");
-      }
+    model: function(params) {
+      return this.store.findAll("project");
+    }
 });
 
 App.DraftRoute = Ember.Route.extend({
@@ -61,7 +68,7 @@ App.NewController = Ember.ObjectController.extend({
         var body = $('#body').val();
         var submittedOn = new Date();
         var store = this.get('store');
-        var project = this.store.createRecord('project',{ // I think that "store" may be messing me up here
+        var project = this.store.createRecord('project',{
             title : title,
             description : description,
             body : body,

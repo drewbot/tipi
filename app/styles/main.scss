@@ -18,7 +18,11 @@ body {
     color: #333;
 }
 
-.container {
+a {
+    text-decoration: none;
+}
+
+.dash-container, .app-container {
     position: relative;
 }
 
@@ -26,10 +30,6 @@ body {
     padding: 20px;
     height: 60px;
     background-color: lightgrey;
-     
-    & a {
-        text-decoration: none;
-    }
 }
 
 .nav, .main-container {
@@ -41,7 +41,6 @@ body {
 .nav {
     width: 25%;
     background-color: grey;
-    text-decoration: none;
     color: white;
 
     & ul {
@@ -54,7 +53,6 @@ body {
     }
 
     & a {
-        text-decoration: none;
         color: white;
     }
 }
@@ -65,7 +63,6 @@ body {
 
     & a {
         padding-left: 10px;
-        text-decoration: none;
         color: white;
     }
 }
