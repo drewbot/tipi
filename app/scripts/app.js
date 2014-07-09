@@ -88,6 +88,16 @@ App.DraftController = Ember.ObjectController.extend({
 
 		doneEditing: function(){
 			this.set('isEditing', false);
+			var title = $('#title').val();
+	        var description = $('#description').val();
+	        var body = $('#body').val();
+			var project = this.get('model',{
+				title : title,
+	            description : description,
+	            body : body
+			});
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		},
 
 		removeProject: function() {
@@ -103,18 +113,6 @@ App.DraftController = Ember.ObjectController.extend({
 		    project.save();
 		    this.transitionToRoute('dashboard');
 		}
-		//     var model = this.get('model');
-
-		//     if (value === undefined) {
-		//       	// property being used as a getter
-		//       return model.get('isCompleted');
-		//     } else {
-		//       	// property being used as a setter
-		//       	model.set('isCompleted', value);
-		//       	model.save();
-		//       	return value;
-		//     }
-		// }.property('model.isCompleted')
 	}
 })
 
