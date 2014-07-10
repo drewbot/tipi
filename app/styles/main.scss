@@ -22,7 +22,7 @@ a {
     text-decoration: none;
 }
 
-.dash-container, .app-container {
+.dash-container, .app-container, .header {
     position: relative;
 }
 
@@ -30,6 +30,15 @@ a {
     padding: 20px;
     height: 60px;
     background-color: lightgrey;
+}
+
+.home, .logout {
+    position: absolute;
+    display: inline-block;
+}
+
+.logout {
+    right: 20px;
 }
 
 .nav, .main-container {
@@ -59,10 +68,9 @@ a {
 
 .draft-link {
 
-    padding: 3px 0 3px 0;
+    padding: 3px 0 3px 10px;
 
     & a {
-        padding-left: 10px;
         color: white;
     }
 }

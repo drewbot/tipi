@@ -34,7 +34,8 @@
         <script type="text/x-handlebars" id="app">
           <div class="app-container">
             <div class="header">
-              <div>{{#link-to 'dashboard'}}Tipi{{/link-to}}</div>
+              <div class="home">{{#link-to 'dashboard'}}Tipi{{/link-to}}</div>
+              <div class="logout">{{#link-to 'login'}}Logout{{/link-to}}</div>
             </div>
             <div class="nav">
               <ul>
@@ -51,7 +52,7 @@
                       {{/unless}}
                     {{/each}}
                   </div>
-                <li class="queue-list">Queue</li> <!--queue should only show completed projects -->
+                <li class="queue-list">Queue</li>
                   <div class="draft-container">
                     {{#each}}
                       {{#if isCompleted}}

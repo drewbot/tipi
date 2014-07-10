@@ -42,7 +42,7 @@ App.Project = DS.Model.extend({
   description: attr('string'),
   body: attr('string'),
   submittedOn: attr('number'),
-  saved: attr('boolean'),
+  savedOn: attr('number'),
   isCompleted: DS.attr('boolean')
   
 })
@@ -96,6 +96,7 @@ App.DraftController = Ember.ObjectController.extend({
 	            description : description,
 	            body : body
 			});
+			project.set('savedOn', new Date());
 		    project.save();
 		    this.transitionToRoute('dashboard');
 		},
@@ -110,6 +111,7 @@ App.DraftController = Ember.ObjectController.extend({
 		isCompleted: function(){
 			var project = this.get('model');
 		    project.set('isCompleted', true);
+		    project.set('savedOn', new Date());
 		    project.save();
 		    this.transitionToRoute('dashboard');
 		}
