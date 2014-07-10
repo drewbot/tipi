@@ -89,17 +89,17 @@ a {
     left: 25%;
 }
 
-///////////////////////////// HAZARD ZONE ///////////////////////////
-.draft-container {
-    // display: none;
+.drafts-list {
+    cursor: pointer;
 }
 
-// Trying to toggleClass on drafts-container
+.draft-container {
+    display: none;
+}
 
 .show-drafts {
     display: inline-block;
 }
-/////////////////////////////////////////////////////////////////////
 
 .draft-link {
     display: block;

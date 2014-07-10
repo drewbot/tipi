@@ -40,7 +40,7 @@
             <div class="nav">
               <ul>
                 <li>{{#link-to 'new'}}New{{/link-to}}</li>
-                <li class="drafts-list">Review</li>
+                <li class="drafts-list" {{action 'showDrafts'}}>Review</li>
                   <div class="draft-container">
                     {{#each}}
                       {{#unless isCompleted}}
@@ -82,7 +82,20 @@
             <div class="form-group">
               <label for="title" class="col-sm-2 control-label">Title</label>
               <div class="col-sm-10">
+                <!--{{input type="title" class="form-control" id="title" name="title" placeholder="Title" maxlength=20 required=""}}-->
                 <input type="title" class="form-control" id="title" name="title" placeholder="Title" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="client-name" class="col-sm-2 control-label">Client Name</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="client-name" name="client-name" placeholder="client's name" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="client-email" class="col-sm-2 control-label">Clients Email</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="client-email" name="client-email" placeholder="client's email" required></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -107,14 +120,18 @@
 
         <script type="text/x-handlebars" id="draft">
           <h3>{{title}}</h3>
+          <p>{{clientName}}</p>
+          <p>{{clientEmail}}</p>
           <p>{{description}}</p>
           <p>{{body}}</p>
+          <a href="mailto:{{clientEmail}}">mail to {{clientName}}</a>
           {{#if isEditing}}
             {{partial 'draft/edit'}}
             <button {{action 'doneEditing'}}>Done</button>
           {{else}}
             <button {{action 'edit'}}>Edit</button>
           {{/if}}
+          {{view Ember.Checkbox checked=isCompleted}}
           <button {{action "isCompleted"}}>Complete</button>
           <button {{action "removeProject"}} class="destroy">Delete</button>
         </script>
