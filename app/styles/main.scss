@@ -89,11 +89,11 @@ a {
     left: 25%;
 }
 
-.drafts-list {
+.new-button, .drafts-button, .queue-button, .docs-button {
     cursor: pointer;
 }
 
-.draft-container {
+.draft-container, .queue-container, .queue-docs {
     display: none;
 }
 

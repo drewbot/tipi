@@ -39,8 +39,8 @@
             </div>
             <div class="nav">
               <ul>
-                <li>{{#link-to 'new'}}New{{/link-to}}</li>
-                <li class="drafts-list" {{action 'showDrafts'}}>Review</li>
+                <li class="new-button">{{#link-to 'new'}}New{{/link-to}}</li>
+                <li class="drafts-button" {{action 'showDrafts'}}>Review</li>
                   <div class="draft-container">
                     {{#each}}
                       {{#unless isCompleted}}
@@ -52,18 +52,21 @@
                       {{/unless}}
                     {{/each}}
                   </div>
-                <li class="queue-list">Queue</li>
-                  <div class="draft-container">
-                    {{#each}}
-                      {{#if isCompleted}}
-                        <div class="draft-link">
-                          {{#link-to 'draft' this}}
-                            {{title}}
-                          {{/link-to}}
-                        </div>
-                      {{/if}}
-                    {{/each}}
-                  </div>
+                <li class="queue-button" {{action 'showQueue'}}>Ready</li>
+                    <div class="queue-container">
+                      {{#each}}
+                        {{#if isCompleted}}
+                          <p class="docs-button" {{action 'showDocs'}}>{{title}}</p>
+                            <div class="queue-docs">
+                              <ul>
+                                <li>{{#link-to 'proposal' this}}Proposal{{/link-to}}</li>
+                                <li>{{#link-to 'contract' this}}Contract{{/link-to}}</li>
+                                <li>{{#link-to 'brief' this}}Brief{{/link-to}}</li>
+                              </ul>
+                            </div>
+                        {{/if}}
+                      {{/each}}
+                    </div>
               </ul>
             </div>
             <div class="main-container">
@@ -74,6 +77,25 @@
 
         <script type="text/x-handlebars" id="dashboard">
           <h3>Dashboard</h3>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="bizname" class="col-sm-2 control-label">Business Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="bizname" name="bizname" placeholder="Business Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="hourly-rate" class="col-sm-2 control-label">Hourly Rate</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="hourly-rate" name="hourly-rate" placeholder="Hourly Rate" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" {{action 'save'}}>Save Settings</button>
+              </div>
+            </div>
+          </form>
         </script>
 
         <script type="text/x-handlebars" id="new">
@@ -124,7 +146,7 @@
           <p>{{clientEmail}}</p>
           <p>{{description}}</p>
           <p>{{body}}</p>
-          <a href="mailto:{{clientEmail}}">mail to {{clientName}}</a>
+          <p>Mail to {{clientName}}</p>
           {{#if isEditing}}
             {{partial 'draft/edit'}}
             <button {{action 'doneEditing'}}>Done</button>
@@ -143,7 +165,46 @@
         </script>
 
         <script type="text/x-handlebars" id="queue">
-          <h3>Queue</h3>
+          {{title}}
+          <button class="contract">{{#link-to 'queue.contract'}}Contract{{/link-to}}</button>
+          <button class="proposal">{{#link-to 'queue.proposal'}}Proposal{{/link-to}}</button>
+          <button class="brief">{{#link-to 'queue.brief'}}Brief{{/link-to}}</button>
+          {{partial 'queue/_contract'}}
+          {{partial 'queue/_proposal'}}
+          {{partial 'queue/_brief'}}
+        </script>
+
+        <script type="text/x-handlebars" id="contract">
+          <h2>contract</h2>
+          <p>{{name}}</p>
+          <p>{{email}}</p>
+          <h3>{{title}}</h3>
+          <p>{{clientName}}</p>
+          <p>{{clientEmail}}</p>
+          <p>{{description}}</p>
+          <p>{{body}}</p>
+        </script>
+
+        <script type="text/x-handlebars" id="proposal">
+          <h2>proposal</h2>
+          <p>{{name}}</p>
+          <p>{{email}}</p>
+          <h3>{{title}}</h3>
+          <p>{{clientName}}</p>
+          <p>{{clientEmail}}</p>
+          <p>{{description}}</p>
+          <p>{{body}}</p>
+        </script>
+
+        <script type="text/x-handlebars" id="brief">
+          <h2>brief</h2>
+          <p>{{name}}</p>
+          <p>{{email}}</p>
+          <h3>{{title}}</h3>
+          <p>{{clientName}}</p>
+          <p>{{clientEmail}}</p>
+          <p>{{description}}</p>
+          <p>{{body}}</p>
         </script>
 
 

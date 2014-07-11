@@ -19,12 +19,19 @@ App.Router.map(function(){
 	this.resource('app', function(){
 		this.resource('dashboard');
 		this.resource('new');
-		this.resource('draft', {path: ':draft_id'});
+		this.resource('draft', {path: 'review/:draft_id'});
+		//  Keeping this around just to be able to view actions
+		this.resource('queue', {path: 'ready/:queue_id'});
+		this.resource('proposal', {path: 'review/:proposal_id'});
+		this.resource('contract', {path: 'review/:contract_id'});	
+		this.resource('brief', {path: 'review/:brief_id'});
 	});
+
 });
 
 // Routes
 
+// Index redirect
 App.IndexRoute = Ember.Route.extend({
 	redirect: function() {
 	    this.transitionTo('login');
@@ -41,6 +48,31 @@ App.Route = Ember.Route.extend({
 App.DraftRoute = Ember.Route.extend({
     model: function(params) {
       return this.store.find("project", params.draft_id);
+    }
+});
+
+//  Keeping this around just to be able to view actions
+App.QueueRoute = Ember.Route.extend({
+    model: function(params) {
+      return this.store.find("project", params.queue_id);
+    }
+});
+
+App.ProposalRoute = Ember.Route.extend({
+    model: function(params) {
+      return this.store.find("project", params.proposal_id);
+    }
+});
+
+App.ContractRoute = Ember.Route.extend({
+    model: function(params) {
+      return this.store.find("project", params.contract_id);
+    }
+});
+
+App.BriefRoute = Ember.Route.extend({
+    model: function(params) {
+      return this.store.find("project", params.brief_id);
     }
 });
 
@@ -146,11 +178,19 @@ App.DraftController = Ember.ObjectController.extend({
 App.AppController = Ember.ArrayController.extend({
 
 	actions:{
+
 		showDrafts :function(){
 			$('.draft-container').toggleClass('show-drafts');
+		},
+
+		showQueue :function(){
+			$('.queue-container').toggleClass('show-drafts');
+		},
+
+		showDocs :function(){
+			$('.queue-docs').toggleClass('show-drafts');
 		}
 	}
 });
-
 
 
