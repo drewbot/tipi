@@ -1,8 +1,20 @@
-// TIPI
+//                      _____   _    ____   _                        
+//       \/       \/   |_   _| | |  |  _ \ | |     \/       \/
+//       /\       /\     | |   | |  |  __/ | |     /\       /\
+//      /  \     /  \    | |   | |  | |    | |    /  \     /  \
+//_____/    \___/    \___| |___| |__| |____| |___/    \___/    \______
 
-// Create Ember Application
+///////////////////////////////////////////////////////////////////////
+////////////////////// Create Ember Application ///////////////////////
+///////////////////////////////////////////////////////////////////////
 
-App = Ember.Application.create();
+App = Ember.Application.create({
+	// ready: function() {
+ //    this.register('main:auth', App.AuthController);
+ //    this.inject('route', 'auth', 'main:auth');
+ //    this.inject('controller', 'auth', 'main:auth');
+ //  }
+});
 
 // App Adapter 
 
@@ -12,7 +24,9 @@ App.ApplicationAdapter = DS.FirebaseAdapter.extend({
 
 App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 
-// Routers
+///////////////////////////////////////////////////////////////////////
+//////////////////// Routers //////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 App.Router.map(function(){
 	this.resource('login');
@@ -20,8 +34,6 @@ App.Router.map(function(){
 		this.resource('dashboard');
 		this.resource('new');
 		this.resource('draft', {path: 'review/:draft_id'});
-		//  Keeping this around just to be able to view actions
-		this.resource('queue', {path: 'ready/:queue_id'});
 		this.resource('proposal', {path: 'review/:proposal_id'});
 		this.resource('contract', {path: 'review/:contract_id'});	
 		this.resource('brief', {path: 'review/:brief_id'});
@@ -29,7 +41,9 @@ App.Router.map(function(){
 
 });
 
-// Routes
+///////////////////////////////////////////////////////////////////////
+//////////////////// Routes ///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 // Index redirect
 App.IndexRoute = Ember.Route.extend({
@@ -51,13 +65,6 @@ App.DraftRoute = Ember.Route.extend({
     }
 });
 
-//  Keeping this around just to be able to view actions
-App.QueueRoute = Ember.Route.extend({
-    model: function(params) {
-      return this.store.find("project", params.queue_id);
-    }
-});
-
 App.ProposalRoute = Ember.Route.extend({
     model: function(params) {
       return this.store.find("project", params.proposal_id);
@@ -76,32 +83,59 @@ App.BriefRoute = Ember.Route.extend({
     }
 });
 
-// Models
+///////////////////////////////////////////////////////////////////////
+//////////////////// Models ///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 // Project
 var attr = DS.attr;
 
 App.Project = DS.Model.extend({
-  title: attr('string'),
-  clientName: attr('string'),
-  clientEmail: attr('string'),
-  description: attr('string'),
-  body: attr('string'),
-  submittedOn: attr('number'),
-  savedOn: attr('number'),
-  isCompleted: DS.attr('boolean')
-  
+	title: attr('string'),
+
+	userName: attr('string'),
+	userAddress: attr('string'),
+	userPhone: attr('number'),
+	userEmail: attr('string'),
+
+	date: attr('number'),
+	clientName: attr('string'),
+	clientTitle: attr('string'),
+	clientCo: attr('string'),
+	clientEmail: attr('string'),
+
+	projectType: attr('string'),
+	personal: DS.attr('boolean'),
+	professional: DS.attr('boolean'),
+	description: attr('string'),
+	technology: attr('string'),
+
+	delivery: attr('string'),
+	examples: attr('string'),
+	hasCopy: DS.attr('boolean'),
+	hasArt: DS.attr('boolean'),
+
+	startDate: attr('number'),
+	completionDate: attr('number'),
+	estimatedHours: attr('number'),
+	hourlyRate: attr('number'),
+
+	submittedOn: attr('number'),
+	savedOn: attr('number'),
+	isCompleted: DS.attr('boolean')
 })
 
 // User
 App.User = DS.Model.extend({
-    email: DS.attr('string'),
-    name: DS.attr('string'),
+    // email: DS.attr('string'),
+    // name: DS.attr('string'),
 });
 
+///////////////////////////////////////////////////////////////////////
+//////////////////// Controllers //////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
-/////////// New Controller ///////////////////////////
-
+// New Controller
 App.NewController = Ember.ObjectController.extend({
  
  actions :{
@@ -127,13 +161,12 @@ App.NewController = Ember.ObjectController.extend({
  }
 });
 
-/////////// Draft Controller ///////////////////////////
-
+// Draft Controller
 App.DraftController = Ember.ObjectController.extend({
 	isEditing: false,
 
 	init: function(){
-		// Trying to get the model id and set it as a url extension for print usage
+		// Trying to get the model id and set it as a url extension for send usage
 		var draftId = this.get('model.id');
 		console.log('tipiapp.com/#/app/' + draftId);
 	},
@@ -175,6 +208,7 @@ App.DraftController = Ember.ObjectController.extend({
 	}
 })
 
+// App Controller (logged in)
 App.AppController = Ember.ArrayController.extend({
 
 	actions:{
@@ -184,8 +218,8 @@ App.AppController = Ember.ArrayController.extend({
 		},
 
 		showQueue :function(){
-			$('.queue-container').toggleClass('show-drafts');
-		},
+ 			$('.queue-container').toggleClass('show-drafts');
+ 		},
 
 		showDocs :function(){
 			$('.queue-docs').toggleClass('show-drafts');
@@ -193,4 +227,71 @@ App.AppController = Ember.ArrayController.extend({
 	}
 });
 
+///////////////////////////////////////////////////////////////////////
+//////////////////// User Authentication //////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
+
+// var dbRoot = "https://sizzling-fire-4203.firebaseio.com"
+// var dbRef = new Firebase(dbRoot);
+
+// var ideasPath = dbRoot + "/ideas";
+// var usersPath = dbRoot + "/users";
+
+
+// // Login Controller
+// App.LoginRoute = Ember.Route.extend({
+//   actions: {
+//     login: function() {
+//       this.get('auth').login();
+//     },
+
+//     logout: function() {
+//       this.get('auth').logout();
+//     }
+//   }
+// });
+
+// App.AuthController = Ember.Controller.extend({
+//   authed: false,
+//   currentUser: null,
+
+//   init: function() {
+//     this.authClient = new FirebaseSimpleLogin(dbRef, function(error, githubUser) {
+//       if (error) {
+//         alert('Authentication failed: ' + error);
+//       } else if (githubUser) {
+//         this.set('authed', true);
+//         var userRef = new Firebase(usersPath + '/' + githubUser.username);
+//         var controller = this;
+//         var properties = {
+//           id: githubUser.username,
+//           name: githubUser.username,
+//           displayName: githubUser.displayName,
+//           avatarUrl: githubUser.avatar_url,
+//         };
+//         userRef.once('value', function(snapshot) {
+//           if (!snapshot.val().votesLeft) {
+//             properties.votesLeft = 10;
+//           } else {
+//             properties.votesLeft = snapshot.val().votesLeft;
+//           }
+//           var user = App.User.create({ ref: userRef });
+//           user.setProperties(properties);
+//           controller.set('currentUser', user);
+//         });
+//       } else {
+//         this.set('authed', false);
+//       }
+//     }.bind(this));
+//   },
+
+//   login: function() {
+//     this.authClient.login('github');
+//   },
+
+//   logout: function() {
+//     this.authClient.logout();
+//   }
+
+// });

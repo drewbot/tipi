@@ -66,6 +66,10 @@ a {
     }
 }
 
+label, input {
+    display: inline;
+}
+
 .draft-link {
 
     padding: 3px 0 3px 10px;
