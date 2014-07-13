@@ -148,45 +148,45 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="user-phone" class="col-sm-2 control-label">Phone Numbers</label>
+              <label for="user-phone" class="col-sm-2 control-label">Phone number</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="user-phone" name="user-phone" placeholder="your phone number" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="user-email" class="col-sm-2 control-label">Email Address</label>
+              <label for="user-email" class="col-sm-2 control-label">Email address</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="user-email" name="user-email" placeholder="your email address" required></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="client-name" class="col-sm-2 control-label">Client Name</label>
+              <label for="client-name" class="col-sm-2 control-label">Client name</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="client-name" name="client-name" placeholder="client's name" required></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label for="client-title" class="col-sm-2 control-label">Client Title</label>
+              <label for="client-title" class="col-sm-2 control-label">Client title</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="client-title" name="client-title" placeholder="client's title" required></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label for="client-co" class="col-sm-2 control-label">Client Company</label>
+              <label for="client-co" class="col-sm-2 control-label">Client company</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="client-co" name="client-co" placeholder="client-co" required></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label for="client-email" class="col-sm-2 control-label">Clients Email</label>
+              <label for="client-email" class="col-sm-2 control-label">Client email</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="client-email" name="client-email" placeholder="client's email" required></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="project-type" class="col-sm-2 control-label">Project Type</label>
+              <label for="project-type" class="col-sm-2 control-label">Project type</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="project-type" name="project-type" placeholder="one or two word description" required></textarea>
               </div>
@@ -205,20 +205,20 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="technology" class="col-sm-2 control-label">Existing Technology or Expected Technology</label>
+              <label for="technology" class="col-sm-2 control-label">Existing technology or expected technology</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="technology" name="technology" placeholder="technology" required></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="delivery" class="col-sm-2 control-label">Delivery Format</label>
+              <label for="delivery" class="col-sm-2 control-label">Delivery format</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="delivery" name="delivery" placeholder="delivery format" required></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label for="examples" class="col-sm-2 control-label">Examples of Similar Work</label>
+              <label for="examples" class="col-sm-2 control-label">Examples of similar work</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="examples" name="examples" placeholder="examples" required></textarea>
               </div>
@@ -272,27 +272,118 @@
         </script>
 
         <script type="text/x-handlebars" id="draft">
-          <h3>{{title}}</h3>
-          <p>{{clientName}}</p>
-          <p>{{clientEmail}}</p>
-          <p>{{description}}</p>
-          <p>{{body}}</p>
-          <p>Mail to {{clientName}}</p>
-          {{#if isEditing}}
-            {{partial 'draft/edit'}}
-            <button {{action 'doneEditing'}}>Done</button>
-          {{else}}
-            <button {{action 'edit'}}>Edit</button>
-          {{/if}}
-          {{view Ember.Checkbox checked=isCompleted}}
-          <button {{action "isCompleted"}}>Complete</button>
-          <button {{action "removeProject"}} class="destroy">Delete</button>
+          <div>
+            <p>{{title}}</p>
+            <ul>
+              <li>Name: {{userName}}</li>
+              <li>Address: {{userAddress}}</li>
+              <li>Phone number: {{userPhone}}</li>
+              <li>Email address: {{userEmail}}</li>
+            </ul>
+            <ul>
+              <li>Date: {{date}}</li>
+              <li>Client name: {{clientName}}</li>
+              <li>Client title: {{clientTitle}}</li>
+              <li>Client company: {{clientCo}}</li>
+            </ul>
+            <ul>
+              <li>Project type: {{projectType}}</li>
+              <li>Project use is:<li>
+                <ul>
+                  <li>professional {{view Ember.Checkbox checked=isPro}}</li>
+                  <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
+                </ul>
+              <li>Description: {{description}}</li>
+              <li>Existing technology or expected technology: {{technology}}</li>
+            </ul>
+            <ul>
+              <li>Delivery format: {{delivery}}</li>
+              <li>Examples of similar work: {{examples}}</li>
+              <p>Client plans to deliver copy:</p>
+                <ul>
+                  <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
+                  <li>No {{view Ember.Checkbox}}</li>
+                </ul>
+              <p>Client plans to provide art and images:</p>
+                <ul>
+                  <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
+                  <li>No {{view Ember.Checkbox}}</li>
+                </ul>
+            </ul>
+            <ul>
+              <li>Start date: {{startDate}}</li>
+              <li>Completion date: {{completionDate}}</li>
+              <li>Estimated hours: {{estimatedHours}}</li>
+              <li>Hourly rate: ${{hourlyRate}}</li>
+            </ul>
+            <ul>
+              <p>{{title}} was created: {{submittedOn}},</p>
+              <li>saved: {{savedOn}}</li>
+              <li>Is ready for kick-off: {{isCompleted}}</li>
+            </ul>
+            {{#if isEditing}}
+              {{partial 'draft/edit'}}
+              <button {{action 'doneEditing'}}>Done</button>
+            {{else}}
+              <button {{action 'edit'}}>Edit</button>
+            {{/if}}
+            {{view Ember.Checkbox checked=isCompleted}}
+            <button {{action "isCompleted"}}>Complete</button>
+            <button {{action "removeProject"}} class="destroy">Delete</button>
+          </div>
         </script>
 
         <script type="text/x-handlebars" id="draft/_edit">
-          <p>title: {{input type="text" value=title}}</p>
-          <p>description: {{input type="text" value=description}}</p>
-          <p>body: {{textarea value=body}}</p>
+          <div>
+            <p>title: {{input type="text" value=title}}</p>
+            <ul>
+              <li>Name: {{input type="text" value=userName}}</li>
+              <li>Address: {{input type="text" value=userAddress}}</li>
+              <li>Phone number: {{input type="text" value=userPhone}}</li>
+              <li>Email address: {{input type="text" value=userEmail}}</li>
+            </ul>
+            <ul>
+              <li>Date: {{input type="text" value=date}}</li>
+              <li>Client name: {{input type="text" value=clientName}}</li>
+              <li>Client title: {{input type="text" value=clientTitle}}</li>
+              <li>Client company: {{input type="text" value=clientCo}}</li>
+            </ul>
+            <ul>
+              <li>Project type: {{input type="text" value=projectType}}</li>
+              <li>Project use is:<li>
+                <ul>
+                  <li>professional {{view Ember.Checkbox checked=isPro}}</li>
+                  <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
+                </ul>
+              <li>Description: {{textarea value=description}}</li>
+              <li>Existing technology or expected technology: {{input type="text" value=technology}}</li>
+            </ul>
+            <ul>
+              <li>Delivery format: {{input type="text" value=delivery}}</li>
+              <li>Examples of similar work: {{input type="text" value=examples}}</li>
+              <p>Client plans to deliver copy:</p>
+                <ul>
+                  <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
+                  <li>No {{view Ember.Checkbox}}</li>
+                </ul>
+              <p>Client plans to provide art and images:</p>
+                <ul>
+                  <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
+                  <li>No {{view Ember.Checkbox}}</li>
+                </ul>
+            </ul>
+            <ul>
+              <li>Start date: {{input type="text" value=startDate}}</li>
+              <li>Completion date: {{input type="text" value=completionDate}}</li>
+              <li>Estimated hours: {{input type="text" value=estimatedHours}}</li>
+              <li>Hourly rate: ${{input type="text" value=hourlyRate}}</li>
+            </ul>
+            <ul>
+              <p>{{title}} was created: {{submittedOn}},</p>
+              <li>saved: {{savedOn}}</li>
+              <li>Is ready for kick-off: {{isCompleted}}</li>
+            </ul>
+          </div>
         </script>
 
         <script type="text/x-handlebars" id="proposal">
