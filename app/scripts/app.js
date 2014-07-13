@@ -33,10 +33,10 @@ App.Router.map(function(){
 	this.resource('app', function(){
 		this.resource('dashboard');
 		this.resource('new');
-		this.resource('draft', {path: 'review/:draft_id'});
-		this.resource('proposal', {path: 'review/:proposal_id'});
-		this.resource('contract', {path: 'review/:contract_id'});	
-		this.resource('brief', {path: 'review/:brief_id'});
+		this.resource('draft', {path: ':draft_id/review'});
+		this.resource('proposal', {path: ':proposal_id/proposal'});
+		this.resource('contract', {path: ':contract_id/contract'});	
+		this.resource('brief', {path: ':brief_id/proposal'});
 	});
 
 });

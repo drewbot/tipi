@@ -288,27 +288,28 @@
             </ul>
             <ul>
               <li>Project type: {{projectType}}</li>
-              <li>Project use is:<li>
-                <ul>
-                  <li>professional {{view Ember.Checkbox checked=isPro}}</li>
-                  <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
-                </ul>
               <li>Description: {{description}}</li>
+              {{#if professional}}
+                <li>Client plans to use for professional purposes</li>
+              {{/if}}
+              {{#if personal}}
+                <li>Client plans to use for personal purposes</li>
+              {{/if}}
               <li>Existing technology or expected technology: {{technology}}</li>
             </ul>
             <ul>
               <li>Delivery format: {{delivery}}</li>
               <li>Examples of similar work: {{examples}}</li>
-              <p>Client plans to deliver copy:</p>
-                <ul>
-                  <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
-                  <li>No {{view Ember.Checkbox}}</li>
-                </ul>
-              <p>Client plans to provide art and images:</p>
-                <ul>
-                  <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
-                  <li>No {{view Ember.Checkbox}}</li>
-                </ul>
+              {{#if hasCopy}}
+                <li>Client plans to provide copy</li>
+              {{else}}
+                <li>Client expects us to provide copy</li>
+              {{/if}}
+              {{#if hasArt}}
+                <li>Client plans to provide art and images</li>
+              {{else}}
+                <li>Client expects us to provide art and images</li>
+              {{/if}}
             </ul>
             <ul>
               <li>Start date: {{startDate}}</li>
@@ -350,7 +351,7 @@
             </ul>
             <ul>
               <li>Project type: {{input type="text" value=projectType}}</li>
-              <li>Project use is:<li>
+              <li>Project use is:</li>
                 <ul>
                   <li>professional {{view Ember.Checkbox checked=isPro}}</li>
                   <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
@@ -379,7 +380,7 @@
               <li>Hourly rate: ${{input type="text" value=hourlyRate}}</li>
             </ul>
             <ul>
-              <p>{{title}} was created: {{submittedOn}},</p>
+              <li>{{title}} was created: {{submittedOn}},</li>
               <li>saved: {{savedOn}}</li>
               <li>Is ready for kick-off: {{isCompleted}}</li>
             </ul>
@@ -405,6 +406,12 @@
             <h3>Description of Work:</h3>
             <p>{{description}}</p>
             <ul>
+              {{#if professional}}
+                <li>Client plans to use for professional purposes</li>
+              {{/if}}
+              {{#if personal}}
+                <li>Client plans to use for personal purposes</li>
+              {{/if}}
               <li>Existing technology or expected technology: {{technology}}</li>
               <li>Examples of similar work: {{examples}}</li>
               {{#if hasCopy}}
@@ -470,6 +477,12 @@
               {{description}}
             </p>
             <ul>
+              {{#if professional}}
+                <li>Client plans to use for professional purposes</li>
+              {{/if}}
+              {{#if personal}}
+                <li>Client plans to use for personal purposes</li>
+              {{/if}}
               <li>Existing technology or expected technology: {{technology}}</li>
               <li>Examples of similar work: {{examples}}</li>
               {{#if hasCopy}}
@@ -555,8 +568,8 @@
         </script>
 
         <script type="text/x-handlebars" id="brief">
-          <h3>{{title}} Project Brief</h3>
-          <p>{{projectType}}</p>
+          <h3>{{title}}, Project Brief</h3>
+          <p>Project type: {{projectType}}</p>
           <ul>
             <li>For {{clientName}}, of {{clientCo}}</li>
           </ul>
@@ -567,6 +580,12 @@
           <h3>Project Description:</h3>
           <p>{{description}}</p>
           <ul>
+              {{#if professional}}
+                <li>Client plans to use for professional purposes</li>
+              {{/if}}
+              {{#if personal}}
+                <li>Client plans to use for personal purposes</li>
+              {{/if}}
               <li>Existing technology or expected technology: {{technology}}</li>
               <li>Examples of similar work: {{examples}}</li>
               {{#if hasCopy}}
