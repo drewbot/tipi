@@ -25,7 +25,7 @@ App.ApplicationAdapter = DS.FirebaseAdapter.extend({
 App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 
 ///////////////////////////////////////////////////////////////////////
-//////////////////// Routers //////////////////////////////////////////
+//////////////////////// Routers //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
 App.Router.map(function(){
@@ -42,7 +42,7 @@ App.Router.map(function(){
 });
 
 ///////////////////////////////////////////////////////////////////////
-//////////////////// Routes ///////////////////////////////////////////
+////////////////////////// Routes /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
 // Index redirect
@@ -52,12 +52,25 @@ App.IndexRoute = Ember.Route.extend({
     }
 });
 
-// This defines project as the model for every route. I may need to change
-App.Route = Ember.Route.extend({
+App.AppRoute = Ember.Route.extend({
     model: function(params) {
       return this.store.findAll("project");
     }
 });
+
+App.NewRoute = Ember.Route.extend({
+    model: function(params) {
+      return this.store.findAll("project");
+    }
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+App.DashboardRoute = Ember.Route.extend({
+    model: function(params) {
+      return this.store.find("user"); // I will need to pass an id here when I get user auth figured out
+    }
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 App.DraftRoute = Ember.Route.extend({
     model: function(params) {
@@ -90,14 +103,26 @@ App.BriefRoute = Ember.Route.extend({
 // Project
 var attr = DS.attr;
 
+// User
+App.User = DS.Model.extend({
+    userName: attr('string'),
+	userAddress: attr('string'),
+	userPhone: attr('number'),
+	userEmail: attr('string'),
+	hourlyRate: attr('number')
+});
+
+// I need to transfer user settings from user model to project
+
 App.Project = DS.Model.extend({
-	title: attr('string'),
 
 	userName: attr('string'),
 	userAddress: attr('string'),
 	userPhone: attr('number'),
 	userEmail: attr('string'),
 
+	// "date" to be established when printed
+	// I may remove it from the model and just show today's date in the browser
 	date: attr('number'),
 	clientName: attr('string'),
 	clientTitle: attr('string'),
@@ -125,39 +150,96 @@ App.Project = DS.Model.extend({
 	isCompleted: DS.attr('boolean')
 })
 
-// User
-App.User = DS.Model.extend({
-    // email: DS.attr('string'),
-    // name: DS.attr('string'),
-});
-
 ///////////////////////////////////////////////////////////////////////
 //////////////////// Controllers //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
+
+// Dashboard Controller
+App.DashboardController = Ember.ObjectController.extend({
+	isEditing: false,
+
+	actions: {
+		edit: function(){
+			this.set('isEditing', true);
+		},
+
+		doneEditing: function(){
+			this.set('isEditing', false);
+
+			// I need to describe update model here (user or project)	
+
+		    project.save();
+		}
+	}
+})
 
 // New Controller
 App.NewController = Ember.ObjectController.extend({
  
  actions :{
     save : function(){
-        var title = $('#title').val();
+
+        var userName = $('#user-name').val();
+        var userAddress = $('#user-address').val();
+        var userPhone = $('#user-phone').val();
+        var userEmail = $('#user-email').val();
+
         var clientName = $('#client-name').val();
+        var clientTitle = $('#client-title').val();
+        var clientCo = $('#client-co').val();
         var clientEmail = $('#client-email').val();
+
+        var projectType = $('#project-type').val();
+        var isPro = this.get('isPro');
+        var isPersonal = this.get('isPersonal');
         var description = $('#description').val();
-        var body = $('#body').val();
+        var technology = $('#technology').val();
+
+        var delivery = $('#delivery').val();
+        var examples = $('#examples').val();
+        var hasCopy = this.get('isPro');
+        var hasArt = this.get('isPersonal');
+
+        var startDate = $('#start-date').val();
+        var completionDate = $('#completion-date').val();
+        var estimatedHours = $('#estimatedHours').val();
+        var hourlyRate = $('#hourly-rate').val();
+
         var submittedOn = new Date();
+
         var store = this.get('store');
         var project = this.store.createRecord('project',{
-            title : title,
-            clientName : clientName,
-			clientEmail : clientEmail,
-            description : description,
-            body : body,
+			userName: userName,
+			userAddress: userAddress,
+			userPhone: userPhone,
+			userEmail: userEmail,
+
+			clientName: clientName,
+			clientTitle: clientTitle,
+			clientCo: clientCo,
+			clientEmail: clientEmail,
+
+			projectType: projectType,
+			personal: personal,
+			professional: professional,
+			description: description,
+			technology: technology,
+
+			delivery: delivery,
+			examples: examples,
+			hasCopy: hasCopy,
+			hasArt: hasArt,
+
+			startDate: startDate,
+			completionDate: completionDate,
+			estimatedHours: estimatedHours,
+			hourlyRate: hourlyRate,
+
             submittedOn : submittedOn
         });
         project.save();
         this.transitionToRoute('dashboard');
-    }
+    },
  }
 });
 
@@ -225,6 +307,15 @@ App.AppController = Ember.ArrayController.extend({
 			$('.queue-docs').toggleClass('show-drafts');
 		}
 	}
+});
+
+//Contract Controller
+App.ContractCotroller = Ember.ObjectController.extend({
+	init: function(){
+		var project = this.get('model');
+		project.set('date', new Date());
+		project.save();
+	},
 });
 
 ///////////////////////////////////////////////////////////////////////
