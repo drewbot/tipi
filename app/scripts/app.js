@@ -115,6 +115,7 @@ App.User = DS.Model.extend({
 // I need to transfer user settings from user model to project
 
 App.Project = DS.Model.extend({
+	title: attr('string'),
 
 	userName: attr('string'),
 	userAddress: attr('string'),
@@ -178,6 +179,7 @@ App.NewController = Ember.ObjectController.extend({
  
  actions :{
     save : function(){
+    	var title = $('#title').val();
 
         var userName = $('#user-name').val();
         var userAddress = $('#user-address').val();
@@ -209,6 +211,7 @@ App.NewController = Ember.ObjectController.extend({
 
         var store = this.get('store');
         var project = this.store.createRecord('project',{
+        	title : title,
 			userName: userName,
 			userAddress: userAddress,
 			userPhone: userPhone,
