@@ -404,6 +404,21 @@
             <p>Here is a simple estimate for you.  Please note that my rate is ${{hourlyRate}} per hour. Here are the description of the work and the numbers:</p>
             <h3>Description of Work:</h3>
             <p>{{description}}</p>
+            <ul>
+              <li>Existing technology or expected technology: {{technology}}</li>
+              <li>Examples of similar work: {{examples}}</li>
+              {{#if hasCopy}}
+                <li>Client plans to provide copy</li>
+              {{else}}
+                <li>Client expects Consultant to provide copy</li>
+              {{/if}}
+              {{#if hasArt}}
+                <li>Client plans to provide art and images</li>
+              {{else}}
+                <li>Client expects Consultant to provide art and images</li>
+              {{/if}}
+              <li>Delivery format: {{delivery}}</li>
+            </ul>
             <h3>Estimated Time</h3>
             <p>{{projectType}}: {{estimatedHours}}</p>
             <p>TOTAL: {{estimatedHours}} {{totalEstimatedHours}}</p>
@@ -454,6 +469,21 @@
             <p>
               {{description}}
             </p>
+            <ul>
+              <li>Existing technology or expected technology: {{technology}}</li>
+              <li>Examples of similar work: {{examples}}</li>
+              {{#if hasCopy}}
+                <li>Client plans to provide copy</li>
+              {{else}}
+                <li>Client expects Consultant to provide copy</li>
+              {{/if}}
+              {{#if hasArt}}
+                <li>Client plans to provide art and images</li>
+              {{else}}
+                <li>Client expects Consultant to provide art and images</li>
+              {{/if}}
+              <li>Delivery format: {{delivery}}</li>
+            </ul>
             <h3>PAYMENT SCHEDULE:</h3>
             <p>
             The full length of this contract is as follows:
@@ -499,7 +529,7 @@
             </p>
             <h3>TERMINATION:</h3>
             <p>
-            Either party may terminate this Agreement by giving 30 days written notice to the other of such termination. In the event that Work is postponed or terminated at the request of the Client, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within thirty days of the Client's written notification to stop work. In the event of termination, the Client shall also pay any expenses incurred by Consultant and the Consultant shall own all rights to the Work. The Client shall assume responsibility for all collection of legal fees necessitated by default in payment.
+            Either party may terminate this Agreement by giving 30 days written notice to the other of such termination. In the event that Work is postponed or terminated at the request of the Client, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within thirty days of the Clients written notification to stop work. In the event of termination, the Client shall also pay any expenses incurred by Consultant and the Consultant shall own all rights to the Work. The Client shall assume responsibility for all collection of legal fees necessitated by default in payment.
             </p>
             <p>
             In the event that Work is postponed or terminated at the request of the Client, Client shall not receive any refund or reimbursement for deposits made. In the event that Work is postponed or terminated at the request of Consultant, Client shall receive a refund for the exact amount of any deposits made.
@@ -525,14 +555,36 @@
         </script>
 
         <script type="text/x-handlebars" id="brief">
-          <h2>brief</h2>
-          <p>{{name}}</p>
-          <p>{{email}}</p>
-          <h3>{{title}}</h3>
-          <p>{{clientName}}</p>
-          <p>{{clientEmail}}</p>
+          <h3>{{title}} Project Brief</h3>
+          <p>{{projectType}}</p>
+          <ul>
+            <li>For {{clientName}}, of {{clientCo}}</li>
+          </ul>
+          <ul>
+            <li>Project Lead: {{userName}}</li>
+            <li>{{userEmail}}</li>
+          </ul>
+          <h3>Project Description:</h3>
           <p>{{description}}</p>
-          <p>{{body}}</p>
+          <ul>
+              <li>Existing technology or expected technology: {{technology}}</li>
+              <li>Examples of similar work: {{examples}}</li>
+              {{#if hasCopy}}
+                <li>Client plans to provide copy</li>
+              {{else}}
+                <li>Client expects us to provide copy</li>
+              {{/if}}
+              {{#if hasArt}}
+                <li>Client plans to provide art and images</li>
+              {{else}}
+                <li>Client expects us to provide art and images</li>
+              {{/if}}
+              <li>Delivery format: {{delivery}}</li>
+          </ul>
+          <ul>
+              <li>Start date: {{startDate}}</li>
+              <li>Completion date: {{completionDate}}</li>
+          </ul>
         </script>
 
 
