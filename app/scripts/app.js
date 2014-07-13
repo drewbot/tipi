@@ -325,8 +325,26 @@ App.AppController = Ember.ArrayController.extend({
 	}
 });
 
-//Contract Controller
+// Proposal Controller
+App.ProposalCotroller = Ember.ObjectController.extend({
+	init: function(){
+		var project = this.get('model');
+		project.set('date', new Date());
+		project.save();
+	},
+});
+
+// Contract Controller
 App.ContractCotroller = Ember.ObjectController.extend({
+	init: function(){
+		var project = this.get('model');
+		project.set('date', new Date());
+		project.save();
+	},
+});
+
+// Brief Controller
+App.BriefCotroller = Ember.ObjectController.extend({
 	init: function(){
 		var project = this.get('model');
 		project.set('date', new Date());

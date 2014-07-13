@@ -296,113 +296,141 @@
         </script>
 
         <script type="text/x-handlebars" id="proposal">
-          <h2>proposal</h2>
-          <p>{{name}}</p>
-          <p>{{email}}</p>
-          <h3>{{title}}</h3>
-          <p>{{clientName}}</p>
-          <p>{{clientEmail}}</p>
-          <p>{{description}}</p>
-          <p>{{body}}</p>
+          <div class="proposal-container">
+            <ul>
+              <li>{{userName}}</li>
+              <li>{{userAddress}}</li>
+              <li>{{userPhone}}</li>
+              <li>{{userEmail}}</li>
+            </ul>
+            <ul>
+              <li>{{date}}</li>
+              <li>{{clientName}}</li>
+              <li>{{clientTitle}}</li>
+              <li>{{clientCo}}</li>
+            </ul>
+            <p>Dear {{clientName}},</p>
+            <p>Here is a simple estimate for you.  Please note that my rate is ${{hourlyRate}} per hour. Here are the description of the work and the numbers:</p>
+            <h3>Description of Work:</h3>
+            <p>{{description}}</p>
+            <h3>Estimated Time</h3>
+            <p>{{projectType}}: {{estimatedHours}}</p>
+            <p>TOTAL: {{estimatedHours}} {{totalEstimatedHours}}</p>
+            <h3>Estimated Cost:</h3>
+            <p>{{totalCost}}</p>
+            <p>
+              The work described above is estimated to be completed by {{completionDate}}. We will probably be done well before that date. The budget for this project is tight and we will do everything we can to stay within the {{estimatedHours}} {{totalEstimatedHours}} ({{totalCost}}). Please understand, however, that this is the estimated cost, and the final cost will be based upon the number of hours taken to complete the project. 
+            </p>
+            <p>
+            This estimate, of course, does not include changes you may decide to make along the way, which could potentially make the price significantly higher. This is most easily avoidable by clear communication about expectations. It will also help tremendously if you look at the artwork carefully before you approve it, because layout changes become much more difficult after we have begun coding.
+            </p>
+            <p>
+            I’m looking forward to working with you on this project. Let me know what you’re thinking, and don’t hesitate to call or email if you have any questions.
+            </p>
+            <p>Sincerely,</p>
+            <p>{{userName}}</p>
+          </div>
         </script>
 
         <script type="text/x-handlebars" id="contract">
-          <ul>
-            <li>{{userName}}</li>
-            <li>{{userAddress}}</li>
-            <li>{{userPhone}}</li>
-            <li>{{userEmail}}</li>
-          </ul>
-          <ul>
-            <li>{{date}}</li>
-            <li>{{clientName}}</li>
-            <li>{{clientTitle}}</li>
-            <li>{{clientCo}}</li>
-          </ul>
-          <h3>{{projectType}} Contract</h3>
-          <p>
-            This AGREEMENT is dated and in effect as of {{date}}, between {{clientName}} of {{clientCo}}, hereafter referred to as "Client" and {{userName}}, hereafter referred to as "Consultant".  This agreement is with respect to the work concerning website development, hereinafter referred to as the "Work." The work will consist of original code and possible implementations of third party code. Any third party code will be outlined in the Proposal. Whereas, Consultant is a professional web designer of good standing; Whereas, Client wishes Consultant to create certain Work described more fully herein and in the Proposal; and Whereas, Consultant wishes to create such Work; Now, therefore, in consideration of the foregoing premises and the mutual covenants hereinafter set forth and other valuable considerations, the parties hereto agree as follows:
-          </p>
-          <h3>CONFIDENTIALITY:</h3>
-          <p>
-            The Client and Consultant may disclose confidential information one to the other to facilitate work under this Agreement. Such information shall be so identified in writing at the time of its transmittal, and shall be safeguarded and not disclosed to third parties by the receiving party.  Confidential information shall not include information that:
-          </p>
-          <ol>
-            <li>is already known to the party to which it is disclosed;</li>
-            <li>is or becomes part of the public domain without breach of this Agreement;</li>
-            <li>is obtained from third parties, which have no obligations to keep confidential to the parties to this Agreement.</li>
-          </ol>
-          <h3>DESCRIPTION OF WORK:</h3>
-          <p>
-            {{description}}
-          </p>
-          <h3>PAYMENT SCHEDULE:</h3>
-          <p>
-          The full length of this contract is as follows:
-          Starting date is {{startDate}} and estimated completion* date is {{completionDate}} for the estimated total amount of {{totalCost}}, which is derived from an estimated {{estimatedHours}} hours to be billed at {{hourlyRate}} per hour. The total number of hours incurred by Consultant during the course of the Work described herein will be billed to Client at a rate of {{hourlyRate}} per hour. Consultant reserves the right to exceed a total cost of {{totalCost}} in the event that the completion of the Work requires more than {{estimatedHours}} hours. Client and Consultant hereby agree that the Work resulting from the estimated {{estimatedHours}} hours shall be a {{projectType}} conforming to the Proposal as approved by the Client.
-          </p>
-          <p>
-            Client shall pay Consultant {{deposit}}, (20% of the estimated total) as a deposit for project commencement.
-          </p>
-          <p>
-          Every two weeks during the Work Consultant will bill Client for the total hours worked to that point to be paid no more than two weeks after the sending of the invoice. If the invoice is unpaid in that period of time a 10% financing charge will be instituted on the total amount due on the account and work will discontinue until the Client brings the invoice current. Upon completion of the Work the remaining balance will be due and must be paid prior to file and password relinquishment, or upload and/or assembly of website on Client's web server.
-          </p>
-          <h3>DUE DATES:</h3>
-          <p>
-          Consultant agrees to deliver samples of design on dates as agreed upon in the Proposal.  Consultant will make every effort to meet agreed upon due dates. The Client agrees that failure to submit required information, payments or materials may cause delays in the final due date of the Work and will act so as to postpone the due date by whatever time is lost.
-          </p>
-          <h3>FEES & ADDITIONAL SERVICES:</h3>
-          <p>
-          Overly burdensome changes will be charged at {{hourlyRate}} per hour. Any work the Client wishes Consultant to create, which is not specified in the DESCRIPTION section of this agreement, or in the attached Proposal will be considered an additional service. Such Work shall require a separate Agreement and payment separate from and above that specified in this Agreement.
-          </p>
-          <h3>EXPENSES:</h3>
-          <p>
-          Client agrees to reimburse Consultant for any of the following expenses necessary in completion of the Work: (e.g. Fonts, Messengers, Proofs, Props, Research, Shipping, Software, Stock photography, Travel, Telephone Consultation).
-          </p>
-          <h3>ASSIGNMENT OF WORK:</h3>
-          <p>
-          Consultant reserves the right to assign other designers, developers or other subcontractors to the Work to ensure quality and on-time completion.
-          </p>
-          <h3>RESERVATION OF RIGHTS:</h3>
-          <p>
-          All rights not expressly granted hereunder are reserved to Consultant, including but not limited to all rights in sketches, comps, or other preliminary materials and the right to claim ownership and link to the work.
-          </p>
-          <h3>PERMISSIONS AND RELEASES:</h3>
-          <p>
-          The Client agrees to indemnify and hold harmless Consultant against any and all claims, costs, and expenses, including attorney's fees, due to materials included in the Work at the request of the Client for which no copyright permission or previous release was requested or uses which exceed the uses allowed pursuant to a permission or release. Client also agrees to indemnify and hold harmless for any expense due to integrated third party code outlined in the Proposal.
-          </p>
-          <h3>PUBLICATION:</h3>
-          <p>
-          The Client may publish or disclose information regarding the Work and shall acknowledge the support of Consultant in all such publications. The Client will not use the name of Consultant, in any advertising or publicity without the prior written approval from the Consultant.  The Consultant will not use the name of Client, in any advertising or publicity without the prior written approval from the Client.
-          </p>
-          <h3>COPYRIGHT NOTICE:</h3>
-          <p>
-          Copyright is in Consultant's name.  Upon completion of Work, the copyright will only be released to the Client upon the Consultant's signing of the Release of Copyright, which shall not be unreasonably withheld.
-          </p>
-          <h3>TERMINATION:</h3>
-          <p>
-          Either party may terminate this Agreement by giving 30 days written notice to the other of such termination. In the event that Work is postponed or terminated at the request of the Client, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within thirty days of the Client's written notification to stop work. In the event of termination, the Client shall also pay any expenses incurred by Consultant and the Consultant shall own all rights to the Work. The Client shall assume responsibility for all collection of legal fees necessitated by default in payment.
-          </p>
-          <p>
-          In the event that Work is postponed or terminated at the request of the Client, Client shall not receive any refund or reimbursement for deposits made. In the event that Work is postponed or terminated at the request of Consultant, Client shall receive a refund for the exact amount of any deposits made.
-          </p>
-          <p>
-          The Client and Consultant are independent parties and nothing in this Agreement shall constitute either party as the employer, principal or partner of or joint venture with the other party.  Neither the Client nor Consultant has any authority to assume or create any obligation or liability, either express or implied, on behalf of the other.
-          </p>
-          <p>
-          This Agreement shall be governed by and construed in accordance with the laws of The State of {{userAddress.state}} applicable therein.
-          </p>
-          <p>
-          The undersigned agrees to the terms of this agreement on behalf of his or her organization or business and gives warranty that he is an signatory for the organization (if applicable)..
-          </p>
-          <p>On behalf of the Client:</p>
-          <div class="sign-line"></div>
-          <p>Date:</p>
-          <div class="sign-line"></div>
-          <p>On behalf of Consultant:</p>
-          <div class="sign-line"></div>
-          <p>Date:</p>
-          <div class="sign-line"></div>
+          <div class="contract-container">
+            <ul>
+              <li>{{userName}}</li>
+              <li>{{userAddress}}</li>
+              <li>{{userPhone}}</li>
+              <li>{{userEmail}}</li>
+            </ul>
+            <ul>
+              <li>{{date}}</li>
+              <li>{{clientName}}</li>
+              <li>{{clientTitle}}</li>
+              <li>{{clientCo}}</li>
+            </ul>
+            <h3>{{projectType}} Contract</h3>
+            <p>
+              This AGREEMENT is dated and in effect as of {{date}}, between {{clientName}} of {{clientCo}}, hereafter referred to as "Client" and {{userName}}, hereafter referred to as "Consultant".  This agreement is with respect to the work concerning website development, hereinafter referred to as the "Work." The work will consist of original code and possible implementations of third party code. Any third party code will be outlined in the Proposal. Whereas, Consultant is a professional web designer of good standing; Whereas, Client wishes Consultant to create certain Work described more fully herein and in the Proposal; and Whereas, Consultant wishes to create such Work; Now, therefore, in consideration of the foregoing premises and the mutual covenants hereinafter set forth and other valuable considerations, the parties hereto agree as follows:
+            </p>
+            <h3>CONFIDENTIALITY:</h3>
+            <p>
+              The Client and Consultant may disclose confidential information one to the other to facilitate work under this Agreement. Such information shall be so identified in writing at the time of its transmittal, and shall be safeguarded and not disclosed to third parties by the receiving party.  Confidential information shall not include information that:
+            </p>
+            <ol>
+              <li>is already known to the party to which it is disclosed;</li>
+              <li>is or becomes part of the public domain without breach of this Agreement;</li>
+              <li>is obtained from third parties, which have no obligations to keep confidential to the parties to this Agreement.</li>
+            </ol>
+            <h3>DESCRIPTION OF WORK:</h3>
+            <p>
+              {{description}}
+            </p>
+            <h3>PAYMENT SCHEDULE:</h3>
+            <p>
+            The full length of this contract is as follows:
+            Starting date is {{startDate}} and estimated completion* date is {{completionDate}} for the estimated total amount of {{totalCost}}, which is derived from an estimated {{estimatedHours}} hours to be billed at {{hourlyRate}} per hour. The total number of hours incurred by Consultant during the course of the Work described herein will be billed to Client at a rate of {{hourlyRate}} per hour. Consultant reserves the right to exceed a total cost of {{totalCost}} in the event that the completion of the Work requires more than {{estimatedHours}} hours. Client and Consultant hereby agree that the Work resulting from the estimated {{estimatedHours}} hours shall be a {{projectType}} conforming to the Proposal as approved by the Client.
+            </p>
+            <p>
+              Client shall pay Consultant {{deposit}}, (20% of the estimated total) as a deposit for project commencement.
+            </p>
+            <p>
+            Every two weeks during the Work Consultant will bill Client for the total hours worked to that point to be paid no more than two weeks after the sending of the invoice. If the invoice is unpaid in that period of time a 10% financing charge will be instituted on the total amount due on the account and work will discontinue until the Client brings the invoice current. Upon completion of the Work the remaining balance will be due and must be paid prior to file and password relinquishment, or upload and/or assembly of website on Client's web server.
+            </p>
+            <h3>DUE DATES:</h3>
+            <p>
+            Consultant agrees to deliver samples of design on dates as agreed upon in the Proposal.  Consultant will make every effort to meet agreed upon due dates. The Client agrees that failure to submit required information, payments or materials may cause delays in the final due date of the Work and will act so as to postpone the due date by whatever time is lost.
+            </p>
+            <h3>FEES & ADDITIONAL SERVICES:</h3>
+            <p>
+            Overly burdensome changes will be charged at {{hourlyRate}} per hour. Any work the Client wishes Consultant to create, which is not specified in the DESCRIPTION section of this agreement, or in the attached Proposal will be considered an additional service. Such Work shall require a separate Agreement and payment separate from and above that specified in this Agreement.
+            </p>
+            <h3>EXPENSES:</h3>
+            <p>
+            Client agrees to reimburse Consultant for any of the following expenses necessary in completion of the Work: (e.g. Fonts, Messengers, Proofs, Props, Research, Shipping, Software, Stock photography, Travel, Telephone Consultation).
+            </p>
+            <h3>ASSIGNMENT OF WORK:</h3>
+            <p>
+            Consultant reserves the right to assign other designers, developers or other subcontractors to the Work to ensure quality and on-time completion.
+            </p>
+            <h3>RESERVATION OF RIGHTS:</h3>
+            <p>
+            All rights not expressly granted hereunder are reserved to Consultant, including but not limited to all rights in sketches, comps, or other preliminary materials and the right to claim ownership and link to the work.
+            </p>
+            <h3>PERMISSIONS AND RELEASES:</h3>
+            <p>
+            The Client agrees to indemnify and hold harmless Consultant against any and all claims, costs, and expenses, including attorney's fees, due to materials included in the Work at the request of the Client for which no copyright permission or previous release was requested or uses which exceed the uses allowed pursuant to a permission or release. Client also agrees to indemnify and hold harmless for any expense due to integrated third party code outlined in the Proposal.
+            </p>
+            <h3>PUBLICATION:</h3>
+            <p>
+            The Client may publish or disclose information regarding the Work and shall acknowledge the support of Consultant in all such publications. The Client will not use the name of Consultant, in any advertising or publicity without the prior written approval from the Consultant.  The Consultant will not use the name of Client, in any advertising or publicity without the prior written approval from the Client.
+            </p>
+            <h3>COPYRIGHT NOTICE:</h3>
+            <p>
+            Copyright is in Consultant's name.  Upon completion of Work, the copyright will only be released to the Client upon the Consultant's signing of the Release of Copyright, which shall not be unreasonably withheld.
+            </p>
+            <h3>TERMINATION:</h3>
+            <p>
+            Either party may terminate this Agreement by giving 30 days written notice to the other of such termination. In the event that Work is postponed or terminated at the request of the Client, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within thirty days of the Client's written notification to stop work. In the event of termination, the Client shall also pay any expenses incurred by Consultant and the Consultant shall own all rights to the Work. The Client shall assume responsibility for all collection of legal fees necessitated by default in payment.
+            </p>
+            <p>
+            In the event that Work is postponed or terminated at the request of the Client, Client shall not receive any refund or reimbursement for deposits made. In the event that Work is postponed or terminated at the request of Consultant, Client shall receive a refund for the exact amount of any deposits made.
+            </p>
+            <p>
+            The Client and Consultant are independent parties and nothing in this Agreement shall constitute either party as the employer, principal or partner of or joint venture with the other party.  Neither the Client nor Consultant has any authority to assume or create any obligation or liability, either express or implied, on behalf of the other.
+            </p>
+            <p>
+            This Agreement shall be governed by and construed in accordance with the laws of The State of {{userAddress.state}} applicable therein.
+            </p>
+            <p>
+            The undersigned agrees to the terms of this agreement on behalf of his or her organization or business and gives warranty that he is an signatory for the organization (if applicable)..
+            </p>
+            <p>On behalf of the Client:</p>
+            <div class="sign-line"></div>
+            <p>Date:</p>
+            <div class="sign-line"></div>
+            <p>On behalf of Consultant:</p>
+            <div class="sign-line"></div>
+            <p>Date:</p>
+            <div class="sign-line"></div>
+          </div>
         </script>
 
         <script type="text/x-handlebars" id="brief">
