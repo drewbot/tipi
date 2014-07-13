@@ -128,35 +128,54 @@
           <form class="form-horizontal" role="form">
 
             <div class="form-group">
-              <label for="name" class="col-sm-2 control-label">Name</label>
+              <label for="title" class="col-sm-2 control-label">Title</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="your name" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="bizname" class="col-sm-2 control-label">Business Name</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="bizname" name="bizname" placeholder="Business Name" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="hourly-rate" class="col-sm-2 control-label">Hourly Rate</label>
-              <div class="col-sm-10">
-                <input type="number" class="form-control" id="hourly-rate" name="hourly-rate" placeholder="Hourly Rate" required>
+                <!--{{input type="title" class="form-control" id="title" name="title" placeholder="title" maxlength=20 required=""}}-->
+                <input type="title" class="form-control" id="title" name="title" placeholder="Title" required>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="title" class="col-sm-2 control-label">Title</label>
+              <label for="user-name" class="col-sm-2 control-label">Name</label>
               <div class="col-sm-10">
-                <!--{{input type="title" class="form-control" id="title" name="title" placeholder="Title" maxlength=20 required=""}}-->
-                <input type="title" class="form-control" id="title" name="title" placeholder="Title" required>
+                <input type="text" class="form-control" id="user-name" name="user-name" placeholder="your name" required>
               </div>
             </div>
+            <div class="form-group">
+              <label for="user-address" class="col-sm-2 control-label">Address</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="user-address" name="user-address" placeholder="your address" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user-phone" class="col-sm-2 control-label">Phone Numbers</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="user-phone" name="user-phone" placeholder="your phone number" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="user-email" class="col-sm-2 control-label">Email Address</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="user-email" name="user-email" placeholder="your email address" required></textarea>
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="client-name" class="col-sm-2 control-label">Client Name</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="client-name" name="client-name" placeholder="client's name" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="client-title" class="col-sm-2 control-label">Client Title</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="client-title" name="client-title" placeholder="client's title" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="client-co" class="col-sm-2 control-label">Client Company</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="client-co" name="client-co" placeholder="client-co" required></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -165,25 +184,90 @@
                 <textarea class="form-control" id="client-email" name="client-email" placeholder="client's email" required></textarea>
               </div>
             </div>
+
             <div class="form-group">
-              <label for="description" class="col-sm-2 control-label">description</label>
+              <label for="project-type" class="col-sm-2 control-label">Project Type</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="description" name="description" placeholder="short description of the project" required></textarea>
+                <textarea class="form-control" id="project-type" name="project-type" placeholder="one or two word description" required></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label for="body" class="col-sm-2 control-label">body</label>
+              <p>Is this for professional use or personal?</p>
+                <ul>
+                  <li>professional {{view Ember.Checkbox checked=isPro}}</li>
+                  <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
+                </ul>
+            </div>
+            <div class="form-group">
+              <label for="description" class="col-sm-2 control-label">Description</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="body" name="body" placeholder="main content" required></textarea>
+                <textarea class="form-control" id="description" name="description" placeholder="full description of the project" required></textarea>
               </div>
             </div>
+            <div class="form-group">
+              <label for="technology" class="col-sm-2 control-label">Existing Technology or Expected Technology</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="technology" name="technology" placeholder="technology" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="delivery" class="col-sm-2 control-label">Delivery Format</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="delivery" name="delivery" placeholder="delivery format" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="examples" class="col-sm-2 control-label">Examples of Similar Work</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="examples" name="examples" placeholder="examples" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <p>Does client plan to deliver copy?</p>
+                <ul>
+                  <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
+                  <li>No {{view Ember.Checkbox}}</li>
+                </ul>
+            </div>
+            <div class="form-group">
+              <p>Does plan to provide art and images?</p>
+                <ul>
+                  <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
+                  <li>No {{view Ember.Checkbox}}</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+              <label for="start-date" class="col-sm-2 control-label">Project start date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="start-date" name="start-date" placeholder="project start date" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="completion-date" class="col-sm-2 control-label">Project completion date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="completion-date" name="completion-date" placeholder="project completion date" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="hourly-rate" class="col-sm-2 control-label">Hourly rate</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="hourly-rate" name="hourly-rate" placeholder="hourly rate" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="estimated-hours" class="col-sm-2 control-label">Estimated hours</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="estimated-hours" name="estimated-hours" placeholder="estimated hours" required>
+              </div>
+            </div>
+
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-success" {{action 'save'}}>Save Project</button>
               </div>
             </div>
-            {{view Ember.Checkbox checked=isPersonal}}
-            {{view Ember.Checkbox checked=isPro}}
         </form>
         </script>
 

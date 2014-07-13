@@ -119,7 +119,7 @@ App.Project = DS.Model.extend({
 
 	userName: attr('string'),
 	userAddress: attr('string'),
-	userPhone: attr('number'),
+	userPhone: attr('string'),
 	userEmail: attr('string'),
 
 	// "date" to be established when printed
@@ -141,11 +141,11 @@ App.Project = DS.Model.extend({
 	hasCopy: DS.attr('boolean'),
 	hasArt: DS.attr('boolean'),
 
-	startDate: attr('number'),
-	completionDate: attr('number'),
-	estimatedHours: attr('number'),
+	startDate: attr('string'),
+	completionDate: attr('string'),
 	hourlyRate: attr('number'),
-
+	estimatedHours: attr('number'),
+	
 	totalCost: attr('number'),
 	deposit: attr('number'),
 	submittedOn: attr('number'),
@@ -201,14 +201,14 @@ App.NewController = Ember.ObjectController.extend({
 
         var delivery = $('#delivery').val();
         var examples = $('#examples').val();
-        var hasCopy = this.get('isPro');
-        var hasArt = this.get('isPersonal');
+        var hasCopy = this.get('getCopy');
+        var hasArt = this.get('getArt');
 
         var startDate = $('#start-date').val();
         var completionDate = $('#completion-date').val();
-        var estimatedHours = $('#estimatedHours').val();
         var hourlyRate = $('#hourly-rate').val();
-
+        var estimatedHours = $('#estimated-hours').val();
+        
         var totalCosts = function(){
         	hourlyRate * estimatedHours
         }
@@ -217,7 +217,7 @@ App.NewController = Ember.ObjectController.extend({
         	totalCost / 5
         }
         var deposit = deposits();
-        
+
         var submittedOn = new Date();
 
         var store = this.get('store');
