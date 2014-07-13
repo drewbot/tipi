@@ -146,6 +146,8 @@ App.Project = DS.Model.extend({
 	estimatedHours: attr('number'),
 	hourlyRate: attr('number'),
 
+	totalCost: attr('number'),
+	deposit: attr('number'),
 	submittedOn: attr('number'),
 	savedOn: attr('number'),
 	isCompleted: DS.attr('boolean')
@@ -192,8 +194,8 @@ App.NewController = Ember.ObjectController.extend({
         var clientEmail = $('#client-email').val();
 
         var projectType = $('#project-type').val();
-        var isPro = this.get('isPro');
-        var isPersonal = this.get('isPersonal');
+        var professional = this.get('isPro');
+        var personal = this.get('isPersonal');
         var description = $('#description').val();
         var technology = $('#technology').val();
 
@@ -207,6 +209,15 @@ App.NewController = Ember.ObjectController.extend({
         var estimatedHours = $('#estimatedHours').val();
         var hourlyRate = $('#hourly-rate').val();
 
+        var totalCosts = function(){
+        	hourlyRate * estimatedHours
+        }
+        var totalCost = totalCosts();
+        var deposits = function(){
+        	totalCost / 5
+        }
+        var deposit = deposits();
+        
         var submittedOn = new Date();
 
         var store = this.get('store');
@@ -238,6 +249,8 @@ App.NewController = Ember.ObjectController.extend({
 			estimatedHours: estimatedHours,
 			hourlyRate: hourlyRate,
 
+			totalCost: totalCost,
+			deposit: deposit,
             submittedOn : submittedOn
         });
         project.save();
