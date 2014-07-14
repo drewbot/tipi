@@ -452,7 +452,8 @@
         </script>
 
         <script type="text/x-handlebars" id="contract">
-          <div class="contract-container">
+          <div class="contract-container"  id="contract-container">
+            <button {{ action "printContent" }}>Print</button>
             <ul class="doc-head">
               <li>{{userName}}</li>
               <li>{{userAddress}}</li>
@@ -574,41 +575,44 @@
         </script>
 
         <script type="text/x-handlebars" id="brief">
-          <h3>{{projectType}}, Project Brief</h3>
-          <p>{{title}}</p>
-          <p>{{currentDate}}</p>
-          <ul class="doc-head">
-            <li>For {{clientName}}, of {{clientCo}}</li>
-            <li>Project lead: {{userName}}</li>
-            <li>{{userEmail}}</li>
-          </ul>
-          <h3>Description:</h3>
-          <p>{{description}}</p>
-          <ul>
-              {{#if professional}}
-                <li>Client plans to use for professional purposes</li>
-              {{/if}}
-              {{#if personal}}
-                <li>Client plans to use for personal purposes</li>
-              {{/if}}
-              <li>Existing technology or expected technology: {{technology}}</li>
-              <li>Examples of similar work: {{examples}}</li>
-              {{#if hasCopy}}
-                <li>Client plans to provide copy</li>
-              {{else}}
-                <li>Client expects us to provide copy</li>
-              {{/if}}
-              {{#if hasArt}}
-                <li>Client plans to provide art and images</li>
-              {{else}}
-                <li>Client expects us to provide art and images</li>
-              {{/if}}
-              <li>Delivery format: {{delivery}}</li>
-          </ul>
-          <ul class="doc-head">
-              <li>Start date: {{startDate}}</li>
-              <li>Completion date: {{completionDate}}</li>
-          </ul>
+          <div class="brief-container" id="brief-container">
+            <button {{ action "printContent" }}>Print</button>
+            <h3>{{projectType}}, Project Brief</h3>
+            <p>{{title}}</p>
+            <p>{{currentDate}}</p>
+            <ul class="doc-head">
+              <li>For {{clientName}}, of {{clientCo}}</li>
+              <li>Project lead: {{userName}}</li>
+              <li>{{userEmail}}</li>
+            </ul>
+            <h3>Description:</h3>
+            <p>{{description}}</p>
+            <ul>
+                {{#if professional}}
+                  <li>Client plans to use for professional purposes</li>
+                {{/if}}
+                {{#if personal}}
+                  <li>Client plans to use for personal purposes</li>
+                {{/if}}
+                <li>Existing technology or expected technology: {{technology}}</li>
+                <li>Examples of similar work: {{examples}}</li>
+                {{#if hasCopy}}
+                  <li>Client plans to provide copy</li>
+                {{else}}
+                  <li>Client expects us to provide copy</li>
+                {{/if}}
+                {{#if hasArt}}
+                  <li>Client plans to provide art and images</li>
+                {{else}}
+                  <li>Client expects us to provide art and images</li>
+                {{/if}}
+                <li>Delivery format: {{delivery}}</li>
+            </ul>
+            <ul class="doc-head">
+                <li>Start date: {{startDate}}</li>
+                <li>Completion date: {{completionDate}}</li>
+            </ul>
+          </div>
         </script>
 
 

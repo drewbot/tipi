@@ -332,7 +332,6 @@ App.AppController = Ember.ArrayController.extend({
 
 // Proposal Controller
 App.ProposalController = Ember.ObjectController.extend({
-
 	actions:{
 		printContent :function(){
 			var restorepage = document.body.innerHTML;
@@ -345,21 +344,29 @@ App.ProposalController = Ember.ObjectController.extend({
 });
 
 // Contract Controller
-App.ContractCotroller = Ember.ObjectController.extend({
-	init: function(){
-		var project = this.get('model');
-		project.set('date', new Date());
-		project.save();
-	},
+App.ContractController = Ember.ObjectController.extend({
+	actions:{
+		printContent :function(){
+			var restorepage = document.body.innerHTML;
+			var printcontent = document.getElementById('contract-container').innerHTML;
+			document.body.innerHTML = printcontent;
+			window.print();
+			document.body.innerHTML = restorepage;
+		}
+	}
 });
 
 // Brief Controller
-App.BriefCotroller = Ember.ObjectController.extend({
-	init: function(){
-		var project = this.get('model');
-		project.set('date', new Date());
-		project.save();
-	},
+App.BriefController = Ember.ObjectController.extend({
+	actions:{
+		printContent :function(){
+			var restorepage = document.body.innerHTML;
+			var printcontent = document.getElementById('brief-container').innerHTML;
+			document.body.innerHTML = printcontent;
+			window.print();
+			document.body.innerHTML = restorepage;
+		}
+	}
 });
 
 ///////////////////////////////////////////////////////////////////////
