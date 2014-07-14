@@ -36,7 +36,7 @@ App.Router.map(function(){
 		this.resource('draft', {path: ':draft_id/review'});
 		this.resource('proposal', {path: ':proposal_id/proposal'});
 		this.resource('contract', {path: ':contract_id/contract'});	
-		this.resource('brief', {path: ':brief_id/proposal'});
+		this.resource('brief', {path: ':brief_id/brief'});
 	});
 
 });
