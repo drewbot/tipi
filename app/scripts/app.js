@@ -331,7 +331,7 @@ App.AppController = Ember.ArrayController.extend({
 });
 
 // Proposal Controller
-App.ProposalCotroller = Ember.ObjectController.extend({
+App.ProposalController = Ember.ObjectController.extend({
 
 	actions:{
 		printContent :function(){
