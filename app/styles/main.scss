@@ -67,18 +67,29 @@ a {
     }
 }
 
-label, input {
-    display: inline;
-}
-
 .draft-link {
-
+    display: block;
     padding: 3px 0 3px 10px;
 
     & a {
         color: white;
     }
 }
+
+.new-button, .drafts-button, .queue-button, .docs-button {
+    cursor: pointer;
+}
+
+.draft-container, .queue-container, .queue-docs {
+    display: none;
+}
+
+.show-drafts {
+    display: inline-block;
+}
+
+
+// Template views
 
 .dash-container {
     padding: 20px;
@@ -94,21 +105,56 @@ label, input {
     left: 25%;
 }
 
-.new-button, .drafts-button, .queue-button, .docs-button {
-    cursor: pointer;
+// New
+
+label, input {
+    display: inline;
 }
 
-.draft-container, .queue-container, .queue-docs {
-    display: none;
+// Document specific
+
+.doc-head {
+    list-style: none;
 }
 
-.show-drafts {
+.full-width {
     display: inline-block;
+    width: 100%;
+    float: left;
 }
 
-.draft-link {
-    display: block;
+.half-width {
+    display: inline-block;
+    width: 50%;
+    float: left;
 }
+
+.quarter-width {
+    display: inline-block;
+    width: 25%;
+    float: left;
+}
+
+.doc-section {
+    padding: 15px 0 25px 0;
+    border-bottom: 1px solid black;
+
+}
+
+.text-input {
+    width: 100%;
+}
+
+.text-field {
+    width: 100%;
+}
+
+.full-field {
+    padding-left: 40px;
+}
+
+
+///////////////////////////////////////////////////////
 
 .browsehappy {
     margin: 0.2em 0;

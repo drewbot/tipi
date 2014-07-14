@@ -24,6 +24,11 @@ App.ApplicationAdapter = DS.FirebaseAdapter.extend({
 
 App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 
+//////////////////////// Date Formatting //////////////////////////////
+Ember.Handlebars.registerBoundHelper('currentDate', function() {
+  return moment().format('LL');
+});
+
 ///////////////////////////////////////////////////////////////////////
 //////////////////////// Routers //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -265,8 +270,8 @@ App.DraftController = Ember.ObjectController.extend({
 
 	init: function(){
 		// Trying to get the model id and set it as a url extension for send usage
-		var draftId = this.get('model.id');
-		console.log('tipiapp.com/#/app/' + draftId);
+		// var draftId = this.get('model.id');
+		// console.log('tipiapp.com/#/app/' + draftId);
 	},
 
 	actions: {
@@ -327,11 +332,16 @@ App.AppController = Ember.ArrayController.extend({
 
 // Proposal Controller
 App.ProposalCotroller = Ember.ObjectController.extend({
-	init: function(){
-		var project = this.get('model');
-		project.set('date', new Date());
-		project.save();
-	},
+
+	actions:{
+		printContent :function(){
+			var restorepage = document.body.innerHTML;
+			var printcontent = document.getElementById('proposal-container').innerHTML;
+			document.body.innerHTML = printcontent;
+			window.print();
+			document.body.innerHTML = restorepage;
+		}
+	}
 });
 
 // Contract Controller

@@ -103,6 +103,7 @@
 
         <script type="text/x-handlebars" id="dashboard">
           <h3>Hello, {{userName}}!</h3>
+          <p>{{currentDate}}</p>
           <p><strong>Your personal settings will be used to complete forms and documents throughout the app.</strong></p>
           <p>{{userName}}</p>
           <p>{{userAddress}}</p>
@@ -123,170 +124,121 @@
           <p>body: {{textarea value=body}}</p>
         </script>
 
+        <!-- New Project Questionnaire -->
+
         <script type="text/x-handlebars" id="new">
-          <h3>New</h3>
-          <form class="form-horizontal" role="form">
-
-            <div class="form-group">
-              <label for="title" class="col-sm-2 control-label">Title</label>
-              <div class="col-sm-10">
-                <!--{{input type="title" class="form-control" id="title" name="title" placeholder="title" maxlength=20 required=""}}-->
-                <input type="title" class="form-control" id="title" name="title" placeholder="Title" required>
-              </div>
+          <div>
+            <h3>New Project Questionnaire</h3>
+            <div class="full-width doc-section">
+              <h3>Title: {{input type="text" id="title" name="title" value=title}}</h3>
             </div>
-
-            <div class="form-group">
-              <label for="user-name" class="col-sm-2 control-label">Name</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="user-name" name="user-name" placeholder="your name" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="user-address" class="col-sm-2 control-label">Address</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="user-address" name="user-address" placeholder="your address" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="user-phone" class="col-sm-2 control-label">Phone number</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="user-phone" name="user-phone" placeholder="your phone number" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="user-email" class="col-sm-2 control-label">Email address</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="user-email" name="user-email" placeholder="your email address" required></textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="client-name" class="col-sm-2 control-label">Client name</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="client-name" name="client-name" placeholder="client's name" required></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="client-title" class="col-sm-2 control-label">Client title</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="client-title" name="client-title" placeholder="client's title" required></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="client-co" class="col-sm-2 control-label">Client company</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="client-co" name="client-co" placeholder="client-co" required></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="client-email" class="col-sm-2 control-label">Client email</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="client-email" name="client-email" placeholder="client's email" required></textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="project-type" class="col-sm-2 control-label">Project type</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="project-type" name="project-type" placeholder="one or two word description" required></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <p>Is this for professional use or personal?</p>
-                <ul>
-                  <li>professional {{view Ember.Checkbox checked=isPro}}</li>
-                  <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
+            <div class="full-width doc-section">
+              <div class="half-width">
+                <h3>User info</h3>
+                <ul class="doc-head">
+                  <li>Name: {{input type="text" id="user-name" value=userName class="text-input"}}</li>
+                  <li>Address: {{input type="text" id="user-address" value=userAddress class="text-input"}}</li>
+                  <li>Phone number: {{input type="text" id="user-phone" value=userPhone class="text-input"}}</li>
+                  <li>Email address: {{input type="text" id="user-email" value=userEmail class="text-input"}}</li>
                 </ul>
-            </div>
-            <div class="form-group">
-              <label for="description" class="col-sm-2 control-label">Description</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="description" name="description" placeholder="full description of the project" required></textarea>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="technology" class="col-sm-2 control-label">Existing technology or expected technology</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="technology" name="technology" placeholder="technology" required></textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="delivery" class="col-sm-2 control-label">Delivery format</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="delivery" name="delivery" placeholder="delivery format" required></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="examples" class="col-sm-2 control-label">Examples of similar work</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="examples" name="examples" placeholder="examples" required></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <p>Does client plan to deliver copy?</p>
-                <ul>
-                  <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
-                  <li>No {{view Ember.Checkbox}}</li>
+              <div class="half-width">
+                <h3>Client info</h3>
+                <ul class="doc-head">
+                  <li>Client name: {{input type="text" id="client-name" value=clientName class="text-input"}}</li>
+                  <li>Client title: {{input type="text" id="client-title" value=clientTitle class="text-input"}}</li>
+                  <li>Client company: {{input type="text" id="client-co" value=clientCo class="text-input"}}</li>
+                  <li>Client email: {{input type="text" id="client-email" value=clientEmail class="text-input"}}</li>
                 </ul>
+              </div>
             </div>
-            <div class="form-group">
-              <p>Does plan to provide art and images?</p>
-                <ul>
-                  <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
-                  <li>No {{view Ember.Checkbox}}</li>
+            <div class="full-width doc-section">
+              <h3>Project info</h3>
+              <div class="full-width">
+                <div class="half-width">
+                  <ul class="doc-head">
+                    <li>Project type: {{input type="text" id="project-type" value=projectType class="text-input"}}</li>
+                    <li>Project use is: professional {{view Ember.Checkbox checked=isPro}} or personal {{view Ember.Checkbox checked=isPersonal}}</li>
+                  </ul>
+                </div>
+                <div class="half-width">
+                  <ul class="doc-head">
+                    <li>Current or expected technology: {{input type="text" id="technology" value=technology class="text-input"}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Description:</p>
+              <div class="full-field">
+                {{textarea id="description" value=description class="text-field full-width"}}
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Assets and Delivery</h3>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Delivery format: {{input type="text" id="delivery"  value=delivery class="text-input"}}</li>
+                  <li>Client plans to deliver copy:</li>
+                    <ul>
+                      <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
+                      <li>No {{view Ember.Checkbox}}</li>
+                    </ul>
                 </ul>
-            </div>
-
-            <div class="form-group">
-              <label for="start-date" class="col-sm-2 control-label">Project start date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="start-date" name="start-date" placeholder="project start date" required>
+              </div>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Examples of similar work: {{input type="text" id="examples" value=examples class="text-input"}}</li>
+                  <li>Client plans to provide art and images:</li>
+                    <ul>
+                      <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
+                      <li>No {{view Ember.Checkbox}}</li>
+                    </ul>
+                </ul>
               </div>
             </div>
-            <div class="form-group">
-              <label for="completion-date" class="col-sm-2 control-label">Project completion date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="completion-date" name="completion-date" placeholder="project completion date" required>
+            <div class="full-width doc-section">
+              <h3>Timing and Cost</h3>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Start date: {{input type="date" id="start-date" value=startDate class="text-input"}}</li>
+                  <li>Completion date: {{input type="date" id="completion-date" value=completionDate class="text-input"}}</li>
+                </ul>
+              </div>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Estimated hours: {{input type="text" id="estimated-hours" value=estimatedHours class="text-input"}}</li>
+                  <li>Hourly rate: ${{input type="text" id="hourly-rate" value=hourlyRate class="text-input"}}</li>
+                </ul>
               </div>
             </div>
-            <div class="form-group">
-              <label for="hourly-rate" class="col-sm-2 control-label">Hourly rate</label>
-              <div class="col-sm-10">
-                <input type="number" class="form-control" id="hourly-rate" name="hourly-rate" placeholder="hourly rate" required>
-              </div>
+            <div class="full-width doc-section">
+              <button type="submit" {{action 'save'}}>Save Project</button>
             </div>
-            <div class="form-group">
-              <label for="estimated-hours" class="col-sm-2 control-label">Estimated hours</label>
-              <div class="col-sm-10">
-                <input type="number" class="form-control" id="estimated-hours" name="estimated-hours" placeholder="estimated hours" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success" {{action 'save'}}>Save Project</button>
-              </div>
-            </div>
-        </form>
+          </div>
         </script>
+
+        <!-- Draft -->
 
         <script type="text/x-handlebars" id="draft">
           <div>
-            <p>{{title}}</p>
-            <ul>
-              <li>Name: {{userName}}</li>
-              <li>Address: {{userAddress}}</li>
-              <li>Phone number: {{userPhone}}</li>
-              <li>Email address: {{userEmail}}</li>
-            </ul>
-            <ul>
-              <li>Date: {{date}}</li>
-              <li>Client name: {{clientName}}</li>
-              <li>Client title: {{clientTitle}}</li>
-              <li>Client company: {{clientCo}}</li>
-            </ul>
-            <ul>
+            <div>
+              <p>{{title}}</p>
+              <ul class="doc-head">
+                <li>Name: {{userName}}</li>
+                <li>Address: {{userAddress}}</li>
+                <li>Phone number: {{userPhone}}</li>
+                <li>Email address: {{userEmail}}</li>
+              </ul>
+            </div>
+            <div>
+              <ul class="doc-head">
+                <li>Client name: {{clientName}}</li>
+                <li>Client title: {{clientTitle}}</li>
+                <li>Client company: {{clientCo}}</li>
+              </ul>
+            </div>
+            <ul class="doc-head">
               <li>Project type: {{projectType}}</li>
               <li>Description: {{description}}</li>
               {{#if professional}}
@@ -297,7 +249,7 @@
               {{/if}}
               <li>Existing technology or expected technology: {{technology}}</li>
             </ul>
-            <ul>
+            <ul class="doc-head">
               <li>Delivery format: {{delivery}}</li>
               <li>Examples of similar work: {{examples}}</li>
               {{#if hasCopy}}
@@ -311,15 +263,15 @@
                 <li>Client expects us to provide art and images</li>
               {{/if}}
             </ul>
-            <ul>
+            <ul class="doc-head">
               <li>Start date: {{startDate}}</li>
               <li>Completion date: {{completionDate}}</li>
               <li>Estimated hours: {{estimatedHours}}</li>
               <li>Hourly rate: ${{hourlyRate}}</li>
             </ul>
-            <ul>
-              <p>{{title}} was created: {{submittedOn}},</p>
-              <li>saved: {{savedOn}}</li>
+            <ul class="doc-head">
+              <li>{{title}} was created: {{submittedOn}},</li>
+              <li>Last saved: {{savedOn}}</li>
               <li>Is ready for kick-off: {{isCompleted}}</li>
             </ul>
             {{#if isEditing}}
@@ -336,67 +288,121 @@
 
         <script type="text/x-handlebars" id="draft/_edit">
           <div>
-            <p>title: {{input type="text" value=title}}</p>
-            <ul>
-              <li>Name: {{input type="text" value=userName}}</li>
-              <li>Address: {{input type="text" value=userAddress}}</li>
-              <li>Phone number: {{input type="text" value=userPhone}}</li>
-              <li>Email address: {{input type="text" value=userEmail}}</li>
-            </ul>
-            <ul>
-              <li>Date: {{input type="text" value=date}}</li>
-              <li>Client name: {{input type="text" value=clientName}}</li>
-              <li>Client title: {{input type="text" value=clientTitle}}</li>
-              <li>Client company: {{input type="text" value=clientCo}}</li>
-            </ul>
-            <ul>
-              <li>Project type: {{input type="text" value=projectType}}</li>
-              <li>Project use is:</li>
-                <ul>
-                  <li>professional {{view Ember.Checkbox checked=isPro}}</li>
-                  <li>personal {{view Ember.Checkbox checked=isPersonal}}</li>
+            <p>edit</p>
+            <div class="full-width doc-section">
+              <h3>Title:</h3>
+                <div class="full-field">
+                  {{input type="text" value=title class="text-field full-width"}}
+                </div>
+                <ul class="doc-head">
+                  <li>Document will show current date at time of use unless otherwise specified</li>
+                  <ul class="doc-head">
+                    <li>Input custom date: {{input type="text" value=date}}</li>
+                  </ul>
                 </ul>
-              <li>Description: {{textarea value=description}}</li>
-              <li>Existing technology or expected technology: {{input type="text" value=technology}}</li>
-            </ul>
-            <ul>
-              <li>Delivery format: {{input type="text" value=delivery}}</li>
-              <li>Examples of similar work: {{input type="text" value=examples}}</li>
-              <p>Client plans to deliver copy:</p>
-                <ul>
-                  <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
-                  <li>No {{view Ember.Checkbox}}</li>
+            </div>
+            <div class="full-width doc-section">
+              <div class="half-width">
+                <h3>User info</h3>
+                <ul class="doc-head">
+                  <li>Name: {{input type="text" value=userName class="text-input"}}</li>
+                  <li>Address: {{input type="text" value=userAddress class="text-input"}}</li>
+                  <li>Phone number: {{input type="text" value=userPhone class="text-input"}}</li>
+                  <li>Email address: {{input type="text" value=userEmail class="text-input"}}</li>
                 </ul>
-              <p>Client plans to provide art and images:</p>
-                <ul>
-                  <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
-                  <li>No {{view Ember.Checkbox}}</li>
+              </div>
+              <div class="half-width">
+                <h3>Client info</h3>
+                <ul class="doc-head">
+                  <li>Client name: {{input type="text" value=clientName class="text-input"}}</li>
+                  <li>Client title: {{input type="text" value=clientTitle class="text-input"}}</li>
+                  <li>Client company: {{input type="text" value=clientCo class="text-input"}}</li>
+                  <li>Client email: {{input type="text" value=clientEmail class="text-input"}}</li>
                 </ul>
-            </ul>
-            <ul>
-              <li>Start date: {{input type="text" value=startDate}}</li>
-              <li>Completion date: {{input type="text" value=completionDate}}</li>
-              <li>Estimated hours: {{input type="text" value=estimatedHours}}</li>
-              <li>Hourly rate: ${{input type="text" value=hourlyRate}}</li>
-            </ul>
-            <ul>
-              <li>{{title}} was created: {{submittedOn}},</li>
-              <li>saved: {{savedOn}}</li>
-              <li>Is ready for kick-off: {{isCompleted}}</li>
-            </ul>
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Project info</h3>
+              <div class="full-width">
+                <div class="half-width">
+                  <ul class="doc-head">
+                    <li>Project type: {{input type="text" value=projectType class="text-input"}}</li>
+                    <li>Project use is: professional {{view Ember.Checkbox checked=isPro}} or personal {{view Ember.Checkbox checked=isPersonal}}</li>
+                  </ul>
+                </div>
+                <div class="half-width">
+                  <ul class="doc-head">
+                    <li>Current or expected technology: {{input type="text" value=technology class="text-input"}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Description:</p>
+              <div class="full-field">
+                {{textarea value=description class="text-field full-width"}}
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Assets and Delivery</h3>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Delivery format: {{input type="text" value=delivery class="text-input"}}</li>
+                  <li>Client plans to deliver copy:</li>
+                    <ul>
+                      <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
+                      <li>No {{view Ember.Checkbox}}</li>
+                    </ul>
+                </ul>
+              </div>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Examples of similar work: {{input type="text" value=examples class="text-input"}}</li>
+                  <li>Client plans to provide art and images:</li>
+                    <ul>
+                      <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
+                      <li>No {{view Ember.Checkbox}}</li>
+                    </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Timing and Cost</h3>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Start date: {{input type="text" value=startDate class="text-input"}}</li>
+                  <li>Completion date: {{input type="text" value=completionDate class="text-input"}}</li>
+                </ul>
+              </div>
+              <div class="half-width">
+                <ul class="doc-head">
+                  <li>Estimated hours: {{input type="text" value=estimatedHours class="text-input"}}</li>
+                  <li>Hourly rate: ${{input type="text" value=hourlyRate class="text-input"}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <h3>Status</h3>
+                <ul class="doc-head">
+                  <li>{{title}} was created: {{submittedOn}}</li>
+                  <li>Last saved: {{savedOn}}</li>
+                  <li>Is ready for kick-off: {{isCompleted}}</li>
+                </ul>
+            </div>
           </div>
         </script>
 
         <script type="text/x-handlebars" id="proposal">
-          <div class="proposal-container">
-            <ul>
+          <div class="proposal-container" id="proposal-container">
+            <button {{ action "printContent" }}>Print</button>
+            <ul class="doc-head">
               <li>{{userName}}</li>
               <li>{{userAddress}}</li>
               <li>{{userPhone}}</li>
               <li>{{userEmail}}</li>
             </ul>
-            <ul>
-              <li>{{date}}</li>
+            <ul class="doc-head">
+              <li>{{currentDate}}</li>
               <li>{{clientName}}</li>
               <li>{{clientTitle}}</li>
               <li>{{clientCo}}</li>
@@ -447,14 +453,14 @@
 
         <script type="text/x-handlebars" id="contract">
           <div class="contract-container">
-            <ul>
+            <ul class="doc-head">
               <li>{{userName}}</li>
               <li>{{userAddress}}</li>
               <li>{{userPhone}}</li>
               <li>{{userEmail}}</li>
             </ul>
-            <ul>
-              <li>{{date}}</li>
+            <ul class="doc-head">
+              <li>{{currentDate}}</li>
               <li>{{clientName}}</li>
               <li>{{clientTitle}}</li>
               <li>{{clientCo}}</li>
@@ -568,16 +574,15 @@
         </script>
 
         <script type="text/x-handlebars" id="brief">
-          <h3>{{title}}, Project Brief</h3>
-          <p>Project type: {{projectType}}</p>
-          <ul>
+          <h3>{{projectType}}, Project Brief</h3>
+          <p>{{title}}</p>
+          <p>{{currentDate}}</p>
+          <ul class="doc-head">
             <li>For {{clientName}}, of {{clientCo}}</li>
-          </ul>
-          <ul>
-            <li>Project Lead: {{userName}}</li>
+            <li>Project lead: {{userName}}</li>
             <li>{{userEmail}}</li>
           </ul>
-          <h3>Project Description:</h3>
+          <h3>Description:</h3>
           <p>{{description}}</p>
           <ul>
               {{#if professional}}
@@ -600,7 +605,7 @@
               {{/if}}
               <li>Delivery format: {{delivery}}</li>
           </ul>
-          <ul>
+          <ul class="doc-head">
               <li>Start date: {{startDate}}</li>
               <li>Completion date: {{completionDate}}</li>
           </ul>
@@ -627,6 +632,7 @@
         <script src="../bower_components/emberfire/dist/emberfire.js"></script>
         <!-- Firebase Simple login -->
         <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'></script>
+        <script src="../bower_components/moment/moment.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
