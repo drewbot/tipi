@@ -78,7 +78,7 @@
                       {{/unless}}
                     {{/each}}
                   </div>
-                <li class="queue-button" {{action 'showQueue'}}>Ready</li>
+                <li class="queue-button" {{action 'showQueue'}}>Publish</li>
                     <div class="queue-container">
                       {{#each}}
                         {{#if isCompleted}}
@@ -163,7 +163,7 @@
                 </div>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Current or expected technology: {{input type="text" id="technology" value=technology class="text-input"}}</li>
+                    <li>Existing or preferred technology: {{input type="text" id="technology" value=technology class="text-input"}}</li>
                   </ul>
                 </div>
               </div>
@@ -207,8 +207,8 @@
               </div>
               <div class="half-width">
                 <ul class="doc-head">
-                  <li>Estimated hours: {{input type="text" id="estimated-hours" value=estimatedHours class="text-input"}}</li>
-                  <li>Hourly rate: ${{input type="text" id="hourly-rate" value=hourlyRate class="text-input"}}</li>
+                  <li>Estimated hours: {{input type="number" id="estimated-hours" value=estimatedHours class="text-input"}}</li>
+                  <li>Hourly rate: ${{input type="number" id="hourly-rate" value=hourlyRate class="text-input"}}</li>
                 </ul>
               </div>
             </div>
@@ -247,7 +247,7 @@
               {{#if personal}}
                 <li>Client plans to use for personal purposes</li>
               {{/if}}
-              <li>Existing technology or expected technology: {{technology}}</li>
+              <li>Existing or preferred technology: {{technology}}</li>
             </ul>
             <ul class="doc-head">
               <li>Delivery format: {{delivery}}</li>
@@ -272,7 +272,6 @@
             <ul class="doc-head">
               <li>{{title}} was created: {{submittedOn}},</li>
               <li>Last saved: {{savedOn}}</li>
-              <li>Is ready for kick-off: {{isCompleted}}</li>
             </ul>
             {{#if isEditing}}
               {{partial 'draft/edit'}}
@@ -290,16 +289,7 @@
           <div>
             <p>edit</p>
             <div class="full-width doc-section">
-              <h3>Title:</h3>
-                <div class="full-field">
-                  {{input type="text" value=title class="text-field full-width"}}
-                </div>
-                <ul class="doc-head">
-                  <li>Document will show current date at time of use unless otherwise specified</li>
-                  <ul class="doc-head">
-                    <li>Input custom date: {{input type="text" value=date}}</li>
-                  </ul>
-                </ul>
+              <h3>Title: {{input type="text" id="title" name="title" value=title}}</h3>
             </div>
             <div class="full-width doc-section">
               <div class="half-width">
@@ -332,7 +322,7 @@
                 </div>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Current or expected technology: {{input type="text" value=technology class="text-input"}}</li>
+                    <li>Existing or preferred technology: {{input type="text" value=technology class="text-input"}}</li>
                   </ul>
                 </div>
               </div>
@@ -376,8 +366,8 @@
               </div>
               <div class="half-width">
                 <ul class="doc-head">
-                  <li>Estimated hours: {{input type="text" value=estimatedHours class="text-input"}}</li>
-                  <li>Hourly rate: ${{input type="text" value=hourlyRate class="text-input"}}</li>
+                  <li>Estimated hours: {{input type="number" value=estimatedHours class="text-input"}}</li>
+                  <li>Hourly rate: ${{input type="number" value=hourlyRate class="text-input"}}</li>
                 </ul>
               </div>
             </div>
@@ -386,7 +376,10 @@
                 <ul class="doc-head">
                   <li>{{title}} was created: {{submittedOn}}</li>
                   <li>Last saved: {{savedOn}}</li>
-                  <li>Is ready for kick-off: {{isCompleted}}</li>
+                  <li>Document will show current date at time of use unless otherwise specified</li>
+                    <ul class="doc-head">
+                      <li>Input custom date: {{input type="text" value=date}}</li>
+                    </ul>
                 </ul>
             </div>
           </div>
@@ -418,7 +411,7 @@
               {{#if personal}}
                 <li>Client plans to use for personal purposes</li>
               {{/if}}
-              <li>Existing technology or expected technology: {{technology}}</li>
+              <li>Existing or preferred technology: {{technology}}</li>
               <li>Examples of similar work: {{examples}}</li>
               {{#if hasCopy}}
                 <li>Client plans to provide copy</li>
@@ -490,7 +483,7 @@
               {{#if personal}}
                 <li>Client plans to use for personal purposes</li>
               {{/if}}
-              <li>Existing technology or expected technology: {{technology}}</li>
+              <li>Existing or preferred technology: {{technology}}</li>
               <li>Examples of similar work: {{examples}}</li>
               {{#if hasCopy}}
                 <li>Client plans to provide copy</li>
@@ -594,7 +587,7 @@
                 {{#if personal}}
                   <li>Client plans to use for personal purposes</li>
                 {{/if}}
-                <li>Existing technology or expected technology: {{technology}}</li>
+                <li>Existing or preferred technology: {{technology}}</li>
                 <li>Examples of similar work: {{examples}}</li>
                 {{#if hasCopy}}
                   <li>Client plans to provide copy</li>

@@ -162,6 +162,12 @@ App.Project = DS.Model.extend({
 //////////////////// Controllers //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
+// Text Fields
+
+Ember.TextField.reopen({
+    classNames: ['all-text-inputs']
+});
+
 // Dashboard Controller
 App.DashboardController = Ember.ObjectController.extend({
 	isEditing: false,
@@ -281,13 +287,63 @@ App.DraftController = Ember.ObjectController.extend({
 
 		doneEditing: function(){
 			this.set('isEditing', false);
+
 			var title = $('#title').val();
+
+	        var userName = $('#user-name').val();
+	        var userAddress = $('#user-address').val();
+	        var userPhone = $('#user-phone').val();
+	        var userEmail = $('#user-email').val();
+
+	        var clientName = $('#client-name').val();
+	        var clientTitle = $('#client-title').val();
+	        var clientCo = $('#client-co').val();
+	        var clientEmail = $('#client-email').val();
+
+	        var projectType = $('#project-type').val();
+	        var professional = this.get('isPro');
+	        var personal = this.get('isPersonal');
 	        var description = $('#description').val();
-	        var body = $('#body').val();
+	        var technology = $('#technology').val();
+
+	        var delivery = $('#delivery').val();
+	        var examples = $('#examples').val();
+	        var hasCopy = this.get('getCopy');
+	        var hasArt = this.get('getArt');
+
+	        var startDate = $('#start-date').val();
+	        var completionDate = $('#completion-date').val();
+	        var hourlyRate = $('#hourly-rate').val();
+	        var estimatedHours = $('#estimated-hours').val();
+
 			var project = this.get('model',{
 				title : title,
-	            description : description,
-	            body : body
+
+				userName: userName,
+				userAddress: userAddress,
+				userPhone: userPhone,
+				userEmail: userEmail,
+
+				clientName: clientName,
+				clientTitle: clientTitle,
+				clientCo: clientCo,
+				clientEmail: clientEmail,
+
+				projectType: projectType,
+				personal: personal,
+				professional: professional,
+				description: description,
+				technology: technology,
+
+				delivery: delivery,
+				examples: examples,
+				hasCopy: hasCopy,
+				hasArt: hasArt,
+
+				startDate: startDate,
+				completionDate: completionDate,
+				estimatedHours: estimatedHours,
+				hourlyRate: hourlyRate  
 			});
 			project.set('savedOn', new Date());
 		    project.save();

@@ -12,7 +12,7 @@
 body {
     margin: 0 auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1080px;
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.8;
@@ -42,6 +42,24 @@ a {
     right: 20px;
 }
 
+// Template views
+
+.dash-container {
+    padding: 20px;
+    position: absolute;
+    display: inline-block;
+    left: 25%;
+}
+
+.main-container {
+    padding: 20px;
+    position: absolute;
+    display: inline-block;
+    left: 22%;
+}
+
+// Nav
+
 .nav, .main-container {
     position: absolute;
     display: inline-block;
@@ -49,7 +67,7 @@ a {
 }
 
 .nav {
-    width: 25%;
+    width: 22%;
     background-color: grey;
     color: white;
 
@@ -86,23 +104,6 @@ a {
 
 .show-drafts {
     display: inline-block;
-}
-
-
-// Template views
-
-.dash-container {
-    padding: 20px;
-    position: absolute;
-    display: inline-block;
-    left: 25%;
-}
-
-.main-container {
-    padding: 20px;
-    position: absolute;
-    display: inline-block;
-    left: 25%;
 }
 
 // New
@@ -145,8 +146,18 @@ label, input {
     width: 100%;
 }
 
+.all-text-inputs {
+    height: 30px;
+    border: none;
+    font-size: 1em;
+    background-color: #E3F4FB;
+    border-top: 1px solid #81BAD0;
+    border-left: 1px solid #9ACCDF;
+}
+
 .text-field {
     width: 100%;
+    height: 80px;
 }
 
 .full-field {
