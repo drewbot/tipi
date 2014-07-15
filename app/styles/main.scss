@@ -1,6 +1,10 @@
 // bower:scss
 // endbower
 
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,700);
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
+
 *, *:before, *:after {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
@@ -14,17 +18,22 @@ body {
     width: 100%;
     max-width: 1080px;
     background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .96em;
     line-height: 1.8;
     color: #333;
+}
+
+h3 {
+    font-weight: 700;
 }
 
 a {
     text-decoration: none;
 }
 
-.dash-container, .app-container, .header {
-    position: relative;
+label, input {
+    display: inline;
 }
 
 .header {
@@ -42,42 +51,33 @@ a {
     right: 20px;
 }
 
-// Template views
-
-.dash-container {
-    padding: 20px;
-    position: absolute;
-    display: inline-block;
-    left: 25%;
-}
-
-.main-container {
-    padding: 20px;
-    position: absolute;
-    display: inline-block;
-    left: 22%;
-}
-
 // Nav
 
-.nav, .main-container {
+.nav {
     position: absolute;
     display: inline-block;
+    padding: 0 0 40px 0;
     top: 60px;
-}
-
-.nav {
     width: 22%;
-    background-color: grey;
+    background-color: #44494D;
+    border-top: 2px solid #363B3F;
+    border-bottom: 2px solid #363B3F;
     color: white;
 
     & ul {
-        padding: 20px;
+        padding-left: 0px;
     }
 
     & li {
-        padding: 5px 0 5px 0;
+        padding: 6px 30px 6px 30px;
         list-style-type: none;
+        font-weight: 300;
+
+        &:hover {
+            background-color: rgba(83, 94, 101, 0.7);
+            border-left: 4px solid #FF4100;
+            padding-left: 26px;
+        }
     }
 
     & a {
@@ -87,30 +87,54 @@ a {
 
 .draft-link {
     display: block;
-    padding: 3px 0 3px 10px;
+    color: #AEC6CD;
 
     & a {
         color: white;
     }
 }
 
-.new-button, .drafts-button, .queue-button, .docs-button {
+.queue-link {
+    color: #AEC6CD;
+}
+
+.button {
     cursor: pointer;
 }
 
-.draft-container, .queue-container, .queue-docs {
+// Drop-downs
+
+.draft-drop, .queue-drop, .queue-drop-sub {
+    width: 100%;
     display: none;
+    background-color: #363B3F;
+}
+
+.queue-drop-sub li {
+    color: #AEC6CD;
 }
 
 .show-drafts {
     display: inline-block;
 }
 
+// Template container
+
+.main-container {
+    position: absolute;
+    display: inline-block;
+    top: 60px;
+    left: 22%;
+}
+
+// Template views
+
+.app-container, .header {
+    position: relative;
+}
+
 // New
 
-label, input {
-    display: inline;
-}
 
 // Document specific
 
@@ -162,6 +186,11 @@ label, input {
 
 .full-field {
     padding-left: 40px;
+}
+
+// edit
+.edit {
+    color: green;
 }
 
 
