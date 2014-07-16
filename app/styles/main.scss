@@ -36,6 +36,13 @@ label, input {
     display: inline;
 }
 
+button {
+    &:active,
+    &:focus {
+        outline: none;
+    }
+}
+
 .relative {
     position: relative;
 }
@@ -544,7 +551,8 @@ label, input {
     color: green;
 }
 
-// promo
+///////////////////////////// extras //////////////////
+
 .promo {
     font-size: .85em;
     background-color: white;
@@ -552,7 +560,15 @@ label, input {
 
 .white-out {
     color: white;
-    background-color: #f7f8f9;
+    background-color: white;
+}
+
+.whitespace {
+    height: 105px;
+}
+
+.bold-weight {
+    font-weight: 700;
 }
 
 ///////////////////////////////////////////////////////

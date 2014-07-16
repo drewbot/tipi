@@ -155,25 +155,25 @@
             </div>
             <div class="new-container">
               <div class="full-width doc-section">
-                <h3>Title: {{input type="text" id="title" class="title-input" name="title" value=title}}</h3>
+                <h3>Title: {{input type="text" id="title" class="title-input" name="title"}}</h3>
               </div>
               <div class="full-width doc-section">
                 <div class="half-width">
                   <h3>User info</h3>
                   <ul class="doc-head">
-                    <li>Name: {{input type="text" id="user-name" value=userName class="text-input"}}</li>
-                    <li>Address: {{input type="text" id="user-address" value=userAddress class="text-input"}}</li>
-                    <li>Phone number: {{input type="text" id="user-phone" value=userPhone class="text-input"}}</li>
-                    <li>Email address: {{input type="text" id="user-email" value=userEmail class="text-input"}}</li>
+                    <li>Name: {{input type="text" id="user-name" class="text-input"}}</li>
+                    <li>Address: {{input type="text" id="user-address" class="text-input"}}</li>
+                    <li>Phone number: {{input type="text" id="user-phone" class="text-input"}}</li>
+                    <li>Email address: {{input type="text" id="user-email" class="text-input"}}</li>
                   </ul>
                 </div>
                 <div class="half-width">
                   <h3>Client info</h3>
                   <ul class="doc-head">
-                    <li>Client name: {{input type="text" id="client-name" value=clientName class="text-input"}}</li>
-                    <li>Client title: {{input type="text" id="client-title" value=clientTitle class="text-input"}}</li>
-                    <li>Client company: {{input type="text" id="client-co" value=clientCo class="text-input"}}</li>
-                    <li>Client email: {{input type="text" id="client-email" value=clientEmail class="text-input"}}</li>
+                    <li>Client name: {{input type="text" id="client-name" class="text-input"}}</li>
+                    <li>Client title: {{input type="text" id="client-title" class="text-input"}}</li>
+                    <li>Client company: {{input type="text" id="client-co" class="text-input"}}</li>
+                    <li>Client email: {{input type="text" id="client-email" class="text-input"}}</li>
                   </ul>
                 </div>
               </div>
@@ -182,13 +182,13 @@
                 <div class="full-width">
                   <div class="half-width">
                     <ul class="doc-head">
-                      <li>Project type: {{input type="text" id="project-type" value=projectType class="text-input"}}</li>
+                      <li>Project type: {{input type="text" id="project-type" class="text-input"}}</li>
                       <li>Project use is: professional {{view Ember.Checkbox checked=isPro}} or personal {{view Ember.Checkbox checked=isPersonal}}</li>
                     </ul>
                   </div>
                   <div class="half-width">
                     <ul class="doc-head">
-                      <li>Existing or preferred technology: {{input type="text" id="technology" value=technology class="text-input"}}</li>
+                      <li>Existing or preferred technology: {{input type="text" id="technology" class="text-input"}}</li>
                     </ul>
                   </div>
                 </div>
@@ -196,14 +196,14 @@
               <div class="full-width doc-section">
                 <h3>Description:</p>
                 <div class="full-field">
-                  {{textarea id="description" value=description class="text-field full-width"}}
+                  {{textarea id="description" class="text-field full-width"}}
                 </div>
               </div>
               <div class="full-width doc-section">
                 <h3>Assets and Delivery</h3>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Delivery format: {{input type="text" id="delivery"  value=delivery class="text-input"}}</li>
+                    <li>Delivery format: {{input type="text" id="delivery" class="text-input"}}</li>
                     <li>Client plans to deliver copy:</li>
                       <ul>
                         <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
@@ -213,7 +213,7 @@
                 </div>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Examples of similar work: {{input type="text" id="examples" value=examples class="text-input"}}</li>
+                    <li>Examples of similar work: {{input type="text" id="examples" class="text-input"}}</li>
                     <li>Client plans to provide art and images:</li>
                       <ul>
                         <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
@@ -226,14 +226,14 @@
                 <h3>Timing and Cost</h3>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Start date: {{input type="date" id="start-date" value=startDate class="text-input"}}</li>
-                    <li>Completion date: {{input type="date" id="completion-date" value=completionDate class="text-input"}}</li>
+                    <li>Start date: {{input type="date" id="start-date" class="text-input"}}</li>
+                    <li>Completion date: {{input type="date" id="completion-date" class="text-input"}}</li>
                   </ul>
                 </div>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Estimated hours: {{input type="number" id="estimated-hours" value=estimatedHours class="text-input"}}</li>
-                    <li>Hourly rate: ${{input type="number" id="hourly-rate" value=hourlyRate class="text-input"}}</li>
+                    <li>Estimated hours: {{input type="number" id="estimated-hours" class="text-input"}}</li>
+                    <li>Hourly rate: ${{input type="number" id="hourly-rate" class="text-input"}}</li>
                   </ul>
                 </div>
               </div>
@@ -266,71 +266,77 @@
                 <h3>Title: {{title}}</h3>
                 <br>
                 <ul class="doc-profile">
-                  <li>Name: {{userName}}</li>
-                  <li>Address: {{userAddress}}</li>
-                  <li>Phone number: {{userPhone}}</li>
-                  <li>Email address: {{userEmail}}</li>
+                  <li><span class="bold-weight">Name:</span> {{userName}}</li>
+                  <li><span class="bold-weight">Address:</span> {{userAddress}}</li>
+                  <li><span class="bold-weight">Phone number:</span> {{userPhone}}</li>
+                  <li><span class="bold-weight">Email address:</span> {{userEmail}}</li>
                 </ul>
                 <br>
                 <ul class="doc-profile">
-                  <li>Client name: {{clientName}}</li>
-                  <li>Client title: {{clientTitle}}</li>
-                  <li>Client company: {{clientCo}}</li>
+                  <li><span class="bold-weight">Client name:</span> {{clientName}}</li>
+                  <li><span class="bold-weight">Client title:</span> {{clientTitle}}</li>
+                  <li><span class="bold-weight">Client company:</span> {{clientCo}}</li>
                 </ul>
               </div>
               <div class="pub-section">
                 <ul class="doc-profile">
-                  <li>Project type: {{projectType}}</li>
-                  <li>Description: {{description}}</li>
+                  <li><span class="bold-weight">Project type:</span> {{projectType}}</li>
+                  <li><span class="bold-weight">Description:</span> {{description}}</li>
+                  <br>
                   {{#if professional}}
-                    <li>Client plans to use for professional purposes</li>
+                    <li><span class="bold-weight">Client plans to use for professional purposes</span></li>
                   {{/if}}
                   {{#if personal}}
-                    <li>Client plans to use for personal purposes</li>
+                    <li><span class="bold-weight">Client plans to use for personal purposes</span></li>
                   {{/if}}
-                  <li>Existing or preferred technology: {{technology}}</li>
+                  <li><span class="bold-weight">Existing or preferred technology:</span> {{technology}}</li>
                 </ul>
               </div>
               <div class="pub-section">
                 <ul class="doc-profile">
-                  <li>Delivery format: {{delivery}}</li>
-                  <li>Examples of similar work: {{examples}}</li>
+                  <li><span class="bold-weight">Delivery format:</span> {{delivery}}</li>
+                  <li><span class="bold-weight">Examples of similar work:</span> {{examples}}</li>
                   {{#if hasCopy}}
-                    <li>Client plans to provide copy</li>
+                    <li><span class="bold-weight">Client plans to provide copy</span></li>
                   {{else}}
-                    <li>Client expects us to provide copy</li>
+                    <li><span class="bold-weight">Client expects us to provide copy</span></li>
                   {{/if}}
                   {{#if hasArt}}
-                    <li>Client plans to provide art and images</li>
+                    <li><span class="bold-weight">Client plans to provide art and images</span></li>
                   {{else}}
-                    <li>Client expects us to provide art and images</li>
+                    <li><span class="bold-weight">Client expects us to provide art and images</span></li>
                   {{/if}}
                 </ul>
               </div>
               <div class="pub-section">
                 <ul class="doc-profile">
-                  <li>Start date: {{startDate}}</li>
-                  <li>Completion date: {{completionDate}}</li>
-                  <li>Estimated hours: {{estimatedHours}}</li>
-                  <li>Hourly rate: ${{hourlyRate}}</li>
-                </ul>
-                <ul class="doc-profile">
-                  <li>{{title}} was created: {{submittedOn}},</li>
-                  <li>Last saved: {{savedOn}}</li>
+                  <li><span class="bold-weight">Start date:</span> {{startDate}}</li>
+                  <li><span class="bold-weight">Completion date:</span> {{completionDate}}</li>
+                  <li><span class="bold-weight">Estimated hours:</span> {{estimatedHours}}</li>
+                  <li><span class="bold-weight">Hourly rate:</span> ${{hourlyRate}}</li>
+                  <li><span class="bold-weight">Total Cost:</span> ${{totalCost}}</li>
                 </ul>
               </div>
-            </div>
-            <div class="full-width doc-section">
-              <button class="delete-body" {{action "removeProject"}}>Delete</button>
-              {{#if isEditing}}
-                <button class="done-body" {{action 'doneEditing'}}>Save</button>
-              {{else}}
-                <button class="publish-body" {{action 'isCompleted'}}>Publish</button>
-                <button class="edit-body" {{action 'edit'}}>Edit</button>
-              {{/if}}
-            </div>
-            <div class="full-width doc-section">
-              <p class="promo full-width white-out">This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.</p>
+              <div class="pub-section">
+                <ul class="doc-profile">
+                  <li><span class="bold-weight">{{title}} was created:</span> {{submittedOn}},</li>
+                  <li><span class="bold-weight">Last saved:</span> {{savedOn}}</li>
+                </ul>
+              </div>
+              <div class="full-width doc-section">
+                <button class="delete-body" {{action "removeProject"}}>Delete</button>
+                {{#if isEditing}}
+                  <button class="done-body" {{action 'doneEditing'}}>Save</button>
+                {{else}}
+                  <button class="publish-body" {{action 'isCompleted'}}>Publish</button>
+                  <button class="edit-body" {{action 'edit'}}>Edit</button>
+                {{/if}}
+              </div>
+              <div class="whitespace">
+                <p class="promo full-width white-out">
+                This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
+                </p>
+              </div>
             </div>
           </div>
         </script>
@@ -431,7 +437,7 @@
                     <li>{{title}} was created: {{submittedOn}}</li>
                     <li>Last saved: {{savedOn}}</li>
                     <li>Document will show current date at time of use unless otherwise specified</li>
-                      <ul class="doc-head">
+                      <ul>
                         <li>Input custom date: {{input type="text" value=date}}</li>
                       </ul>
                   </ul>
@@ -440,10 +446,12 @@
                 <button class="delete-body" {{action "removeProject"}}>Delete</button>
                 <button class="done-body" {{action 'doneEditing'}}>Save</button>
               </div>
-              <div class="full-width doc-section">
-                <p class="promo full-width white-out">This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.</p>
-              </div>
             </div>
+            <div class="whitespace">
+                <p class="promo full-width white-out">
+                This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
+                </p>
+              </div>
           </div>
         </script>
 
@@ -503,11 +511,10 @@
                 </ul>
               </div>
               <div class="pub-section">
-                <h3>Estimated Time</h3>
-                <p>{{projectType}}: {{estimatedHours}}</p>
-                <p>TOTAL: {{estimatedHours}} {{totalEstimatedHours}}</p>
-                <h3>Estimated Cost:</h3>
-                <p>{{totalCost}}</p>
+                <h3>Time and Cost</h3>
+                <p>Estimated hours: {{estimatedHours}}</p>
+                <p>Hourly rate: ${{hourlyRate}}</p>
+                <h3>Estimated Cost: ${{totalCost}}</h3>
               </div>
               <div class="pub-section">
                 <p>
@@ -728,8 +735,10 @@
                   <li>Completion date: {{completionDate}}</li>
                 </ul>
               </div>
-              <div class="pub-section">
-                <p class="promo full-width">This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.</p>
+              <div class="whitespace">
+                <p class="promo full-width white-out">
+                This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
+                </p>
               </div>
             </div>
           </div>

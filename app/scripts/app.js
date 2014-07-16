@@ -53,7 +53,7 @@ App.Router.map(function(){
 // Index redirect
 App.IndexRoute = Ember.Route.extend({
 	redirect: function() {
-	    this.transitionTo('login');
+	    this.transitionTo('dashboard');
     }
 });
 
@@ -221,11 +221,11 @@ App.NewController = Ember.ObjectController.extend({
         var estimatedHours = $('#estimated-hours').val();
         
         var totalCosts = function(){
-        	hourlyRate * estimatedHours
+        	return hourlyRate * estimatedHours
         }
         var totalCost = totalCosts();
         var deposits = function(){
-        	totalCost / 5
+        	return totalCost / 5
         }
         var deposit = deposits();
 
@@ -265,7 +265,14 @@ App.NewController = Ember.ObjectController.extend({
             submittedOn : submittedOn
         });
         project.save();
+
+        this.set('isPro', false);
+        this.set('isPersonal', false);
+        this.set('getCopy', false);
+        this.set('getArt', false);
+
         this.transitionToRoute('dashboard');
+
     },
  }
 });
