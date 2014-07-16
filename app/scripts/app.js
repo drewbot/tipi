@@ -347,7 +347,6 @@ App.DraftController = Ember.ObjectController.extend({
 			});
 			project.set('savedOn', new Date());
 		    project.save();
-		    this.transitionToRoute('dashboard');
 		},
 
 		removeProject: function() {
@@ -362,6 +361,7 @@ App.DraftController = Ember.ObjectController.extend({
 		    project.set('isCompleted', true);
 		    project.set('savedOn', new Date());
 		    project.save();
+		    id = project.get('id');
 		    this.transitionToRoute('dashboard');
 		}
 	}

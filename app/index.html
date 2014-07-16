@@ -60,53 +60,60 @@
         </script>
 
         <script type="text/x-handlebars" id="app">
-          <div class="template-container">
-            <div class="app-container">
-              <div class="header">
-                <div class="home">{{#link-to 'dashboard'}}Tipi{{/link-to}}</div>
-                <div class="logout">{{#link-to 'login'}}Logout{{/link-to}}</div>
+          <div class="app-container">
+            <div class="header">
+              {{#link-to 'dashboard'}}
+                <div class="header-left">
+                  <p class="home">TIPI</p>
+                </div>
+              {{/link-to}}
+              <div class="header-right">
+                <h3>The Little Freelancer</h3>
+                <p>Edition</p>
               </div>
-              <div class="nav">
-                <ul>
-                  {{#link-to 'new'}}<li class="button">New</li>{{/link-to}}
-                  <li class="button" {{action 'showDrafts'}}>Review</li>
-                    <div class="draft-drop">
-                      {{#each}}
-                        {{#unless isCompleted}}
-                          {{#link-to 'draft' this}}
-                            <li class="draft-drop draft-link">{{title}}</li>
-                          {{/link-to}}
-                        {{/unless}}
-                      {{/each}}
-                    </div>
-                  <li class="button" {{action 'showQueue'}}>Publish</li>
-                    <div class="queue-drop">
-                      {{#each}}
-                        {{#if isCompleted}}
-                          <li class="button queue-link" {{action 'showDocs'}}>{{title}}</li>
-                            <div class="queue-drop-sub">
-                              <ul>
-                                {{#link-to 'proposal' this}}<li>- Proposal</li>{{/link-to}}
-                                {{#link-to 'contract' this}}<li>- Contract</li>{{/link-to}}
-                                {{#link-to 'brief' this}}<li>- Brief</li>{{/link-to}}
-                              </ul>
-                            </div>
-                        {{/if}}
-                      {{/each}}
-                    </div>
-                </ul>
-              </div>
-              <div class="main-container">
-                {{outlet}}
-              </div>
+            </div>
+            <div class="nav">
+              <ul>
+                {{#link-to 'new'}}<li class="button">New</li>{{/link-to}}
+                <li class="button" {{action 'showDrafts'}}>Review</li>
+                  <div class="draft-drop">
+                    {{#each}}
+                      {{#unless isCompleted}}
+                        {{#link-to 'draft' this}}
+                          <li class="draft-link">{{title}}</li>
+                        {{/link-to}}
+                      {{/unless}}
+                    {{/each}}
+                  </div>
+                <li class="button" {{action 'showQueue'}}>Publish</li>
+                  <div class="queue-drop">
+                    {{#each}}
+                      {{#if isCompleted}}
+                        <li class="button queue-link" {{action 'showDocs'}}>{{title}}</li>
+                          <div class="queue-drop-sub">
+                            <ul>
+                              {{#link-to 'proposal' this}}<li class="doc-link">- Proposal</li>{{/link-to}}
+                              {{#link-to 'contract' this}}<li class="doc-link">- Contract</li>{{/link-to}}
+                              {{#link-to 'brief' this}}<li class="doc-link">- Brief</li>{{/link-to}}
+                            </ul>
+                          </div>
+                      {{/if}}
+                    {{/each}}
+                  </div>
+              </ul>
+            </div>
+            <div class="main-container">
+              {{outlet}}
             </div>
           </div>
         </script>
 
         <script type="text/x-handlebars" id="dashboard">
           <div class="template-container">
-          <h3>Dashboard</h3>
-            <div class="dashboard-container">
+            <div class="template-header">
+              <h3 class="edit">Dashboard</h3>
+            </div>
+            <div class="dashboard-container content-container">
               <h3>Hello, {{userName}}!</h3>
               <p>{{currentDate}}</p>
               <p><strong>Your personal settings will be used to complete forms and documents throughout the app.</strong></p>
@@ -127,8 +134,10 @@
 
         <script type="text/x-handlebars" id="dashboard/_edit">
           <div class="template-container">
-            <h3 class="edit">Edit Dashboard</h3>
-            <div class="dashboard-edit-container">
+            <div class="template-header">
+              <h3 class="edit">Edit Dashboard</h3>
+            </div>
+            <div class="dashboard-edit-container content-container">
               <p>title: {{input type="text" value=title}}</p>
               <p>description: {{input type="text" value=description}}</p>
               <p>body: {{textarea value=body}}</p>
@@ -140,10 +149,13 @@
 
         <script type="text/x-handlebars" id="new">
           <div class="template-container">
-            <h3>New Project Questionnaire</h3>
+            <div class="template-header">
+              <h3>New Project Questionnaire</h3>
+              <button type="submit" class="save-top" {{action 'save'}}>Save Project</button>
+            </div>
             <div class="new-container">
               <div class="full-width doc-section">
-                <h3>Title: {{input type="text" id="title" name="title" value=title}}</h3>
+                <h3>Title: {{input type="text" id="title" class="title-input" name="title" value=title}}</h3>
               </div>
               <div class="full-width doc-section">
                 <div class="half-width">
@@ -226,7 +238,9 @@
                 </div>
               </div>
               <div class="full-width doc-section">
-                <button type="submit" {{action 'save'}}>Save Project</button>
+                <button type="submit" class="save-body" {{action 'save'}}>Save Project</button>
+              </div>
+              <div class="full-width doc-section">
               </div>
             </div>
           </div>
@@ -235,97 +249,119 @@
         <!-- Draft -->
 
         <script type="text/x-handlebars" id="draft">
-          <div class="template-container">
-            <h3>Review {{title}} Project Planner</h3>
-            <div class="draft-container">
-              <div>
-                <p>title: {{title}}</p>
-                <ul class="doc-head">
+          <div class="template-container relative">
+            <div class="template-header">
+              <h3>Review {{title}} Project Planner</h3>
+              {{#if isEditing}}
+                <div class="draft-partial">
+                  {{partial 'draft/edit'}}
+                </div>
+              {{else}}
+                  <button class="edit-top" {{action 'edit'}}>Edit</button>
+                  <button class="publish-top" {{action 'isCompleted'}}>Publish</button>
+              {{/if}}
+            </div>
+            <div class="content-container">
+              <div class="pub-section">
+                <h3>Title: {{title}}</h3>
+                <br>
+                <ul class="doc-profile">
                   <li>Name: {{userName}}</li>
                   <li>Address: {{userAddress}}</li>
                   <li>Phone number: {{userPhone}}</li>
                   <li>Email address: {{userEmail}}</li>
                 </ul>
-              </div>
-              <div>
-                <ul class="doc-head">
+                <br>
+                <ul class="doc-profile">
                   <li>Client name: {{clientName}}</li>
                   <li>Client title: {{clientTitle}}</li>
                   <li>Client company: {{clientCo}}</li>
                 </ul>
               </div>
-              <ul class="doc-head">
-                <li>Project type: {{projectType}}</li>
-                <li>Description: {{description}}</li>
-                {{#if professional}}
-                  <li>Client plans to use for professional purposes</li>
-                {{/if}}
-                {{#if personal}}
-                  <li>Client plans to use for personal purposes</li>
-                {{/if}}
-                <li>Existing or preferred technology: {{technology}}</li>
-              </ul>
-              <ul class="doc-head">
-                <li>Delivery format: {{delivery}}</li>
-                <li>Examples of similar work: {{examples}}</li>
-                {{#if hasCopy}}
-                  <li>Client plans to provide copy</li>
-                {{else}}
-                  <li>Client expects us to provide copy</li>
-                {{/if}}
-                {{#if hasArt}}
-                  <li>Client plans to provide art and images</li>
-                {{else}}
-                  <li>Client expects us to provide art and images</li>
-                {{/if}}
-              </ul>
-              <ul class="doc-head">
-                <li>Start date: {{startDate}}</li>
-                <li>Completion date: {{completionDate}}</li>
-                <li>Estimated hours: {{estimatedHours}}</li>
-                <li>Hourly rate: ${{hourlyRate}}</li>
-              </ul>
-              <ul class="doc-head">
-                <li>{{title}} was created: {{submittedOn}},</li>
-                <li>Last saved: {{savedOn}}</li>
-              </ul>
+              <div class="pub-section">
+                <ul class="doc-profile">
+                  <li>Project type: {{projectType}}</li>
+                  <li>Description: {{description}}</li>
+                  {{#if professional}}
+                    <li>Client plans to use for professional purposes</li>
+                  {{/if}}
+                  {{#if personal}}
+                    <li>Client plans to use for personal purposes</li>
+                  {{/if}}
+                  <li>Existing or preferred technology: {{technology}}</li>
+                </ul>
+              </div>
+              <div class="pub-section">
+                <ul class="doc-profile">
+                  <li>Delivery format: {{delivery}}</li>
+                  <li>Examples of similar work: {{examples}}</li>
+                  {{#if hasCopy}}
+                    <li>Client plans to provide copy</li>
+                  {{else}}
+                    <li>Client expects us to provide copy</li>
+                  {{/if}}
+                  {{#if hasArt}}
+                    <li>Client plans to provide art and images</li>
+                  {{else}}
+                    <li>Client expects us to provide art and images</li>
+                  {{/if}}
+                </ul>
+              </div>
+              <div class="pub-section">
+                <ul class="doc-profile">
+                  <li>Start date: {{startDate}}</li>
+                  <li>Completion date: {{completionDate}}</li>
+                  <li>Estimated hours: {{estimatedHours}}</li>
+                  <li>Hourly rate: ${{hourlyRate}}</li>
+                </ul>
+                <ul class="doc-profile">
+                  <li>{{title}} was created: {{submittedOn}},</li>
+                  <li>Last saved: {{savedOn}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="full-width doc-section">
+              <button class="delete-body" {{action "removeProject"}}>Delete</button>
               {{#if isEditing}}
-                {{partial 'draft/edit'}}
-                <button {{action 'doneEditing'}}>Done</button>
+                <button class="done-body" {{action 'doneEditing'}}>Save</button>
               {{else}}
-                <button {{action 'edit'}}>Edit</button>
+                <button class="publish-body" {{action 'isCompleted'}}>Publish</button>
+                <button class="edit-body" {{action 'edit'}}>Edit</button>
               {{/if}}
-              {{view Ember.Checkbox checked=isCompleted}}
-              <button {{action "isCompleted"}}>Complete</button>
-              <button {{action "removeProject"}} class="destroy">Delete</button>
+            </div>
+            <div class="full-width doc-section">
+              <p class="promo full-width white-out">This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.</p>
             </div>
           </div>
         </script>
 
         <script type="text/x-handlebars" id="draft/_edit">
           <div class="template-container">
-            <h3 class="edit">Edit {{title}} Project Planner</h3>
-            <div class="edit-container">
+            <div class="template-header">
+              <h3 class="edit">Edit {{title}} Project Planner</h3>
+              <button class="done-top" {{action 'doneEditing'}}>Save</button>
+            </div>
+            <div class="new-container">
               <div class="full-width doc-section">
-                <h3>Title: {{input type="text" id="title" name="title" value=title}}</h3>
+                <h3>Title: {{input type="text" id="title" class="title-input" name="title" value=title}}</h3>
               </div>
               <div class="full-width doc-section">
                 <div class="half-width">
                   <h3>User info</h3>
                   <ul class="doc-head">
-                    <li>Name: {{input type="text" value=userName class="text-input"}}</li>
-                    <li>Address: {{input type="text" value=userAddress class="text-input"}}</li>
-                    <li>Phone number: {{input type="text" value=userPhone class="text-input"}}</li>
-                    <li>Email address: {{input type="text" value=userEmail class="text-input"}}</li>
+                    <li>Name: {{input type="text" id="user-name" value=userName class="text-input"}}</li>
+                    <li>Address: {{input type="text" id="user-address" value=userAddress class="text-input"}}</li>
+                    <li>Phone number: {{input type="text" id="user-phone" value=userPhone class="text-input"}}</li>
+                    <li>Email address: {{input type="text" id="user-email" value=userEmail class="text-input"}}</li>
                   </ul>
                 </div>
                 <div class="half-width">
                   <h3>Client info</h3>
                   <ul class="doc-head">
-                    <li>Client name: {{input type="text" value=clientName class="text-input"}}</li>
-                    <li>Client title: {{input type="text" value=clientTitle class="text-input"}}</li>
-                    <li>Client company: {{input type="text" value=clientCo class="text-input"}}</li>
-                    <li>Client email: {{input type="text" value=clientEmail class="text-input"}}</li>
+                    <li>Client name: {{input type="text" id="client-name" value=clientName class="text-input"}}</li>
+                    <li>Client title: {{input type="text" id="client-title" value=clientTitle class="text-input"}}</li>
+                    <li>Client company: {{input type="text" id="client-co" value=clientCo class="text-input"}}</li>
+                    <li>Client email: {{input type="text" id="client-email" value=clientEmail class="text-input"}}</li>
                   </ul>
                 </div>
               </div>
@@ -334,13 +370,13 @@
                 <div class="full-width">
                   <div class="half-width">
                     <ul class="doc-head">
-                      <li>Project type: {{input type="text" value=projectType class="text-input"}}</li>
+                      <li>Project type: {{input type="text" id="project-type" value=projectType class="text-input"}}</li>
                       <li>Project use is: professional {{view Ember.Checkbox checked=isPro}} or personal {{view Ember.Checkbox checked=isPersonal}}</li>
                     </ul>
                   </div>
                   <div class="half-width">
                     <ul class="doc-head">
-                      <li>Existing or preferred technology: {{input type="text" value=technology class="text-input"}}</li>
+                      <li>Existing or preferred technology: {{input type="text" id="technology" value=technology class="text-input"}}</li>
                     </ul>
                   </div>
                 </div>
@@ -348,14 +384,14 @@
               <div class="full-width doc-section">
                 <h3>Description:</p>
                 <div class="full-field">
-                  {{textarea value=description class="text-field full-width"}}
+                  {{textarea id="description" value=description class="text-field full-width"}}
                 </div>
               </div>
               <div class="full-width doc-section">
                 <h3>Assets and Delivery</h3>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Delivery format: {{input type="text" value=delivery class="text-input"}}</li>
+                    <li>Delivery format: {{input type="text" id="delivery"  value=delivery class="text-input"}}</li>
                     <li>Client plans to deliver copy:</li>
                       <ul>
                         <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
@@ -365,7 +401,7 @@
                 </div>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Examples of similar work: {{input type="text" value=examples class="text-input"}}</li>
+                    <li>Examples of similar work: {{input type="text" id="examples" value=examples class="text-input"}}</li>
                     <li>Client plans to provide art and images:</li>
                       <ul>
                         <li>Yes {{view Ember.Checkbox checked=getArt}}</li>
@@ -378,14 +414,14 @@
                 <h3>Timing and Cost</h3>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Start date: {{input type="text" value=startDate class="text-input"}}</li>
-                    <li>Completion date: {{input type="text" value=completionDate class="text-input"}}</li>
+                    <li>Start date: {{input type="date" id="start-date" value=startDate class="text-input"}}</li>
+                    <li>Completion date: {{input type="date" id="completion-date" value=completionDate class="text-input"}}</li>
                   </ul>
                 </div>
                 <div class="half-width">
                   <ul class="doc-head">
-                    <li>Estimated hours: {{input type="number" value=estimatedHours class="text-input"}}</li>
-                    <li>Hourly rate: ${{input type="number" value=hourlyRate class="text-input"}}</li>
+                    <li>Estimated hours: {{input type="number" id="estimated-hours" value=estimatedHours class="text-input"}}</li>
+                    <li>Hourly rate: ${{input type="number" id="hourly-rate" value=hourlyRate class="text-input"}}</li>
                   </ul>
                 </div>
               </div>
@@ -400,214 +436,142 @@
                       </ul>
                   </ul>
               </div>
+              <div class="full-width doc-section">
+                <button class="delete-body" {{action "removeProject"}}>Delete</button>
+                <button class="done-body" {{action 'doneEditing'}}>Save</button>
+              </div>
+              <div class="full-width doc-section">
+                <p class="promo full-width white-out">This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.</p>
+              </div>
             </div>
           </div>
         </script>
 
         <script type="text/x-handlebars" id="proposal">
           <div class="template-container">
-            <h3>{{title}} Proposal</h3>
-            <div class="proposal-container" id="proposal-container">
-              <button {{ action "printContent" }}>Print</button>
-              <ul class="doc-head">
-                <li>{{userName}}</li>
-                <li>{{userAddress}}</li>
-                <li>{{userPhone}}</li>
-                <li>{{userEmail}}</li>
-              </ul>
-              <ul class="doc-head">
-                <li>{{currentDate}}</li>
-                <li>{{clientName}}</li>
-                <li>{{clientTitle}}</li>
-                <li>{{clientCo}}</li>
-              </ul>
-              <p>Dear {{clientName}},</p>
-              <p>Here is a simple estimate for you.  Please note that my rate is ${{hourlyRate}} per hour. Here are the description of the work and the numbers:</p>
-              <h3>Description of Work:</h3>
-              <p>{{description}}</p>
-              <ul>
-                {{#if professional}}
-                  <li>Client plans to use for professional purposes</li>
-                {{/if}}
-                {{#if personal}}
-                  <li>Client plans to use for personal purposes</li>
-                {{/if}}
-                <li>Existing or preferred technology: {{technology}}</li>
-                <li>Examples of similar work: {{examples}}</li>
-                {{#if hasCopy}}
-                  <li>Client plans to provide copy</li>
-                {{else}}
-                  <li>Client expects Consultant to provide copy</li>
-                {{/if}}
-                {{#if hasArt}}
-                  <li>Client plans to provide art and images</li>
-                {{else}}
-                  <li>Client expects Consultant to provide art and images</li>
-                {{/if}}
-                <li>Delivery format: {{delivery}}</li>
-              </ul>
-              <h3>Estimated Time</h3>
-              <p>{{projectType}}: {{estimatedHours}}</p>
-              <p>TOTAL: {{estimatedHours}} {{totalEstimatedHours}}</p>
-              <h3>Estimated Cost:</h3>
-              <p>{{totalCost}}</p>
-              <p>
-                The work described above is estimated to be completed by {{completionDate}}. We will probably be done well before that date. The budget for this project is tight and we will do everything we can to stay within the {{estimatedHours}} {{totalEstimatedHours}} ({{totalCost}}). Please understand, however, that this is the estimated cost, and the final cost will be based upon the number of hours taken to complete the project. 
-              </p>
-              <p>
-              This estimate, of course, does not include changes you may decide to make along the way, which could potentially make the price significantly higher. This is most easily avoidable by clear communication about expectations. It will also help tremendously if you look at the artwork carefully before you approve it, because layout changes become much more difficult after we have begun coding.
-              </p>
-              <p>
-              I’m looking forward to working with you on this project. Let me know what you’re thinking, and don’t hesitate to call or email if you have any questions.
-              </p>
-              <p>Sincerely,</p>
-              <p>{{userName}}</p>
+            <div class="template-header">
+              <h3>{{title}} Proposal</h3>
+              </div>
+              <div class="content-container" id="proposal-container">
+              <div class="pub-section">
+                <button class="print-top"{{ action "printContent" }}>Print</button>
+                <ul class="doc-profile">
+                  <li>{{userName}}</li>
+                  <li>{{userAddress}}</li>
+                  <li>{{userPhone}}</li>
+                  <li>{{userEmail}}</li>
+                </ul>
+                <br>
+                <ul class="doc-profile">
+                  <li>{{currentDate}}</li>
+                  <li>{{clientName}}</li>
+                  <li>{{clientTitle}}</li>
+                  <li>{{clientCo}}</li>
+                </ul>
+                <br>
+                <p>Dear {{clientName}},</p>
+                <p>Here is a simple estimate for you.  Please note that my rate is ${{hourlyRate}} per hour. Here are the description of the work and the numbers:</p>
+              </div>
+              <div class="pub-section">
+                <h3>Description of Work:</h3>
+                <p>{{description}}</p>
+                <ul>
+                  {{#if professional}}
+                    <li>Client plans to use for professional purposes</li>
+                  {{/if}}
+                  {{#if personal}}
+                    <li>Client plans to use for personal purposes</li>
+                  {{/if}}
+                  <li>Existing or preferred technology: {{technology}}</li>
+                  <li>Examples of similar work: {{examples}}</li>
+                </ul>
+              </div>
+              <div class="pub-section">
+                <h3>Assets and Delivery</h3>
+                <ul>
+                  {{#if hasCopy}}
+                    <li>Client plans to provide copy</li>
+                  {{else}}
+                    <li>Client expects Consultant to provide copy</li>
+                  {{/if}}
+                  {{#if hasArt}}
+                    <li>Client plans to provide art and images</li>
+                  {{else}}
+                    <li>Client expects Consultant to provide art and images</li>
+                  {{/if}}
+                  <li>Delivery format: {{delivery}}</li>
+                </ul>
+              </div>
+              <div class="pub-section">
+                <h3>Estimated Time</h3>
+                <p>{{projectType}}: {{estimatedHours}}</p>
+                <p>TOTAL: {{estimatedHours}} {{totalEstimatedHours}}</p>
+                <h3>Estimated Cost:</h3>
+                <p>{{totalCost}}</p>
+              </div>
+              <div class="pub-section">
+                <p>
+                  The work described above is estimated to be completed by {{completionDate}}. We will probably be done well before that date. The budget for this project is tight and we will do everything we can to stay within the {{estimatedHours}} {{totalEstimatedHours}} hours ({{totalCost}}). Please understand, however, that this is the estimated cost, and the final cost will be based upon the number of hours taken to complete the project. 
+                </p>
+                <br>
+                <p>
+                This estimate, of course, does not include changes you may decide to make along the way, which could potentially make the price significantly higher. This is most easily avoidable by clear communication about expectations. It will also help tremendously if you look at the artwork carefully before you approve it, because layout changes become much more difficult after we have begun coding.
+                </p>
+                <br>
+                <p>
+                I’m looking forward to working with you on this project. Let me know what you’re thinking, and don’t hesitate to call or email if you have any questions.
+                </p>
+                <br>
+                <p>Sincerely,</p>
+                <p>{{userName}}</p>
+              </div>
             </div>
           </div>
         </script>
 
         <script type="text/x-handlebars" id="contract">
           <div class="template-container">
-            <h3>{{title}} Contract</h3>
-            <div class="contract-container"  id="contract-container">
-              <button {{ action "printContent" }}>Print</button>
-              <ul class="doc-head">
-                <li>{{userName}}</li>
-                <li>{{userAddress}}</li>
-                <li>{{userPhone}}</li>
-                <li>{{userEmail}}</li>
-              </ul>
-              <ul class="doc-head">
-                <li>{{currentDate}}</li>
-                <li>{{clientName}}</li>
-                <li>{{clientTitle}}</li>
-                <li>{{clientCo}}</li>
-              </ul>
-              <h3>{{projectType}} Contract</h3>
-              <p>
-                This AGREEMENT is dated and in effect as of {{date}}, between {{clientName}} of {{clientCo}}, hereafter referred to as "Client" and {{userName}}, hereafter referred to as "Consultant".  This agreement is with respect to the work concerning website development, hereinafter referred to as the "Work." The work will consist of original code and possible implementations of third party code. Any third party code will be outlined in the Proposal. Whereas, Consultant is a professional web designer of good standing; Whereas, Client wishes Consultant to create certain Work described more fully herein and in the Proposal; and Whereas, Consultant wishes to create such Work; Now, therefore, in consideration of the foregoing premises and the mutual covenants hereinafter set forth and other valuable considerations, the parties hereto agree as follows:
-              </p>
-              <h3>CONFIDENTIALITY:</h3>
-              <p>
-                The Client and Consultant may disclose confidential information one to the other to facilitate work under this Agreement. Such information shall be so identified in writing at the time of its transmittal, and shall be safeguarded and not disclosed to third parties by the receiving party.  Confidential information shall not include information that:
-              </p>
-              <ol>
-                <li>is already known to the party to which it is disclosed;</li>
-                <li>is or becomes part of the public domain without breach of this Agreement;</li>
-                <li>is obtained from third parties, which have no obligations to keep confidential to the parties to this Agreement.</li>
-              </ol>
-              <h3>DESCRIPTION OF WORK:</h3>
-              <p>
-                {{description}}
-              </p>
-              <ul>
-                {{#if professional}}
-                  <li>Client plans to use for professional purposes</li>
-                {{/if}}
-                {{#if personal}}
-                  <li>Client plans to use for personal purposes</li>
-                {{/if}}
-                <li>Existing or preferred technology: {{technology}}</li>
-                <li>Examples of similar work: {{examples}}</li>
-                {{#if hasCopy}}
-                  <li>Client plans to provide copy</li>
-                {{else}}
-                  <li>Client expects Consultant to provide copy</li>
-                {{/if}}
-                {{#if hasArt}}
-                  <li>Client plans to provide art and images</li>
-                {{else}}
-                  <li>Client expects Consultant to provide art and images</li>
-                {{/if}}
-                <li>Delivery format: {{delivery}}</li>
-              </ul>
-              <h3>PAYMENT SCHEDULE:</h3>
-              <p>
-              The full length of this contract is as follows:
-              Starting date is {{startDate}} and estimated completion* date is {{completionDate}} for the estimated total amount of {{totalCost}}, which is derived from an estimated {{estimatedHours}} hours to be billed at {{hourlyRate}} per hour. The total number of hours incurred by Consultant during the course of the Work described herein will be billed to Client at a rate of {{hourlyRate}} per hour. Consultant reserves the right to exceed a total cost of {{totalCost}} in the event that the completion of the Work requires more than {{estimatedHours}} hours. Client and Consultant hereby agree that the Work resulting from the estimated {{estimatedHours}} hours shall be a {{projectType}} conforming to the Proposal as approved by the Client.
-              </p>
-              <p>
-                Client shall pay Consultant {{deposit}}, (20% of the estimated total) as a deposit for project commencement.
-              </p>
-              <p>
-              Every two weeks during the Work Consultant will bill Client for the total hours worked to that point to be paid no more than two weeks after the sending of the invoice. If the invoice is unpaid in that period of time a 10% financing charge will be instituted on the total amount due on the account and work will discontinue until the Client brings the invoice current. Upon completion of the Work the remaining balance will be due and must be paid prior to file and password relinquishment, or upload and/or assembly of website on Client's web server.
-              </p>
-              <h3>DUE DATES:</h3>
-              <p>
-              Consultant agrees to deliver samples of design on dates as agreed upon in the Proposal.  Consultant will make every effort to meet agreed upon due dates. The Client agrees that failure to submit required information, payments or materials may cause delays in the final due date of the Work and will act so as to postpone the due date by whatever time is lost.
-              </p>
-              <h3>FEES & ADDITIONAL SERVICES:</h3>
-              <p>
-              Overly burdensome changes will be charged at {{hourlyRate}} per hour. Any work the Client wishes Consultant to create, which is not specified in the DESCRIPTION section of this agreement, or in the attached Proposal will be considered an additional service. Such Work shall require a separate Agreement and payment separate from and above that specified in this Agreement.
-              </p>
-              <h3>EXPENSES:</h3>
-              <p>
-              Client agrees to reimburse Consultant for any of the following expenses necessary in completion of the Work: (e.g. Fonts, Messengers, Proofs, Props, Research, Shipping, Software, Stock photography, Travel, Telephone Consultation).
-              </p>
-              <h3>ASSIGNMENT OF WORK:</h3>
-              <p>
-              Consultant reserves the right to assign other designers, developers or other subcontractors to the Work to ensure quality and on-time completion.
-              </p>
-              <h3>RESERVATION OF RIGHTS:</h3>
-              <p>
-              All rights not expressly granted hereunder are reserved to Consultant, including but not limited to all rights in sketches, comps, or other preliminary materials and the right to claim ownership and link to the work.
-              </p>
-              <h3>PERMISSIONS AND RELEASES:</h3>
-              <p>
-              The Client agrees to indemnify and hold harmless Consultant against any and all claims, costs, and expenses, including attorney's fees, due to materials included in the Work at the request of the Client for which no copyright permission or previous release was requested or uses which exceed the uses allowed pursuant to a permission or release. Client also agrees to indemnify and hold harmless for any expense due to integrated third party code outlined in the Proposal.
-              </p>
-              <h3>PUBLICATION:</h3>
-              <p>
-              The Client may publish or disclose information regarding the Work and shall acknowledge the support of Consultant in all such publications. The Client will not use the name of Consultant, in any advertising or publicity without the prior written approval from the Consultant.  The Consultant will not use the name of Client, in any advertising or publicity without the prior written approval from the Client.
-              </p>
-              <h3>COPYRIGHT NOTICE:</h3>
-              <p>
-              Copyright is in Consultant's name.  Upon completion of Work, the copyright will only be released to the Client upon the Consultant's signing of the Release of Copyright, which shall not be unreasonably withheld.
-              </p>
-              <h3>TERMINATION:</h3>
-              <p>
-              Either party may terminate this Agreement by giving 30 days written notice to the other of such termination. In the event that Work is postponed or terminated at the request of the Client, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within thirty days of the Clients written notification to stop work. In the event of termination, the Client shall also pay any expenses incurred by Consultant and the Consultant shall own all rights to the Work. The Client shall assume responsibility for all collection of legal fees necessitated by default in payment.
-              </p>
-              <p>
-              In the event that Work is postponed or terminated at the request of the Client, Client shall not receive any refund or reimbursement for deposits made. In the event that Work is postponed or terminated at the request of Consultant, Client shall receive a refund for the exact amount of any deposits made.
-              </p>
-              <p>
-              The Client and Consultant are independent parties and nothing in this Agreement shall constitute either party as the employer, principal or partner of or joint venture with the other party.  Neither the Client nor Consultant has any authority to assume or create any obligation or liability, either express or implied, on behalf of the other.
-              </p>
-              <p>
-              This Agreement shall be governed by and construed in accordance with the laws of The State of {{userAddress.state}} applicable therein.
-              </p>
-              <p>
-              The undersigned agrees to the terms of this agreement on behalf of his or her organization or business and gives warranty that he is an signatory for the organization (if applicable)..
-              </p>
-              <p>On behalf of the Client:</p>
-              <div class="sign-line"></div>
-              <p>Date:</p>
-              <div class="sign-line"></div>
-              <p>On behalf of Consultant:</p>
-              <div class="sign-line"></div>
-              <p>Date:</p>
-              <div class="sign-line"></div>
+            <div class="template-header">
+              <h3>{{title}} Contract</h3>
             </div>
-          </div>
-        </script>
-
-        <script type="text/x-handlebars" id="brief">
-          <div class="template-container">
-            <h3>{{title}} Brief</h3>
-            <div class="brief-container" id="brief-container">
-              <button {{ action "printContent" }}>Print</button>
-              <h3>{{projectType}}, Project Brief</h3>
-              <p>{{title}}</p>
-              <p>{{currentDate}}</p>
-              <ul class="doc-head">
-                <li>For {{clientName}}, of {{clientCo}}</li>
-                <li>Project lead: {{userName}}</li>
-                <li>{{userEmail}}</li>
-              </ul>
-              <h3>Description:</h3>
-              <p>{{description}}</p>
-              <ul>
+            <div class="content-container" id="contract-container">
+              <div class="pub-section">
+                <button class="print-top"{{ action "printContent" }}>Print</button>
+                <ul class="doc-profile">
+                  <li>{{userName}}</li>
+                  <li>{{userAddress}}</li>
+                  <li>{{userPhone}}</li>
+                  <li>{{userEmail}}</li>
+                </ul>
+                <br>
+                <ul class="doc-profile">
+                  <li>{{currentDate}}</li>
+                  <li>{{clientName}}</li>
+                  <li>{{clientTitle}}</li>
+                  <li>{{clientCo}}</li>
+                </ul>
+                <br>
+                <h3>{{projectType}} Contract</h3>
+                <p>
+                  This AGREEMENT is dated and in effect as of {{date}}, between {{clientName}} of {{clientCo}}, hereafter referred to as "Client" and {{userName}}, hereafter referred to as "Consultant".  This agreement is with respect to the work concerning website development, hereinafter referred to as the "Work." The work will consist of original code and possible implementations of third party code. Any third party code will be outlined in the Proposal. Whereas, Consultant is a professional web designer of good standing; Whereas, Client wishes Consultant to create certain Work described more fully herein and in the Proposal; and Whereas, Consultant wishes to create such Work; Now, therefore, in consideration of the foregoing premises and the mutual covenants hereinafter set forth and other valuable considerations, the parties hereto agree as follows:
+                </p>
+                <br>
+                <h3>CONFIDENTIALITY:</h3>
+                <p>
+                  The Client and Consultant may disclose confidential information one to the other to facilitate work under this Agreement. Such information shall be so identified in writing at the time of its transmittal, and shall be safeguarded and not disclosed to third parties by the receiving party.  Confidential information shall not include information that:
+                </p>
+                <ol>
+                  <li>is already known to the party to which it is disclosed;</li>
+                  <li>is or becomes part of the public domain without breach of this Agreement;</li>
+                  <li>is obtained from third parties, which have no obligations to keep confidential to the parties to this Agreement.</li>
+                </ol>
+              </div>
+              <div class="pub-section">
+                <h3>DESCRIPTION OF WORK:</h3>
+                <p>
+                  {{description}}
+                </p>
+                <ul>
                   {{#if professional}}
                     <li>Client plans to use for professional purposes</li>
                   {{/if}}
@@ -619,19 +583,154 @@
                   {{#if hasCopy}}
                     <li>Client plans to provide copy</li>
                   {{else}}
-                    <li>Client expects us to provide copy</li>
+                    <li>Client expects Consultant to provide copy</li>
                   {{/if}}
                   {{#if hasArt}}
                     <li>Client plans to provide art and images</li>
                   {{else}}
-                    <li>Client expects us to provide art and images</li>
+                    <li>Client expects Consultant to provide art and images</li>
                   {{/if}}
                   <li>Delivery format: {{delivery}}</li>
-              </ul>
-              <ul class="doc-head">
+                </ul>
+              </div>
+              <div class="pub-section">
+                <h3>PAYMENT SCHEDULE:</h3>
+                <p>
+                The full length of this contract is as follows:
+                Starting date is {{startDate}} and estimated completion* date is {{completionDate}} for the estimated total amount of {{totalCost}}, which is derived from an estimated {{estimatedHours}} hours to be billed at {{hourlyRate}} per hour. The total number of hours incurred by Consultant during the course of the Work described herein will be billed to Client at a rate of {{hourlyRate}} per hour. Consultant reserves the right to exceed a total cost of {{totalCost}} in the event that the completion of the Work requires more than {{estimatedHours}} hours. Client and Consultant hereby agree that the Work resulting from the estimated {{estimatedHours}} hours shall be a {{projectType}} conforming to the Proposal as approved by the Client.
+                </p>
+                <br>
+                <p>
+                  Client shall pay Consultant {{deposit}}, (20% of the estimated total) as a deposit for project commencement.
+                </p>
+                <br>
+                <p>
+                Every two weeks during the Work Consultant will bill Client for the total hours worked to that point to be paid no more than two weeks after the sending of the invoice. If the invoice is unpaid in that period of time a 10% financing charge will be instituted on the total amount due on the account and work will discontinue until the Client brings the invoice current. Upon completion of the Work the remaining balance will be due and must be paid prior to file and password relinquishment, or upload and/or assembly of website on Client's web server.
+                </p>
+              </div>
+              <div class="pub-section">
+                <h3>DUE DATES:</h3>
+                <p>
+                Consultant agrees to deliver samples of design on dates as agreed upon in the Proposal.  Consultant will make every effort to meet agreed upon due dates. The Client agrees that failure to submit required information, payments or materials may cause delays in the final due date of the Work and will act so as to postpone the due date by whatever time is lost.
+                </p>
+                <br>
+                <h3>FEES & ADDITIONAL SERVICES:</h3>
+                <p>
+                Overly burdensome changes will be charged at {{hourlyRate}} per hour. Any work the Client wishes Consultant to create, which is not specified in the DESCRIPTION section of this agreement, or in the attached Proposal will be considered an additional service. Such Work shall require a separate Agreement and payment separate from and above that specified in this Agreement.
+                </p>
+                <br>
+                <h3>EXPENSES:</h3>
+                <p>
+                Client agrees to reimburse Consultant for any of the following expenses necessary in completion of the Work: (e.g. Fonts, Messengers, Proofs, Props, Research, Shipping, Software, Stock photography, Travel, Telephone Consultation).
+                </p>
+                <br>
+                <h3>ASSIGNMENT OF WORK:</h3>
+                <p>
+                Consultant reserves the right to assign other designers, developers or other subcontractors to the Work to ensure quality and on-time completion.
+                </p>
+                <br>
+                <h3>RESERVATION OF RIGHTS:</h3>
+                <p>
+                All rights not expressly granted hereunder are reserved to Consultant, including but not limited to all rights in sketches, comps, or other preliminary materials and the right to claim ownership and link to the work.
+                </p>
+                <br>
+                <h3>PERMISSIONS AND RELEASES:</h3>
+                <p>
+                The Client agrees to indemnify and hold harmless Consultant against any and all claims, costs, and expenses, including attorney's fees, due to materials included in the Work at the request of the Client for which no copyright permission or previous release was requested or uses which exceed the uses allowed pursuant to a permission or release. Client also agrees to indemnify and hold harmless for any expense due to integrated third party code outlined in the Proposal.
+                </p>
+                <br>
+                <h3>PUBLICATION:</h3>
+                <p>
+                The Client may publish or disclose information regarding the Work and shall acknowledge the support of Consultant in all such publications. The Client will not use the name of Consultant, in any advertising or publicity without the prior written approval from the Consultant.  The Consultant will not use the name of Client, in any advertising or publicity without the prior written approval from the Client.
+                </p>
+                <br>
+                <h3>COPYRIGHT NOTICE:</h3>
+                <p>
+                Copyright is in Consultant's name.  Upon completion of Work, the copyright will only be released to the Client upon the Consultant's signing of the Release of Copyright, which shall not be unreasonably withheld.
+                </p>
+                <br>
+                <h3>TERMINATION:</h3>
+                <p>
+                Either party may terminate this Agreement by giving 30 days written notice to the other of such termination. In the event that Work is postponed or terminated at the request of the Client, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within thirty days of the Clients written notification to stop work. In the event of termination, the Client shall also pay any expenses incurred by Consultant and the Consultant shall own all rights to the Work. The Client shall assume responsibility for all collection of legal fees necessitated by default in payment.
+                </p>
+                <p>
+                In the event that Work is postponed or terminated at the request of the Client, Client shall not receive any refund or reimbursement for deposits made. In the event that Work is postponed or terminated at the request of Consultant, Client shall receive a refund for the exact amount of any deposits made.
+                </p>
+                <p>
+                The Client and Consultant are independent parties and nothing in this Agreement shall constitute either party as the employer, principal or partner of or joint venture with the other party.  Neither the Client nor Consultant has any authority to assume or create any obligation or liability, either express or implied, on behalf of the other.
+                </p>
+                <p>
+                This Agreement shall be governed by and construed in accordance with the laws of The State of {{userAddress.state}} applicable therein.
+                </p>
+                <p>
+                The undersigned agrees to the terms of this agreement on behalf of his or her organization or business and gives warranty that he is an signatory for the organization (if applicable)..
+                </p>
+              </div>
+              <div class="pub-section">
+                <p>On behalf of the Client:</p>
+                <div class="sign-line"></div>
+                <p>Date:</p>
+                <div class="sign-line"></div>
+                <p>On behalf of Consultant:</p>
+                <div class="sign-line"></div>
+                <p>Date:</p>
+                <div class="sign-line"></div>
+              </div>
+            </div>
+          </div>
+        </script>
+
+        <script type="text/x-handlebars" id="brief">
+          <div class="template-container full-width ">
+            <div class="template-header">
+              <h3>{{title}} Brief</h3>
+            </div>
+            <div class="brief-container content-container" id="brief-container">
+              <div class="pub-section">
+                <button class="print-top"{{ action "printContent" }}>Print</button>
+                <h3>{{title}}, Project Brief</h3>
+                <p>{{currentDate}}</p>
+                <br>
+                <ul class="doc-profile">
+                  <li>For {{clientName}}, of {{clientCo}}</li>
+                  <li>Project lead: {{userName}}</li>
+                  <li>{{userEmail}}</li>
+                </ul>
+                <br>
+                <p>Project type: {{projectType}}</p>
+                <br>
+                <h3>Description:</h3>
+                <p>{{description}}</p>
+                <ul>
+                    {{#if professional}}
+                      <li>Client plans to use for professional purposes</li>
+                    {{/if}}
+                    {{#if personal}}
+                      <li>Client plans to use for personal purposes</li>
+                    {{/if}}
+                    <li>Existing or preferred technology: {{technology}}</li>
+                    <li>Examples of similar work: {{examples}}</li>
+                    {{#if hasCopy}}
+                      <li>Client plans to provide copy</li>
+                    {{else}}
+                      <li>Client expects us to provide copy</li>
+                    {{/if}}
+                    {{#if hasArt}}
+                      <li>Client plans to provide art and images</li>
+                    {{else}}
+                      <li>Client expects us to provide art and images</li>
+                    {{/if}}
+              </div>
+              <div class="pub-section">
+                <ul class="doc-profile">
+                  <li>Delivery format: {{delivery}}</li>
                   <li>Start date: {{startDate}}</li>
                   <li>Completion date: {{completionDate}}</li>
-              </ul>
+                </ul>
+              </div>
+              <div class="pub-section">
+                <p class="promo full-width">This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.</p>
+              </div>
             </div>
           </div>
         </script>
