@@ -90,7 +90,7 @@
                     {{#each}}
                       {{#if isCompleted}}
                         <li class="button queue-link" {{action 'showDocs'}}>{{title}}</li>
-                          <div class="queue-drop-sub">
+                          <div {{bind-attr class="isSelected:show-drafts :queue-drop-sub"}}>
                             <ul>
                               {{#link-to 'proposal' this}}<li class="doc-link">- Proposal</li>{{/link-to}}
                               {{#link-to 'contract' this}}<li class="doc-link">- Contract</li>{{/link-to}}
@@ -114,20 +114,11 @@
               <h3 class="edit">Dashboard</h3>
             </div>
             <div class="dashboard-container content-container">
-              <h3>Hello, {{userName}}!</h3>
-              <p>{{currentDate}}</p>
-              <p><strong>Your personal settings will be used to complete forms and documents throughout the app.</strong></p>
-              <p>{{userName}}</p>
-              <p>{{userAddress}}</p>
-              <p>{{userPhone}}</p>
-              <p>{{userEmail}}</p>
-              <p>{{hourlyRate}}</p>
-              {{#if isEditing}}
-                {{partial 'dashboard/edit'}}
-                <button {{action 'doneEditing'}}>Done</button>
-              {{else}}
-                <button {{action 'edit'}}>Edit</button>
-              {{/if}}
+              <div class="whitespace">
+                <p class="promo full-width white-out">
+                This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
+                </p>
+              </div>
             </div>
           </div>
         </script>
@@ -401,7 +392,7 @@
                     <li>Client plans to deliver copy:</li>
                       <ul>
                         <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
-                        <li>No {{view Ember.Checkbox}}</li>
+                        <li>No {{view Ember.Checkbox checked =setCopyAsFalse}}</li>
                       </ul>
                   </ul>
                 </div>
@@ -448,10 +439,10 @@
               </div>
             </div>
             <div class="whitespace">
-                <p class="promo full-width white-out">
-                This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
-                </p>
-              </div>
+              <p class="promo full-width white-out">
+              This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
+              </p>
+            </div>
           </div>
         </script>
 
@@ -462,6 +453,7 @@
               </div>
               <div class="content-container" id="proposal-container">
               <div class="pub-section">
+                <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}>Print</button>
                 <ul class="doc-profile">
                   <li>{{userName}}</li>
@@ -543,6 +535,7 @@
             </div>
             <div class="content-container" id="contract-container">
               <div class="pub-section">
+                <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}>Print</button>
                 <ul class="doc-profile">
                   <li>{{userName}}</li>
@@ -694,6 +687,7 @@
             </div>
             <div class="brief-container content-container" id="brief-container">
               <div class="pub-section">
+                <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}>Print</button>
                 <h3>{{title}}, Project Brief</h3>
                 <p>{{currentDate}}</p>

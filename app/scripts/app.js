@@ -1,8 +1,8 @@
 //                      _____   _    ____   _                        
 //       \/       \/   |_   _| | |  |  _ \ | |     \/       \/
 //       /\       /\     | |   | |  |  __/ | |     /\       /\
-//      /  \     /  \    | |   | |  | |    | |    /  \     /  \
-//_____/    \___/    \___| |___| |__| |____| |___/    \___/    \______
+//      /\ \     /\ \    | |   | |  | |    | |    /\ \     /\ \
+//_____/_/\_\___/_/\_\___| |___| |__| |____| |___/_/\_\___/_/\_\______
 
 ///////////////////////////////////////////////////////////////////////
 ////////////////////// Create Ember Application ///////////////////////
@@ -323,6 +323,15 @@ App.DraftController = Ember.ObjectController.extend({
 	        var hourlyRate = $('#hourly-rate').val();
 	        var estimatedHours = $('#estimated-hours').val();
 
+	        var totalCosts = function(){
+	        	return hourlyRate * estimatedHours
+	        }
+	        var totalCost = totalCosts();
+	        var deposits = function(){
+	        	return totalCost / 5
+	        }
+	        var deposit = deposits();
+
 			var project = this.get('model',{
 				title : title,
 
@@ -350,9 +359,20 @@ App.DraftController = Ember.ObjectController.extend({
 				startDate: startDate,
 				completionDate: completionDate,
 				estimatedHours: estimatedHours,
-				hourlyRate: hourlyRate  
+				hourlyRate: hourlyRate,
+
+				totalCost: totalCost,
+				deposit: deposit
 			});
 			project.set('savedOn', new Date());
+			project.set('totalCost', totalCost);
+			project.set('deposit', deposit);
+		    project.save();
+		},
+
+		setCopyAsFalse: function(){
+			var project = this.get('model');
+		    project.set('hasCopy', false);
 		    project.save();
 		},
 
@@ -368,7 +388,8 @@ App.DraftController = Ember.ObjectController.extend({
 		    project.set('isCompleted', true);
 		    project.set('savedOn', new Date());
 		    project.save();
-		    id = project.get('id');
+
+		    id = project.get('id'); // trying to get the id to reuse for send link
 		    this.transitionToRoute('dashboard');
 		}
 	}
@@ -376,6 +397,7 @@ App.DraftController = Ember.ObjectController.extend({
 
 // App Controller (logged in)
 App.AppController = Ember.ArrayController.extend({
+	itemController: 'project',
 
 	actions:{
 
@@ -387,10 +409,19 @@ App.AppController = Ember.ArrayController.extend({
  			$('.queue-drop').toggleClass('show-drafts');
  		},
 
-		showDocs :function(){
-			$('.queue-drop-sub').toggleClass('show-drafts');
-		}
+		// showDocs :function(){
+		// 	$('.queue-drop-sub').toggleClass('show-drafts');
+		// }
 	}
+});
+
+App.ProjectController = Ember.ObjectController.extend({
+  isSelected: false,
+  actions: {
+  	showDocs: function(){
+  		this.toggleProperty('isSelected');
+  	}
+  }
 });
 
 // Proposal Controller
@@ -402,6 +433,14 @@ App.ProposalController = Ember.ObjectController.extend({
 			document.body.innerHTML = printcontent;
 			window.print();
 			document.body.innerHTML = restorepage;
+		},
+
+		isIncomplete: function(){
+			var project = this.get('model');
+		    project.set('isCompleted', false);
+		    project.set('savedOn', new Date());
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
 	}
 });
@@ -415,6 +454,14 @@ App.ContractController = Ember.ObjectController.extend({
 			document.body.innerHTML = printcontent;
 			window.print();
 			document.body.innerHTML = restorepage;
+		},
+
+		isIncomplete: function(){
+			var project = this.get('model');
+		    project.set('isCompleted', false);
+		    project.set('savedOn', new Date());
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
 	}
 });
@@ -428,6 +475,14 @@ App.BriefController = Ember.ObjectController.extend({
 			document.body.innerHTML = printcontent;
 			window.print();
 			document.body.innerHTML = restorepage;
+		},
+
+		isIncomplete: function(){
+			var project = this.get('model');
+		    project.set('isCompleted', false);
+		    project.set('savedOn', new Date());
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
 	}
 });

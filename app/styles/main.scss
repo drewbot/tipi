@@ -379,28 +379,31 @@ button {
     height: 37px;
 
     &:hover:after {
-        right: 56px;
+        right: 55px;
         border-width: 0 22px 37px 0;
     }
 
     &:after {
-        right: 56px;
+        right: 55px;
         border-width: 0 22px 37px 0;
     }
 }
 ///////////////////////////// print   ////////////////////////////
 .print-top {
     top: 2px;
+    right: 167px;
+    padding-right: 40px;
+
     &:hover:after {
-        right: 56px;
+        right: 84px;
     }
 
     &:after {
-        right: 56px;
+        right: 84px;
     }
 }
 ///////////////////////////// publish ////////////////////////////
-.publish-top {
+.publish-top, .back-top {
     position: absolute;
     top: 0;
     right: 0;
@@ -446,6 +449,18 @@ button {
         border-color: transparent #f9773d transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 10;
+    }
+}
+
+.back-top {
+    top: 2px;
+
+    &:hover:after {
+        right: 172px;
+    }
+
+    &:after {
+        right: 172px;
     }
 }
 
