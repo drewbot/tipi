@@ -323,7 +323,7 @@ button {
     background-color: #a9d392;
     color: white;
     font-weight: 400;
-    z-index: 1;
+    z-index: 7;
 
     &:hover {
         background-color: #bce4a5;
@@ -346,20 +346,20 @@ button {
         border-width: 0 22px 41px 0;
         border-color: transparent #a9d392 transparent transparent;
         webkit-transform: rotate(360deg);
-        z-index: 1;
+        z-index: 7;
     }
 }
 ////////////////////////////// edit //////////////////////////////
 .edit-top {
-    right: 77px;
-    padding-right: 30px;
+    right: 144px;
+    padding-right: 32px;
 
     &:hover:after {
-        right: 68px;
+        right: 70px;
     }
 
     &:after {
-        right: 68px;
+        right: 70px;
     }
 }
 ////////////////////////////// done ///////////////////////////////////
@@ -370,35 +370,36 @@ button {
 
 .done-top {
     top: 2px;
-    right: 0;
+    right: 50px;
     height: 39px;
+    padding-right: 32px;
 
     &:hover:after {
-        right: 55px;
+        right: 75px;
         border-width: 0 22px 39px 0;
     }
 
     &:after {
-        right: 55px;
+        right: 75px;
         border-width: 0 22px 39px 0;
     }
 }
 ///////////////////////////// print   ////////////////////////////
 .print-top {
     top: 2px;
-    right: 228px;
+    right: 251px;
     padding-right: 40px;
 
     &:hover:after {
-        right: 104px;
+        right: 105px;
     }
 
     &:after {
-        right: 104px;
+        right: 105px;
     }
 }
 ///////////////////////////// publish ////////////////////////////
-.publish-top, .back-top, .delete-top {
+.publish-top, .back-top, .delete-top, .share-top, {
     position: absolute;
     top: 0;
     right: 0;
@@ -438,6 +439,19 @@ button {
     }
 }
 
+.publish-top {
+    right: 41px;
+    padding-right: 40px;
+
+    &:hover:after {
+        right: 103px;
+    }
+
+    &:after {
+        right: 103px;
+    }
+}
+
 .back-top {
     top: 2px;
     right: 33px;
@@ -448,11 +462,11 @@ button {
     }
 
     &:hover:after {
-        right: 207px;
+        right: 229px;
     }
 
     &:after {
-        right: 207px;
+        right: 229px;
     }
 }
 
@@ -464,7 +478,6 @@ button {
 
     &:hover {
         background-color: #58646d;
-        color: #b1c6cf;
     }
 
     &:hover:after {
@@ -479,6 +492,50 @@ button {
     }
 }
 
+.delete-draft-top {
+    top: 0px;
+}
+
+.delete-draft-edit-top {
+    top: 2px;
+    height: 39px;
+
+    &:hover:after {
+        border-width: 0 22px 39px 0;
+    }
+
+    &:after {
+        border-width: 0 22px 39px 0;
+    }
+
+}
+
+.share-top {
+    top: 2px;
+    right: 347px;
+    padding-right: 40px;
+    background-color: #65727c;
+    z-index: 5;
+
+    & a {
+        color: white;
+    }
+
+    &:hover {
+        background-color: #7a8995;
+    }
+
+    &:hover:after {
+        right: 111px;
+        border-color: transparent #7a8995 transparent transparent;
+    }
+
+    &:after {
+        right: 111px;
+        border-color: transparent #65727c transparent transparent;
+    }
+}
+
 .doc-icon {
     font-family: 'icon';
     font-size: 1.7em;
@@ -489,7 +546,26 @@ button {
     font-size: 2.5em;
 }
 
+.back-icon {
+    font-family: 'icon';
+    font-size: 1.3em;
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility:    visible;
+    -ms-backface-visibility:     visible;
+    backface-visibility:     visible;
+}
+
 .print-icon {
+    font-family: 'icon';
+    font-size: 1.2em;
+}
+
+.share-icon {
     font-family: 'icon';
     font-size: 1.2em;
 }

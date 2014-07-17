@@ -424,8 +424,18 @@ App.ProjectController = Ember.ObjectController.extend({
   }
 });
 
+// equivalent to `if(App.computed === undefined) App.computed = {};`
+App.computed = App.computed || {};
+App.computed.mailto = function(property) {
+  return function() {
+    return "mailto:" + this.get(property);
+  }.property(property);
+};
+
 // Proposal Controller
 App.ProposalController = Ember.ObjectController.extend({
+	mailtoContactEmail: App.computed.mailto('clientEmail'),
+
 	actions:{
 		printContent :function(){
 			var restorepage = document.body.innerHTML;

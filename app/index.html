@@ -76,7 +76,7 @@
                     {{#each}}
                       {{#unless isCompleted}}
                         {{#link-to 'draft' this}}
-                          <li class="pointer draft-link">- {{title}}</li>
+                          <li class="pointer draft-link">{{title}}</li>
                         {{/link-to}}
                       {{/unless}}
                     {{/each}}
@@ -85,7 +85,7 @@
                   <div class="queue-drop">
                     {{#each}}
                       {{#if isCompleted}}
-                        <li class="pointer queue-link" {{action 'showDocs'}}>- {{title}}</li>
+                        <li class="pointer queue-link" {{action 'showDocs'}}>{{title}}</li>
                           <div {{bind-attr class="isSelected:show-drafts :queue-drop-sub"}}>
                             <ul>
                               {{#link-to 'proposal' this}}<li class="doc-link sub-nav"><span class="doc-icon">ñ</span> Proposal</li>{{/link-to}}
@@ -244,6 +244,7 @@
                   {{partial 'draft/edit'}}
                 </div>
               {{else}}
+                  <button class="delete-top delete-draft-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
                   <button class="edit-top" {{action 'edit'}}>Edit</button>
                   <button class="publish-top" {{action 'isCompleted'}}>Publish</button>
               {{/if}}
@@ -332,6 +333,7 @@
           <div class="template-container">
             <div class="template-header">
               <h3 class="edit">Edit {{title}} Project Planner</h3>
+              <button class="delete-top delete-draft-edit-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
               <button class="done-top" {{action 'doneEditing'}}>Save</button>
             </div>
             <div class="new-container">
@@ -446,8 +448,9 @@
               <div class="content-container" id="proposal-container">
               <div class="pub-section">
                 <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
-                <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
+                <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
+                <button class="share-top"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
                 <ul class="doc-profile">
                   <li>{{userName}}</li>
                   <li>{{userAddress}}</li>
@@ -529,8 +532,9 @@
             <div class="content-container" id="contract-container">
               <div class="pub-section">
                 <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
-                <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
+                <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
+                <button class="share-top"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
                 <ul class="doc-profile">
                   <li>{{userName}}</li>
                   <li>{{userAddress}}</li>
@@ -682,8 +686,9 @@
             <div class="brief-container content-container" id="brief-container">
               <div class="pub-section">
                 <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
-                <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
+                <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
+                <button class="share-top"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
                 <h3>{{title}}, Project Brief</h3>
                 <p>{{currentDate}}</p>
                 <br>
