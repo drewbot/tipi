@@ -67,34 +67,30 @@
                   <p class="home">TIPI</p>
                 </div>
               {{/link-to}}
-              <div class="header-right">
-                <h3>The Little Freelancer</h3>
-                <p>Edition</p>
-              </div>
             </div>
             <div class="nav">
               <ul>
-                {{#link-to 'new'}}<li class="button">New</li>{{/link-to}}
-                <li class="button" {{action 'showDrafts'}}>Review</li>
+                {{#link-to 'new'}}<li class="pointer">New</li>{{/link-to}}
+                <li class="pointer" {{action 'showDrafts'}}>Review</li>
                   <div class="draft-drop">
                     {{#each}}
                       {{#unless isCompleted}}
                         {{#link-to 'draft' this}}
-                          <li class="draft-link">{{title}}</li>
+                          <li class="pointer draft-link">- {{title}}</li>
                         {{/link-to}}
                       {{/unless}}
                     {{/each}}
                   </div>
-                <li class="button" {{action 'showQueue'}}>Publish</li>
+                <li class="pointer" {{action 'showQueue'}}>Publish</li>
                   <div class="queue-drop">
                     {{#each}}
                       {{#if isCompleted}}
-                        <li class="button queue-link" {{action 'showDocs'}}>{{title}}</li>
+                        <li class="pointer queue-link" {{action 'showDocs'}}>- {{title}}</li>
                           <div {{bind-attr class="isSelected:show-drafts :queue-drop-sub"}}>
                             <ul>
-                              {{#link-to 'proposal' this}}<li class="doc-link">- Proposal</li>{{/link-to}}
-                              {{#link-to 'contract' this}}<li class="doc-link">- Contract</li>{{/link-to}}
-                              {{#link-to 'brief' this}}<li class="doc-link">- Brief</li>{{/link-to}}
+                              {{#link-to 'proposal' this}}<li class="doc-link sub-nav"><span class="doc-icon">ñ</span> Proposal</li>{{/link-to}}
+                              {{#link-to 'contract' this}}<li class="doc-link sub-nav"><span class="doc-icon">ñ</span> Contract</li>{{/link-to}}
+                              {{#link-to 'brief' this}}<li class="doc-link sub-nav"><span class="doc-icon">ñ</span> Brief</li>{{/link-to}}
                             </ul>
                           </div>
                       {{/if}}
@@ -314,7 +310,7 @@
                   <li><span class="bold-weight">Last saved:</span> {{savedOn}}</li>
                 </ul>
               </div>
-              <div class="full-width doc-section">
+              <div class="pub-section foot-buttons">
                 <button class="delete-body" {{action "removeProject"}}>Delete</button>
                 {{#if isEditing}}
                   <button class="done-body" {{action 'doneEditing'}}>Save</button>
@@ -427,10 +423,6 @@
                   <ul class="doc-head">
                     <li>{{title}} was created: {{submittedOn}}</li>
                     <li>Last saved: {{savedOn}}</li>
-                    <li>Document will show current date at time of use unless otherwise specified</li>
-                      <ul>
-                        <li>Input custom date: {{input type="text" value=date}}</li>
-                      </ul>
                   </ul>
               </div>
               <div class="full-width doc-section">
@@ -453,8 +445,9 @@
               </div>
               <div class="content-container" id="proposal-container">
               <div class="pub-section">
+                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
-                <button class="print-top"{{ action "printContent" }}>Print</button>
+                <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
                 <ul class="doc-profile">
                   <li>{{userName}}</li>
                   <li>{{userAddress}}</li>
@@ -535,8 +528,9 @@
             </div>
             <div class="content-container" id="contract-container">
               <div class="pub-section">
+                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
-                <button class="print-top"{{ action "printContent" }}>Print</button>
+                <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
                 <ul class="doc-profile">
                   <li>{{userName}}</li>
                   <li>{{userAddress}}</li>
@@ -597,11 +591,11 @@
                 <h3>PAYMENT SCHEDULE:</h3>
                 <p>
                 The full length of this contract is as follows:
-                Starting date is {{startDate}} and estimated completion* date is {{completionDate}} for the estimated total amount of {{totalCost}}, which is derived from an estimated {{estimatedHours}} hours to be billed at {{hourlyRate}} per hour. The total number of hours incurred by Consultant during the course of the Work described herein will be billed to Client at a rate of {{hourlyRate}} per hour. Consultant reserves the right to exceed a total cost of {{totalCost}} in the event that the completion of the Work requires more than {{estimatedHours}} hours. Client and Consultant hereby agree that the Work resulting from the estimated {{estimatedHours}} hours shall be a {{projectType}} conforming to the Proposal as approved by the Client.
+                Starting date is {{startDate}} and estimated completion* date is {{completionDate}} for the estimated total amount of ${{totalCost}}, which is derived from an estimated {{estimatedHours}} hours to be billed at ${{hourlyRate}} per hour. The total number of hours incurred by Consultant during the course of the Work described herein will be billed to Client at a rate of ${{hourlyRate}} per hour. Consultant reserves the right to exceed a total cost of ${{totalCost}} in the event that the completion of the Work requires more than {{estimatedHours}} hours. Client and Consultant hereby agree that the Work resulting from the estimated {{estimatedHours}} hours shall be a {{projectType}} conforming to the Proposal as approved by the Client.
                 </p>
                 <br>
                 <p>
-                  Client shall pay Consultant {{deposit}}, (20% of the estimated total) as a deposit for project commencement.
+                  Client shall pay Consultant ${{deposit}}, (20% of the estimated total) as a deposit for project commencement.
                 </p>
                 <br>
                 <p>
@@ -687,8 +681,9 @@
             </div>
             <div class="brief-container content-container" id="brief-container">
               <div class="pub-section">
+                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}>Send back to Review</button>
-                <button class="print-top"{{ action "printContent" }}>Print</button>
+                <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
                 <h3>{{title}}, Project Brief</h3>
                 <p>{{currentDate}}</p>
                 <br>

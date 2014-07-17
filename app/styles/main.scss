@@ -5,6 +5,12 @@
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
 
+@font-face {
+    font-family: 'icon'; /*a name to be used later*/
+    src: url('/leksico-webfont.ttf'); /*URL to font*/
+}
+
+
 *, *:before, *:after {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
@@ -58,16 +64,18 @@ button {
 
 .header {
     height: 57px;
-    background-color: white;
+    background-color: #44494D;
 }
 
 .header-left {
-    position: absolute;
+    position: fixed;
     display: inline-block;
     padding: 18px 20px 20px 30px;
     width: 240px;
-    height: 57px;
+    height: 55px;
     background-color: #44494D;
+    border-bottom: 1px solid #585d61;
+    border-right: 1px solid #585d61;
     color: white;
 
     & a {
@@ -81,39 +89,13 @@ button {
     }
 }
 
-.header-right {
-    position: absolute;
-    display: inline-block;
-    padding: 14px 20px 20px 30px;
-    left: 240px;
-    width: 100%;
-    height: 57px;
-    border-left: 1px solid lightgrey;
-    color: #9CB4BF;
-    font-weight: 400;
-
-    & h3 {
-        display: inline-block;
-        font-weight: 400;
-    }
-
-    & p {
-        display: inline-block;
-        font-weight: 300;
-    }
-}
-
-.logout {
-    right: 20px;
-}
-
 // Nav
 
 .nav {
-    position: absolute;
+    position: fixed;
     display: inline-block;
     padding: 0 0 40px 0;
-    top: 57px;
+    top: 55px;
     width: 240px;
     height: 1228px;
     background-color: #44494D;
@@ -125,9 +107,10 @@ button {
     }
 
     & li {
-        padding: 6px 30px 6px 30px;
+        padding: 12px 30px 11px 30px;
         list-style-type: none;
         font-weight: 300;
+        line-height: 1.1;
 
         &:hover {
             background-color: rgba(83, 94, 101, 0.7);
@@ -146,12 +129,20 @@ button {
         }
     }
 
+    & .doc-link {
+        padding: 9px 0 10px 30px;
+
+        &:hover {
+            padding: 9px 0 10px 26px;
+        }
+    }
+
     & a {
         color: white;
     }
 }
 
-.button {
+.pointer {
     cursor: pointer;
 }
 
@@ -161,10 +152,19 @@ button {
     width: 100%;
     display: none;
     background-color: #363B3F;
+    border-top: #6a7b88;
+}
+
+.queue-drop-sub {
+    border-bottom: 2px solid #44494D;
 }
 
 .queue-drop-sub li {
     color: #AEC6CD;
+
+    &:hover {
+        color: #e6f4f8;
+    }
 }
 
 .show-drafts {
@@ -175,10 +175,9 @@ button {
 
 .template-container {
     padding: 0 0 0 0;
-    height: 41px;
-    background-color: #CFDCE1;
+    background-color: #363B3F;
     border-top: 2px solid #b1c6cf;
-    border-bottom: 1px solid #b8cdd7;
+    border-bottom: 1px solid #44494D;
 
     & h3 {
         padding-left: 30px;
@@ -190,6 +189,7 @@ button {
     position: relative;
 
     & h3 {
+        padding-top: 2px;
         color: white;
         font-weight: 300;
     }
@@ -198,7 +198,7 @@ button {
 .main-container {
     position: absolute;
     display: inline-block;
-    top: 57px;
+    top: 14px;
     left: 240px;
 }
 
@@ -302,18 +302,22 @@ button {
     }
 }
 
+.foot-buttons {
+    height: 90px;
+}
+
 // Actions
 
 // .template-header is set to position: relative
 ///////////////////////// save //////////////////////////////////////
 .save-top, .edit-top, .done-top, .publish-top, .print-top {
     position: absolute;
-    top: 0;
+    top: 0px;
     right: 0;
     display: inline-block;
     margin: -2px 0 0 0;
     padding: 0 13px 0 10px;
-    height: 39px;
+    height: 41px;
     border: 0;
     font-size: 1.005em;
     background-color: #a9d392;
@@ -326,17 +330,8 @@ button {
     }
 
     &:hover:after {
-        position: absolute;
-        content: "";
-        top: 0;
         right: 110px;
-        margin: 0 0 0 0;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 22px 39px 0;
         border-color: transparent #bce4a5 transparent transparent;
-        webkit-transform: rotate(360deg);
     }
 
     &:after {
@@ -348,7 +343,7 @@ button {
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 0 22px 39px 0;
+        border-width: 0 22px 41px 0;
         border-color: transparent #a9d392 transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 1;
@@ -376,41 +371,41 @@ button {
 .done-top {
     top: 2px;
     right: 0;
-    height: 37px;
+    height: 39px;
 
     &:hover:after {
         right: 55px;
-        border-width: 0 22px 37px 0;
+        border-width: 0 22px 39px 0;
     }
 
     &:after {
         right: 55px;
-        border-width: 0 22px 37px 0;
+        border-width: 0 22px 39px 0;
     }
 }
 ///////////////////////////// print   ////////////////////////////
 .print-top {
     top: 2px;
-    right: 167px;
+    right: 228px;
     padding-right: 40px;
 
     &:hover:after {
-        right: 84px;
+        right: 104px;
     }
 
     &:after {
-        right: 84px;
+        right: 104px;
     }
 }
 ///////////////////////////// publish ////////////////////////////
-.publish-top, .back-top {
+.publish-top, .back-top, .delete-top {
     position: absolute;
     top: 0;
     right: 0;
     display: inline-block;
     margin: -2px 0 0 0;
     padding: 0 14px 0 10px;
-    height: 39px;
+    height: 41px;
     border: 0;
     font-size: 1.005em;
     background-color: #f9773d;
@@ -423,17 +418,8 @@ button {
     }
 
     &:hover:after {
-        position: absolute;
-        content: "";
-        top: 0;
         right: 77px;
-        margin: 0 0 0 0;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 22px 39px 0;
         border-color: transparent #fc9b71 transparent transparent;
-        webkit-transform: rotate(360deg);
     }
 
     &:after {
@@ -445,7 +431,7 @@ button {
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 0 22px 39px 0;
+        border-width: 0 22px 41px 0;
         border-color: transparent #f9773d transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 10;
@@ -454,14 +440,58 @@ button {
 
 .back-top {
     top: 2px;
+    right: 33px;
+    padding-right: 48px;
+
+    &:hover {
+
+    }
 
     &:hover:after {
-        right: 172px;
+        right: 207px;
     }
 
     &:after {
-        right: 172px;
+        right: 207px;
     }
+}
+
+.delete-top {
+    top: 2px;
+    padding-left: 5px;
+    background-color: #363B3F;
+    z-index: 20;
+
+    &:hover {
+        background-color: #58646d;
+        color: #b1c6cf;
+    }
+
+    &:hover:after {
+        border-color: transparent #58646d transparent transparent;
+        right: 51px;
+    }
+
+    &:after {
+        border-color: transparent #363B3F transparent transparent;
+        z-index: 20;
+        right: 51px;
+    }
+}
+
+.doc-icon {
+    font-family: 'icon';
+    font-size: 1.7em;
+}
+
+.delete-icon {
+    font-family: 'icon';
+    font-size: 2.5em;
+}
+
+.print-icon {
+    font-family: 'icon';
+    font-size: 1.2em;
 }
 
 ///////////////////////////// body buttons /////////////////////
@@ -525,6 +555,7 @@ button {
 }
 
 .all-text-inputs {
+    padding-left: 5px;
     height: 30px;
     border: none;
     font-size: .92em;
@@ -567,6 +598,14 @@ button {
 }
 
 ///////////////////////////// extras //////////////////
+
+.square {
+    position: absolute;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+}
 
 .promo {
     font-size: .85em;
