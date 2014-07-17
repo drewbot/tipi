@@ -81,7 +81,7 @@
                       {{/unless}}
                     {{/each}}
                   </div>
-                <li class="pointer" {{action 'showQueue'}}>Publish</li>
+                <li class="pointer" {{action 'showQueue'}}>Published</li>
                   <div class="queue-drop">
                     {{#each}}
                       {{#if isCompleted}}
@@ -107,27 +107,54 @@
         <script type="text/x-handlebars" id="dashboard">
           <div class="template-container">
             <div class="template-header">
-              <h3 class="edit">Dashboard</h3>
+              <h3>Home</h3>
             </div>
             <div class="dashboard-container content-container">
+              <div class="full-width overview-header">
+                <h1>Welcome to TIPI</h1>
+                <h1>Getting started is easy</h1>
+              </div>
+              <div class="full-width">
+                <div class="third-width overview-container-one">
+                  <h1>i</h1>
+                </div>
+                <div class="third-width overview-container-two">
+                  <h1>z</h1>
+                </div>
+                <div class="third-width overview-container-three">
+                  <h1>ñ</h1>
+                </div>
+                <div class="third-width overview-container-one">
+                  <h2>Step 1:</h2>
+                  <h3>Questionnaire</h3>
+                    <ul class="overview-points point-one">
+                      <li>Gather information about the client and project scope</li>
+                      <li>Project information will be stored in your Review queue</li>
+                    </ul>
+                </div>
+                <div class="third-width overview-container-two">
+                  <h2>Step 2:</h2>
+                  <h3>Review and Revise</h3>
+                    <ul class="overview-points point-two">
+                      <li>Review questionnaire input</li>
+                      <li>Edit and Refine</li>
+                      <li>Publish complete project documents</li>
+                    </ul>
+                </div>
+                <div class="third-width overview-container-three">
+                  <h2>Step 3:</h2>
+                  <h3>Publish Documents</h3>
+                    <ul class="overview-points point-three">
+                      <li>Tipi will populate a proposal, contract and brief for you</li>
+                      <li>Send documents to your client and print from the app</li>
+                    </ul>
+                </div>
+              </div>
               <div class="whitespace">
                 <p class="promo full-width white-out">
                 This brief was generated using the tipi web application. Visit tipiapp.com for information and get started managing your own project initiations quickly and efficiently.
                 </p>
               </div>
-            </div>
-          </div>
-        </script>
-
-        <script type="text/x-handlebars" id="dashboard/_edit">
-          <div class="template-container">
-            <div class="template-header">
-              <h3 class="edit">Edit Dashboard</h3>
-            </div>
-            <div class="dashboard-edit-container content-container">
-              <p>title: {{input type="text" value=title}}</p>
-              <p>description: {{input type="text" value=description}}</p>
-              <p>body: {{textarea value=body}}</p>
             </div>
           </div>
         </script>

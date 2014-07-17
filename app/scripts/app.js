@@ -162,13 +162,12 @@ App.Project = DS.Model.extend({
 //////////////////// Controllers //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
-// Text Fields
-
+// All Text Fields
 Ember.TextField.reopen({
     classNames: ['all-text-inputs']
 });
 
-// Dashboard Controller
+//////////////////////////// Dashboard Controller /////////////////////////////////
 App.DashboardController = Ember.ObjectController.extend({
 	isEditing: false,
 
@@ -187,7 +186,7 @@ App.DashboardController = Ember.ObjectController.extend({
 	}
 })
 
-// New Controller
+/////////////////////////// New Controller ////////////////////////////////////////
 App.NewController = Ember.ObjectController.extend({
  
  actions :{
@@ -277,7 +276,7 @@ App.NewController = Ember.ObjectController.extend({
  }
 });
 
-// Draft Controller
+/////////////////////////// Draft Controller ////////////////////////////////////
 App.DraftController = Ember.ObjectController.extend({
 	isEditing: false,
 
@@ -376,13 +375,6 @@ App.DraftController = Ember.ObjectController.extend({
 		    project.save();
 		},
 
-		removeProject: function() {
-		    var project = this.get('model');
-		    project.deleteRecord();
-		    project.save();
-		    this.transitionToRoute('dashboard');
-		},
-
 		isCompleted: function(){
 			var project = this.get('model');
 		    project.set('isCompleted', true);
@@ -391,11 +383,18 @@ App.DraftController = Ember.ObjectController.extend({
 
 		    id = project.get('id'); // trying to get the id to reuse for send link
 		    this.transitionToRoute('dashboard');
+		},
+
+		removeProject: function() {
+		    var project = this.get('model');
+		    project.deleteRecord();
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
 	}
 })
 
-// App Controller (logged in)
+///////////////////////// App Controller (logged in) /////////////////////////////
 App.AppController = Ember.ArrayController.extend({
 	itemController: 'project',
 
@@ -424,6 +423,11 @@ App.ProjectController = Ember.ObjectController.extend({
   }
 });
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////// Docs /////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////// mail to //////////////////////////////////
 // equivalent to `if(App.computed === undefined) App.computed = {};`
 App.computed = App.computed || {};
 App.computed.mailto = function(property) {
@@ -432,7 +436,7 @@ App.computed.mailto = function(property) {
   }.property(property);
 };
 
-// Proposal Controller
+/////////////////////////////// Proposal Controller ///////////////////////////
 App.ProposalController = Ember.ObjectController.extend({
 	mailtoContactEmail: App.computed.mailto('clientEmail'),
 
@@ -451,11 +455,18 @@ App.ProposalController = Ember.ObjectController.extend({
 		    project.set('savedOn', new Date());
 		    project.save();
 		    this.transitionToRoute('dashboard');
+		},
+
+		removeProject: function() {
+		    var project = this.get('model');
+		    project.deleteRecord();
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
 	}
 });
 
-// Contract Controller
+///////////////////////// Contract Controller /////////////////////////////////////////
 App.ContractController = Ember.ObjectController.extend({
 	actions:{
 		printContent :function(){
@@ -472,11 +483,18 @@ App.ContractController = Ember.ObjectController.extend({
 		    project.set('savedOn', new Date());
 		    project.save();
 		    this.transitionToRoute('dashboard');
+		},
+
+		removeProject: function() {
+		    var project = this.get('model');
+		    project.deleteRecord();
+		    project.save();
+		    this.transitionToRoute('dashboard');
 		}
 	}
 });
 
-// Brief Controller
+////////////////////////////// Brief Controller /////////////////////////////////////
 App.BriefController = Ember.ObjectController.extend({
 	actions:{
 		printContent :function(){
@@ -491,6 +509,13 @@ App.BriefController = Ember.ObjectController.extend({
 			var project = this.get('model');
 		    project.set('isCompleted', false);
 		    project.set('savedOn', new Date());
+		    project.save();
+		    this.transitionToRoute('dashboard');
+		},
+
+		removeProject: function() {
+		    var project = this.get('model');
+		    project.deleteRecord();
 		    project.save();
 		    this.transitionToRoute('dashboard');
 		}
