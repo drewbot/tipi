@@ -62,11 +62,14 @@
         <script type="text/x-handlebars" id="app">
           <div class="app-container">
             <div class="header">
-              {{#link-to 'dashboard'}}
-                <div class="header-left">
-                  <img src="images/tipi-logo.png" class="header-logo">
-                </div>
-              {{/link-to}}
+              <div class="header-left">
+                {{#link-to 'dashboard'}}
+                  <div class="header-left-inner">
+                    <img src="images/tipi-logo.png" class="header-logo">
+                  </div>
+                {{/link-to}}
+                <p class="close-nav" {{action 'closeNav'}}>î</p>
+              </div>
             </div>
             <div class="nav">
               <ul>
@@ -134,7 +137,7 @@
                     <ul class="overview-points point-two">
                       <li>Review questionnaire input</li>
                       <li>Edit and Refine</li>
-                      <li>Publish complete project documents</li>
+                      <li>Save complete project documents</li>
                     </ul>
                 </div>
                 <div class="third-width overview-container-three">
@@ -262,7 +265,7 @@
         <script type="text/x-handlebars" id="draft">
           <div class="template-container relative">
             <div class="template-header">
-              <h3>Review {{title}} Project Planner</h3>
+              <h3>Review {{title}}</h3>
               {{#if isEditing}}
                 <div class="draft-partial">
                   {{partial 'draft/edit'}}

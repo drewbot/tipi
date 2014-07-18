@@ -418,13 +418,11 @@ App.AppController = Ember.ArrayController.extend({
  			$('.queue-drop').toggleClass('show-drafts');
  		},
 
- 		showQueue :function(){
- 			$('.queue-drop').toggleClass('show-drafts');
+ 		closeNav :function(){
+ 			$('.nav').toggleClass('move-right');
+ 			$('.header-left').toggleClass('move-right');
  		}
- 		// ,
-		// showDocs :function(){
-		// 	$('.queue-drop-sub').toggleClass('show-drafts');
-		// }
+
 	}
 });
 

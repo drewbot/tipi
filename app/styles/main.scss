@@ -73,10 +73,9 @@ button {
     background-color: #44494D;
 }
 
-.header-left {
+.header-left, .header-left-inner {
     position: fixed;
     display: inline-block;
-    padding: 18px 20px 20px 30px;
     width: 240px;
     height: 55px;
     background-color: #44494D;
@@ -89,6 +88,29 @@ button {
         position: absolute;
         display: inline-block;
     }
+
+    &:hover {
+        background-color: #4e575d;
+    }
+}
+
+.header-left-inner {
+    padding: 18px 20px 20px 30px;
+}
+
+//////////////////////////////// Nav ///////////////////
+
+.close-nav {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 3px 1px 2px 2px;
+    font-family: 'icon';
+    font-size: 3.2em;
+    line-height: 1;
+    background-color: #363B3F;
+    cursor: pointer;
 
     &:hover {
         color: #fc5f2a;
@@ -189,7 +211,7 @@ button {
 .template-container {
     padding: 0 0 0 0;
     background-color: #363B3F;
-    border-top: 2px solid #b1c6cf;
+    // border-top: 2px solid #363B3F;
     border-bottom: 1px solid #44494D;
 
     & h3 {
@@ -200,13 +222,16 @@ button {
 .template-header {
     padding-bottom: 5px;
     position: relative;
+    height: 43px;
 
     & h3 {
-        padding-top: 2px;
+        padding-top: 5px;
         color: white;
         font-weight: 300;
     }
 }
+
+///////////////////////////// Main content //////////////////
 
 .main-container {
     position: absolute;
@@ -283,7 +308,7 @@ button {
 
 .background-illustration {
     position: absolute;
-    top: 92px;
+    top: 94px;
     right: 120px;
 }
 
@@ -440,12 +465,12 @@ button {
 ///////////////////////// save //////////////////////////////////////
 .save-top, .edit-top, .done-top, .publish-top, .print-top {
     position: absolute;
-    top: 0px;
+    top: 2px;
     right: 0;
     display: inline-block;
     margin: -2px 0 0 0;
     padding: 0 13px 0 10px;
-    height: 41px;
+    height: 43px;
     border: 0;
     font-size: 1.005em;
     background-color: #94d074;
@@ -471,7 +496,7 @@ button {
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 0 22px 41px 0;
+        border-width: 0 22px 43px 0;
         border-color: transparent #94d074 transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 7;
@@ -529,12 +554,12 @@ button {
 ///////////////////////////// publish ////////////////////////////
 .publish-top, .back-top, .delete-top, .share-top, {
     position: absolute;
-    top: 0;
+    top: 2px;
     right: 0;
     display: inline-block;
     margin: -2px 0 0 0;
     padding: 0 14px 0 10px;
-    height: 41px;
+    height: 43px;
     border: 0;
     font-size: 1.005em;
     background-color: #fd6d3c;
@@ -560,7 +585,7 @@ button {
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 0 22px 41px 0;
+        border-width: 0 22px 43px 0;
         border-color: transparent #fd6d3c transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 10;
@@ -621,7 +646,7 @@ button {
 }
 
 .delete-draft-top {
-    top: 0px;
+    top: 2px;
 }
 
 .delete-draft-edit-top {
@@ -665,7 +690,7 @@ button {
 }
 
 .share-top-draft {
-    top: 0px;
+    top: 2px;
     right: 207px;
 }
 
@@ -842,6 +867,40 @@ button {
         display: none;
     }
 }
+
+@media screen and (max-width: 920px) {
+
+    .main-container {
+        left: 0px;
+    }
+
+    .header-left {
+        left: -195px;
+        z-index: 10;
+    }
+
+    .nav {
+        left: -240px;
+        z-index: 10;
+    }
+
+    .close-nav {
+        display: inline-block;
+    }
+
+    .move-right {
+        left: 0;
+    }
+
+    .template-header {
+
+    & h3 {
+        padding-left: 60px;
+    }
+}
+  
+}
+
 
 ///////////////////////////////////////////////////////
 
