@@ -130,7 +130,7 @@ button {
         color: #AEC6CD;
 
         &:hover {
-            border-left: 4px solid #a9d890;
+            border-left: 4px solid #b7f696;
             color: #C8D7DE;
         }
     }
@@ -146,6 +146,13 @@ button {
     & a {
         color: white;
     }
+}
+
+.header-logo {
+    position: absolute;
+    top: 9px;
+    left: 23px;
+    display: inline-block;
 }
 
 .pointer {
@@ -261,21 +268,40 @@ button {
     padding-bottom: 10px;
 }
 
+.light-green-bg {
+    margin-top: 19px;
+    width: 100%;
+    height: 16px;
+    background-color: #92CC7D;
+}
+
+.dark-green-bg {
+    width: 100%;
+    height: 30px;
+    background-color: #5FBB46;
+}
+
+.background-illustration {
+    position: absolute;
+    top: 92px;
+    right: 120px;
+}
+
 .overview-container-one h1 {
     padding-left: 12px;
     font-family: 'icon';
     font-size: 7.5em;
     line-height: 1.1;
-    color: #a9d392;
+    color: #94d074;
 }
 
 .overview-container-one h2 {
     padding-left: 30px;
-    color: #a9d392;
+    color: #94d074;
 }
 
 .overview-container-one h3 {
-    color: #a9d392;
+    color: #94d074;
 }
 
 .overview-container-two h1 {
@@ -283,22 +309,22 @@ button {
     font-family: 'icon';
     font-size: 7.5em;
     line-height: 1.1;
-    color: #f9773d;
+    color: #fd6d3c;
 }
 
 .overview-container-two h2 {
     padding-left: 30px;
-    color: #f9773d;
+    color: #fd6d3c;
 }
 
 .overview-container-two h3 {
-    color: #f9773d;
+    color: #fd6d3c;
 }
 
 .overview-container-three h1 {
-    padding-left: 14px;
+    padding: 8px 0 0 14px;
     font-family: 'icon';
-    font-size: 7.5em;
+    font-size: 7em;
     line-height: 1.1;
     color: #363B3F;
 }
@@ -323,12 +349,12 @@ button {
 
 .point-one {
     padding-bottom: 20px;
-    border-bottom: 4px solid #a9d392;
+    border-bottom: 4px solid #94d074;
 }
 
 .point-two {
     padding-bottom: 10px;
-    border-bottom: 4px solid #f9773d;
+    border-bottom: 4px solid #fd6d3c;
 }
 
 .point-three {
@@ -422,7 +448,7 @@ button {
     height: 41px;
     border: 0;
     font-size: 1.005em;
-    background-color: #a9d392;
+    background-color: #94d074;
     color: white;
     font-weight: 400;
     z-index: 7;
@@ -446,7 +472,7 @@ button {
         height: 0;
         border-style: solid;
         border-width: 0 22px 41px 0;
-        border-color: transparent #a9d392 transparent transparent;
+        border-color: transparent #94d074 transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 7;
     }
@@ -511,7 +537,7 @@ button {
     height: 41px;
     border: 0;
     font-size: 1.005em;
-    background-color: #f9773d;
+    background-color: #fd6d3c;
     color: white;
     font-weight: 400;
     z-index: 10;
@@ -535,7 +561,7 @@ button {
         height: 0;
         border-style: solid;
         border-width: 0 22px 41px 0;
-        border-color: transparent #f9773d transparent transparent;
+        border-color: transparent #fd6d3c transparent transparent;
         webkit-transform: rotate(360deg);
         z-index: 10;
     }
@@ -574,7 +600,7 @@ button {
 
 .delete-top {
     top: 2px;
-    padding-left: 5px;
+    padding: 0 22px 0 10px;
     background-color: #363B3F;
     z-index: 20;
 
@@ -638,6 +664,11 @@ button {
     }
 }
 
+.share-top-draft {
+    top: 0px;
+    right: 207px;
+}
+
 .doc-icon {
     font-family: 'icon';
     font-size: 1.7em;
@@ -645,7 +676,7 @@ button {
 
 .delete-icon {
     font-family: 'icon';
-    font-size: 2.5em;
+    font-size: 1.5em;
 }
 
 .back-icon {
@@ -680,7 +711,7 @@ button {
     height: 39px;
     border: 0;
     font-size: 1.005em;
-    background-color: #a9d392;
+    background-color: #94d074;
     color: white;
     font-weight: 400;
 
@@ -696,7 +727,7 @@ button {
     height: 39px;
     border: 0;
     font-size: 1.005em;
-    background-color: #f9773d;
+    background-color: #fd6d3c;
     color: white;
     font-weight: 400;
 
@@ -802,6 +833,14 @@ button {
 .bold-weight {
     font-weight: 700;
     padding-right: 5px;
+}
+
+///////////////////////////////////////////////////////
+
+@media print {
+    .print-top, .back-top, .delete-top, .share-top {
+        display: none;
+    }
 }
 
 ///////////////////////////////////////////////////////

@@ -276,8 +276,18 @@ App.NewController = Ember.ObjectController.extend({
  }
 });
 
+/////////////////////////////////// mail to //////////////////////////////////
+// equivalent to `if(App.computed === undefined) App.computed = {};`
+App.computed = App.computed || {};
+App.computed.mailto = function(property) {
+  return function() {
+    return "mailto:" + this.get(property);
+  }.property(property);
+};
+
 /////////////////////////// Draft Controller ////////////////////////////////////
 App.DraftController = Ember.ObjectController.extend({
+	mailtoContactEmail: App.computed.mailto('clientEmail'),
 	isEditing: false,
 
 	init: function(){
@@ -408,6 +418,10 @@ App.AppController = Ember.ArrayController.extend({
  			$('.queue-drop').toggleClass('show-drafts');
  		},
 
+ 		showQueue :function(){
+ 			$('.queue-drop').toggleClass('show-drafts');
+ 		}
+ 		// ,
 		// showDocs :function(){
 		// 	$('.queue-drop-sub').toggleClass('show-drafts');
 		// }
@@ -426,15 +440,6 @@ App.ProjectController = Ember.ObjectController.extend({
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// Docs /////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////// mail to //////////////////////////////////
-// equivalent to `if(App.computed === undefined) App.computed = {};`
-App.computed = App.computed || {};
-App.computed.mailto = function(property) {
-  return function() {
-    return "mailto:" + this.get(property);
-  }.property(property);
-};
 
 /////////////////////////////// Proposal Controller ///////////////////////////
 App.ProposalController = Ember.ObjectController.extend({

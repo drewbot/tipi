@@ -64,7 +64,7 @@
             <div class="header">
               {{#link-to 'dashboard'}}
                 <div class="header-left">
-                  <p class="home">TIPI</p>
+                  <img src="images/tipi-logo.png" class="header-logo">
                 </div>
               {{/link-to}}
             </div>
@@ -113,26 +113,22 @@
               <div class="full-width overview-header">
                 <h1>Welcome to TIPI</h1>
                 <h1>Getting started is easy</h1>
+                <div class="light-green-bg"></div>
+                <div class="dark-green-bg"></div>
+                <img src="images/background_illustration.png" class="background-illustration">
               </div>
               <div class="full-width">
                 <div class="third-width overview-container-one">
                   <h1>i</h1>
-                </div>
-                <div class="third-width overview-container-two">
-                  <h1>z</h1>
-                </div>
-                <div class="third-width overview-container-three">
-                  <h1>ñ</h1>
-                </div>
-                <div class="third-width overview-container-one">
                   <h2>Step 1:</h2>
-                  <h3>Questionnaire</h3>
+                  <h3>New Questionnaire</h3>
                     <ul class="overview-points point-one">
                       <li>Gather information about the client and project scope</li>
                       <li>Project information will be stored in your Review queue</li>
                     </ul>
                 </div>
                 <div class="third-width overview-container-two">
+                  <h1>z</h1>
                   <h2>Step 2:</h2>
                   <h3>Review and Revise</h3>
                     <ul class="overview-points point-two">
@@ -142,6 +138,7 @@
                     </ul>
                 </div>
                 <div class="third-width overview-container-three">
+                  <h1>ñ</h1>
                   <h2>Step 3:</h2>
                   <h3>Publish Documents</h3>
                     <ul class="overview-points point-three">
@@ -218,7 +215,7 @@
                 <div class="half-width">
                   <ul class="doc-head">
                     <li>Delivery format: {{input type="text" id="delivery" class="text-input"}}</li>
-                    <li>Client plans to deliver copy:</li>
+                    <li>Client plans to provide copy:</li>
                       <ul>
                         <li>Yes {{view Ember.Checkbox checked=getCopy}}</li>
                         <li>No {{view Ember.Checkbox}}</li>
@@ -271,9 +268,10 @@
                   {{partial 'draft/edit'}}
                 </div>
               {{else}}
-                  <button class="delete-top delete-draft-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
+                  <button class="delete-top delete-draft-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
                   <button class="edit-top" {{action 'edit'}}>Edit</button>
                   <button class="publish-top" {{action 'isCompleted'}}>Publish</button>
+                  <button class="share-top share-top-draft"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
               {{/if}}
             </div>
             <div class="content-container">
@@ -360,7 +358,7 @@
           <div class="template-container">
             <div class="template-header">
               <h3 class="edit">Edit {{title}} Project Planner</h3>
-              <button class="delete-top delete-draft-edit-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
+              <button class="delete-top delete-draft-edit-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
               <button class="done-top" {{action 'doneEditing'}}>Save</button>
             </div>
             <div class="new-container">
@@ -474,7 +472,7 @@
               </div>
               <div class="content-container" id="proposal-container">
               <div class="pub-section">
-                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
+                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
                 <button class="share-top"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
@@ -558,7 +556,7 @@
             </div>
             <div class="content-container" id="contract-container">
               <div class="pub-section">
-                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
+                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
                 <button class="share-top"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
@@ -712,7 +710,7 @@
             </div>
             <div class="brief-container content-container" id="brief-container">
               <div class="pub-section">
-                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">Ú</span></button>
+                <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
                 <button class="print-top"{{ action "printContent" }}><span class="print-icon">Ã</span> Print</button>
                 <button class="share-top"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
