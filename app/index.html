@@ -17,7 +17,7 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="../bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -115,7 +115,7 @@
             <div class="dashboard-container content-container">
               <div class="full-width overview-header">
                 <h1>Welcome to TIPI</h1>
-                <h1>Getting started is easy</h1>
+                <h1 class="getting-started">Getting started is easy</h1>
                 <div class="light-green-bg"></div>
                 <div class="dark-green-bg"></div>
                 <img src="images/background_illustration.png" class="background-illustration">
@@ -146,9 +146,14 @@
                   <h3>Publish Documents</h3>
                     <ul class="overview-points point-three">
                       <li>Tipi will populate a proposal, contract and brief for you</li>
-                      <li>Send documents to your client and print from the app</li>
+                      <li>Send documents and print from the app</li>
                     </ul>
                 </div>
+              </div>
+              <div class="full-width">
+                <div class="third-width border-bottom-one"></div>
+                <div class="third-width border-bottom-two"></div>
+                <div class="third-width border-bottom-three"></div>
               </div>
               <div class="whitespace">
                 <p class="promo full-width white-out">
@@ -472,8 +477,8 @@
           <div class="template-container">
             <div class="template-header">
               <h3>{{title}} Proposal</h3>
-              </div>
-              <div class="content-container" id="proposal-container">
+            </div>
+            <div class="content-container" id="proposal-container">
               <div class="pub-section">
                 <button class="delete-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
                 <button class="back-top" {{action 'isIncomplete'}}><span class="back-icon">ä</span> Send back to Review</button>
