@@ -171,7 +171,7 @@
           <div class="template-container">
             <div class="template-header">
               <h3>New Project Questionnaire</h3>
-              <button type="submit" class="save-top" {{action 'save'}}>Save Project</button>
+              <button type="submit" class="save-top" {{action 'save'}}><span class="save-icon">ø</span> Save</button>
             </div>
             <div class="new-container">
               <div class="full-width doc-section">
@@ -278,8 +278,8 @@
                 </div>
               {{else}}
                   <button class="delete-top delete-draft-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
-                  <button class="edit-top" {{action 'edit'}}>Edit</button>
-                  <button class="publish-top" {{action 'isCompleted'}}>Publish</button>
+                  <button class="edit-top" {{action 'edit'}}><span class="edit-icon">u</span> Edit</button>
+                  <button class="publish-top" {{action 'isCompleted'}}><span class="publish-icon">û</span> Publish</button>
                   <button class="share-top share-top-draft"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
               {{/if}}
             </div>
@@ -346,12 +346,13 @@
                 </ul>
               </div>
               <div class="pub-section foot-buttons">
-                <button class="delete-body" {{action "removeProject"}}>Delete</button>
+                <button class="delete-body" {{action "removeProject"}}><span class="delete-icon">ß</span> Delete</button>
                 {{#if isEditing}}
-                  <button class="done-body" {{action 'doneEditing'}}>Save</button>
+                  <button class="done-body" {{action 'doneEditing'}}><span class="save-icon">ø</span> Save</button>
                 {{else}}
-                  <button class="publish-body" {{action 'isCompleted'}}>Publish</button>
-                  <button class="edit-body" {{action 'edit'}}>Edit</button>
+                  <button class="publish-body" {{action 'isCompleted'}}><span class="publish-icon">û</span> Publish</button>
+                  <button class="edit-body" {{action 'edit'}}><span class="edit-icon">u</span> Edit</button>
+                  <button class="share-body"><a {{bind-attr href=mailtoContactEmail}}><span class="share-icon">ú</span> Share</a></button>
                 {{/if}}
               </div>
               <div class="whitespace">
@@ -368,7 +369,7 @@
             <div class="template-header">
               <h3 class="edit">Edit {{title}} Project Planner</h3>
               <button class="delete-top delete-draft-edit-top" {{action "removeProject"}}><span class="delete-icon">ß</span></button>
-              <button class="done-top" {{action 'doneEditing'}}>Save</button>
+              <button class="done-top" {{action 'doneEditing'}}><span class="save-icon">ø</span> Save</button>
             </div>
             <div class="new-container">
               <div class="full-width doc-section">

@@ -600,7 +600,7 @@ button {
     }
 
     &:hover:after {
-        right: 110px;
+        right: 79px;
         border-color: transparent #bce4a5 transparent transparent;
     }
 
@@ -608,7 +608,7 @@ button {
         position: absolute;
         content: "";
         top: 0;
-        right: 110px;
+        right: 79px;
         margin: 0 0 0 0;
         width: 0;
         height: 0;
@@ -636,15 +636,15 @@ button {
 
 ////////////////////////////// edit //////////////////////////////
 .edit-top {
-    right: 144px;
+    right: 166px;
     padding-right: 32px;
 
     &:hover:after {
-        right: 70px;
+        right: 95px;
     }
 
     &:after {
-        right: 70px;
+        right: 95px;
     }
 }
 ////////////////////////////// done ///////////////////////////////////
@@ -660,12 +660,12 @@ button {
     padding-right: 32px;
 
     &:hover:after {
-        right: 74px;
+        right: 98px;
         border-width: 0 22px 43px 0;
     }
 
     &:after {
-        right: 74px;
+        right: 98px;
         border-width: 0 22px 43px 0;
     }
 }
@@ -730,11 +730,11 @@ button {
     padding-right: 40px;
 
     &:hover:after {
-        right: 103px;
+        right: 125px;
     }
 
     &:after {
-        right: 103px;
+        right: 125px;
     }
 }
 
@@ -829,13 +829,29 @@ button {
 ///////////////////////// Share draft ///////////////////
 .share-top-draft {
     top: 2px;
-    right: 207px;
+    right: 255px;
 }
 
 //////////////////////// Top icons ////////////////////
+
+.save-icon {
+    font-family: 'icon';
+    font-size: 1.5em;
+}
+
+.edit-icon {
+    font-family: 'icon';
+    font-size: 1.7em;
+}
+
 .delete-icon {
     font-family: 'icon';
     font-size: 1.5em;
+}
+
+.publish-icon {
+    font-family: 'icon';
+    font-size: 1.4em;
 }
 
 .back-icon {
@@ -863,7 +879,7 @@ button {
 }
 
 ///////////////////////////// body buttons /////////////////////
-.save-body, .done-body, .edit-body {
+.save-body, .done-body, .edit-body, .share-body {
     margin-top: 9px;
     float: right;
     padding: 0 26px 0 26px;
@@ -876,6 +892,18 @@ button {
 
     &:hover {
         background-color: #bce4a5;
+    }
+}
+
+.share-body {
+    background-color: #58646d;
+
+    & a {
+        color: white;
+    }
+    
+    &:hover {
+        background-color: #7a8995;
     }
 }
 
