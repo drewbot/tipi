@@ -32,7 +32,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: .96em;
     line-height: 1.8;
-    color: #333;
+    color: #363B3F;
 }
 
 h1 {
@@ -72,15 +72,6 @@ button {
     cursor: pointer;
 }
 
-.content-container {
-    padding: 40px;
-    width: 100%;
-    background-color: white;
-
-    & h3 {
-        font-size: .9em;
-    }
-}
 /////////////////////////////////////////////////
 .promo {
     font-size: .85em;
@@ -105,6 +96,16 @@ button {
     background-color: #e0e7ea;
 }
 ///////////////////////////////////////////////////
+.content-container {
+    padding: 40px;
+    width: 100%;
+    background-color: white;
+
+    & h3 {
+        font-size: .9em;
+    }
+}
+
 .doc-section {
     padding: 15px 40px 25px 0;
     border-bottom: 1px solid #CFDCE1;
@@ -194,7 +195,7 @@ button {
 .title-input {
     margin-left: 5px;
     padding-left: 5px;
-    width: 41.5%; 
+    width: 41%; 
     font-size: .84em;
 }
 
@@ -472,6 +473,19 @@ button {
     right: 132px;
 }
 
+.overview-container-ul {
+    padding: 0;
+
+    & a {
+        text-decoration: none;
+    }
+}
+
+.overview-container-li {
+    list-style: none;
+    color: #363B3F;
+}
+
 .overview-container-one {
     padding-bottom: 10px;
 
@@ -566,7 +580,7 @@ button {
 
 // .template-header is set to position: relative
 ///////////////////////// save //////////////////////////////////////
-.save-top, .edit-top, .done-top, .publish-top, .print-top {
+.save-top, .edit-top, .done-top, .publish-top, .print-top, .go-top {
     position: absolute;
     top: 2px;
     right: 0;
@@ -605,6 +619,21 @@ button {
         z-index: 7;
     }
 }
+
+///////////////////////////// go ////////////////////////////////
+
+.go-top {
+
+    &:hover:after {
+        right: 43px;
+    }
+
+    &:after {
+        right: 43px;
+    }
+
+}
+
 ////////////////////////////// edit //////////////////////////////
 .edit-top {
     right: 144px;
@@ -966,15 +995,30 @@ button {
 
 }
 
+@media screen and (max-width: 640px) {
+
+    .half-width {
+        width: 100%;
+    }
+
+    .all-text-inputs {
+        margin-bottom: 10px;
+    }
+
+    .title-input {
+        width: 83.5%;
+    }
+}
+
 @media screen and (max-width: 500px) {
 
-    .nav {
-        
-    }
+    // .nav {
 
-    .close-nav {
+    // }
 
-    }
+    // .close-nav {
+
+    // }
 
     .content-container {
         padding: 40px 20px 0 20px;
@@ -982,10 +1026,11 @@ button {
 
     .getting-started {
         font-size: 1.5em;
+        padding-bottom: 4px;
     }
 
     .background-illustration {
-        top: 86px;
+        top: 90px;
         right: 48px;
     }
 
@@ -1037,6 +1082,7 @@ button {
     .overview-points {
         padding-left: 10px;
     }
+
 }
 
 @media print {
@@ -1047,6 +1093,10 @@ button {
 
     .print-top, .back-top, .delete-top, .share-top {
         display: none;
+    }
+
+    .content-container {
+        padding: 80px;
     }
 
 }
