@@ -380,6 +380,10 @@ App.DraftController = Ember.ObjectController.extend({
 		    project.save();
 		},
 
+		cancel: function(){
+			this.set('isEditing', false);
+		},
+
 		setCopyAsFalse: function(){
 			var project = this.get('model');
 		    project.set('hasCopy', false);
