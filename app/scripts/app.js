@@ -106,7 +106,6 @@ App.BriefRoute = Ember.Route.extend({
 //////////////////// Models ///////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
-// Project
 var attr = DS.attr;
 
 // User
@@ -120,6 +119,7 @@ App.User = DS.Model.extend({
 
 // I need to transfer user settings from user model to project
 
+// Project
 App.Project = DS.Model.extend({
 	title: attr('string'),
 
