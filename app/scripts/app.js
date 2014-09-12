@@ -1,9 +1,3 @@
-//                      _____   _    ____   _                        
-//       \/       \/   |_   _| | |  |  _ \ | |     \/       \/
-//       /\       /\     | |   | |  |  __/ | |     /\       /\
-//      /\ \     /\ \    | |   | |  | |    | |    /\ \     /\ \
-//_____/_/\_\___/_/\_\___| |___| |__| |____| |___/_/\_\___/_/\_\______
-
 
 ///////////////////////////////////////////////////////////////////////
 ////////////////////// Create Ember Application ///////////////////////
@@ -58,9 +52,30 @@ App.IndexRoute = Ember.Route.extend({
     }
 });
 
+App.LoginRoute = Ember.Route.extend({});
+
 App.AppRoute = Ember.Route.extend({
+	beforeModel: function () {
+	  	this.authClient = new window.FirebaseSimpleLogin(new window.Firebase("https://sizzling-fire-4203.firebaseio.com"), function(error, user) {
+	  		if (error) {
+	  			alert('authentication failed' + error)
+	  		} else if (user) {
+	  			console.log('welcome' + user)
+	  		} else {
+	  			this.transitionTo('login')
+	  		}
+
+	  	}.bind(this));
+	},
+
     model: function(params) {
       return this.store.findAll("project");
+    },
+
+    actions: {
+    	logout: function () {
+	    	this.authClient.logout()
+	    }
     }
 });
 
@@ -543,70 +558,41 @@ App.AppView = Ember.View.extend({
 //////////////////// User Authentication //////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
+// Login Controller
+App.LoginController = Ember.Controller.extend({
+  init: function(){
+  	this.authClient = new window.FirebaseSimpleLogin(new window.Firebase("https://sizzling-fire-4203.firebaseio.com"), function(error, user) {
+  		if (error) {
+  			alert('authentication failed' + error)
+  		} else if (user) {
+  			console.log('YAYA')
+  			this.transitionToRoute('/app/dashboard')
+  		}
+  	}.bind(this));
+  },
 
-// var dbRoot = "https://sizzling-fire-4203.firebaseio.com"
-// var dbRef = new Firebase(dbRoot);
+  actions: {
+    login: function(email, password) {
+      this.authClient.login('password', {
+      	email: email || this.email,
+      	password: password ||	this.password
+      })
+    },
 
-// var ideasPath = dbRoot + "/ideas";
-// var usersPath = dbRoot + "/users";
+    createUser: function() {
+    	var that = this
+    	this.authClient.createUser(that.email, that.password, function(error, user) {
+    		if (error === null) {
+    			console.log('Didn\'t work' + error)
+    		} else if (user) {
+	  			that.send('login', email, password)
+    		}
+    	});
+    } 
+  }
+});
 
 
-// // Login Controller
-// App.LoginRoute = Ember.Route.extend({
-//   actions: {
-//     login: function() {
-//       this.get('auth').login();
-//     },
-
-//     logout: function() {
-//       this.get('auth').logout();
-//     }
-//   }
-// });
-
-// App.AuthController = Ember.Controller.extend({
-//   authed: false,
-//   currentUser: null,
-
-//   init: function() {
-//     this.authClient = new FirebaseSimpleLogin(dbRef, function(error, githubUser) {
-//       if (error) {
-//         alert('Authentication failed: ' + error);
-//       } else if (githubUser) {
-//         this.set('authed', true);
-//         var userRef = new Firebase(usersPath + '/' + githubUser.username);
-//         var controller = this;
-//         var properties = {
-//           id: githubUser.username,
-//           name: githubUser.username,
-//           displayName: githubUser.displayName,
-//           avatarUrl: githubUser.avatar_url,
-//         };
-//         userRef.once('value', function(snapshot) {
-//           if (!snapshot.val().votesLeft) {
-//             properties.votesLeft = 10;
-//           } else {
-//             properties.votesLeft = snapshot.val().votesLeft;
-//           }
-//           var user = App.User.create({ ref: userRef });
-//           user.setProperties(properties);
-//           controller.set('currentUser', user);
-//         });
-//       } else {
-//         this.set('authed', false);
-//       }
-//     }.bind(this));
-//   },
-
-//   login: function() {
-//     this.authClient.login('github');
-//   },
-
-//   logout: function() {
-//     this.authClient.logout();
-//   }
-
-// });
 
 
 
