@@ -573,16 +573,20 @@ App.LoginController = Ember.Controller.extend({
 
   actions: {
     login: function(email, password) {
-      this.authClient.login('password', {
-      	email: email || this.email,
-      	password: password ||	this.password
-      })
+	    var email = $('#login-email').val();
+		var password = $('#login-password').val();
+	    this.authClient.login('password', {
+	      	email: email,
+	      	password: password
+        })
     },
 
     createUser: function() {
     	var that = this
-    	this.authClient.createUser(that.email, that.password, function(error, user) {
-    		if (error === null) {
+    	var email = $('#login-email').val();
+	    var password = $('#login-password').val();
+    	this.authClient.createUser(email, password, function(error, user) {
+    		if (error) {
     			console.log('Didn\'t work' + error)
     		} else if (user) {
 	  			that.send('login', email, password)

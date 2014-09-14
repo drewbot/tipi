@@ -5,7 +5,7 @@
         <title>tipi</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
@@ -30,22 +30,16 @@
           <div class="template-container">
             <div class="landing-container">
               <h2>Welcome to TIPI</h2>
-              <div>{{#link-to 'dashboard'}}enter{{/link-to}}</div>
-                <div class="login-form">
-
-                  <ul class="nav pull-right">
-                    
-                    
-                      <li>
-                        {{input placeholder="email" value=email}}
-                        {{input placeholder="password" value=password}}
-                        <button class="btn btn-primary" {{ action login }}>Sign in</button>                        
-                        <button class="btn btn-primary" {{ action createUser }}>Sign up</button>
-                      </li>
-                    
-                  </ul>
-
-                </div>
+              <div class="login-form">
+                <ul>
+                  <li>
+                    {{input type="text" id="login-email" name="email"}}
+                    {{input type="text" id="login-password" name="password"}}
+                    <button class="btn btn-primary" {{ action "login" }}>Sign in</button>                       
+                    <button class="btn btn-primary" {{ action "createUser" }}>Sign up</button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </script>
