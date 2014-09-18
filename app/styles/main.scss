@@ -277,9 +277,10 @@ button {
     padding: 3px 1px 2px 2px;
     font-family: 'icon';
     font-size: 3.2em;
-    line-height: 1;
+    line-height: 1.05;
     background-color: #363B3F;
     cursor: pointer;
+    z-index: 9999;
 
     &:hover {
         color: #fc5f2a;
@@ -298,6 +299,7 @@ button {
     background-color: #44494D;
     border-top: 2px solid #363B3F;
     color: white;
+    z-index: 9999;
     transition: all .2s ease-in-out;
 
     & ul {
@@ -734,7 +736,7 @@ button {
     }
 
     &:after {
-        right: 125px;
+        right: 127px;
     }
 }
 
@@ -753,7 +755,7 @@ button {
     }
 
     &:after {
-        right: 228px;
+        right: 232px;
     }
 }
 

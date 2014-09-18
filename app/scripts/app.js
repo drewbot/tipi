@@ -183,6 +183,100 @@ Ember.TextField.reopen({
     classNames: ['all-text-inputs']
 });
 
+/////////////////////////////////////////////////////
+//////////// User Authentication ////////////////////
+
+//////////////////////////// Login Controller //////////////////////////
+// Login Controller
+App.LoginController = Ember.Controller.extend({
+  init: function(){
+  	this.authClient = new window.FirebaseSimpleLogin(new window.Firebase("https://sizzling-fire-4203.firebaseio.com"), function(error, user) {
+  		if (error) {
+  			alert('authentication failed' + error)
+  		} else if (user) {
+  			console.log('YAYA')
+  			this.transitionToRoute('/app/dashboard')
+  		}
+  	}.bind(this));
+  },
+
+  actions: {
+    login: function(email, password) {
+	    var email = $('#login-email').val();
+		var password = $('#login-password').val();
+	    this.authClient.login('password', {
+	      	email: email,
+	      	password: password
+        })
+    },
+
+    createUser: function() {
+    	var that = this
+    	var email = $('#login-email').val();
+	    var password = $('#login-password').val();
+    	this.authClient.createUser(email, password, function(error, user) {
+    		if (error) {
+    			console.log('Didn\'t work' + error)
+    		} else if (user) {
+	  			that.send('login', email, password)
+    		}
+    	});
+    } 
+  }
+});
+
+// we would probably save a profile when we register new users on our site
+// we could also read the profile to see if it's null
+// here we will just simulate this with an isNewUser boolean
+
+// var myRef = new Firebase("https://sizzling-fire-4203.firebaseio.com");
+// var authClient = new FirebaseSimpleLogin(myRef, function(error, user) {
+//   if (error) {  }
+//   else if (user) {
+//     if( isNewUser ) {
+//       // save new user's profile into Firebase so we can
+//       // list users, use them in security rules, and show profiles
+//       myRef.child('users').child(user.uid).set({
+//         displayName: user.displayName,
+//         provider: user.provider,
+//         provider_id: user.id
+//       });
+//     }
+//   }
+//   else {  }
+// });
+
+///////////////////////// App Controller (logged in) /////////////////////////////
+App.AppController = Ember.ArrayController.extend({
+	itemController: 'project',
+
+	actions:{
+
+		showDrafts :function(){
+			$('.draft-drop').toggleClass('show-drafts');
+		},
+
+		showQueue :function(){
+ 			$('.queue-drop').toggleClass('show-drafts');
+ 		},
+
+ 		closeNav :function(){
+ 			$('.nav').toggleClass('move-right');
+ 			$('.header-left').toggleClass('move-right');
+ 		}
+
+	}
+});
+
+App.ProjectController = Ember.ObjectController.extend({
+  isSelected: false,
+  actions: {
+  	showDocs: function(){
+  		this.toggleProperty('isSelected');
+  	}
+  }
+});
+
 //////////////////////////// Dashboard Controller /////////////////////////////////
 App.DashboardController = Ember.ObjectController.extend({
 	isEditing: false,
@@ -424,37 +518,6 @@ App.DraftController = Ember.ObjectController.extend({
 	}
 })
 
-///////////////////////// App Controller (logged in) /////////////////////////////
-App.AppController = Ember.ArrayController.extend({
-	itemController: 'project',
-
-	actions:{
-
-		showDrafts :function(){
-			$('.draft-drop').toggleClass('show-drafts');
-		},
-
-		showQueue :function(){
- 			$('.queue-drop').toggleClass('show-drafts');
- 		},
-
- 		closeNav :function(){
- 			$('.nav').toggleClass('move-right');
- 			$('.header-left').toggleClass('move-right');
- 		}
-
-	}
-});
-
-App.ProjectController = Ember.ObjectController.extend({
-  isSelected: false,
-  actions: {
-  	showDocs: function(){
-  		this.toggleProperty('isSelected');
-  	}
-  }
-});
-
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// Docs /////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -553,53 +616,6 @@ App.AppView = Ember.View.extend({
 	classNames: ['body-container'],
 	templateName: 'app'
 })
-
-///////////////////////////////////////////////////////////////////////
-//////////////////// User Authentication //////////////////////////////
-///////////////////////////////////////////////////////////////////////
-
-// Login Controller
-App.LoginController = Ember.Controller.extend({
-  init: function(){
-  	this.authClient = new window.FirebaseSimpleLogin(new window.Firebase("https://sizzling-fire-4203.firebaseio.com"), function(error, user) {
-  		if (error) {
-  			alert('authentication failed' + error)
-  		} else if (user) {
-  			console.log('YAYA')
-  			this.transitionToRoute('/app/dashboard')
-  		}
-  	}.bind(this));
-  },
-
-  actions: {
-    login: function(email, password) {
-	    var email = $('#login-email').val();
-		var password = $('#login-password').val();
-	    this.authClient.login('password', {
-	      	email: email,
-	      	password: password
-        })
-    },
-
-    createUser: function() {
-    	var that = this
-    	var email = $('#login-email').val();
-	    var password = $('#login-password').val();
-    	this.authClient.createUser(email, password, function(error, user) {
-    		if (error) {
-    			console.log('Didn\'t work' + error)
-    		} else if (user) {
-	  			that.send('login', email, password)
-    		}
-    	});
-    } 
-  }
-});
-
-
-
-
-
 
 
 //   			   \\\\      ////         ||||||||||||||||||||||||  ||||   ||||||||||||||\\\\    ||||
