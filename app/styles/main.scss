@@ -10,6 +10,13 @@
     src: url('../leksico-webfont.ttf'); /*URL to font*/
 }
 
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
 //////////////////// document standards ////////////////////////
 
 *, *:before, *:after {
@@ -220,6 +227,88 @@ button {
 // edit
 .edit {
     color: green;
+}
+
+////////////////////////// Landing Template ////////////////////////////
+.landing-container {
+    padding-top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    .landing-inner {
+        margin: 0 auto;
+        padding: 20px;
+        width: 320px;
+        height: 398px;
+        background-color: #FFFFFF;
+        h2 {
+            text-align: left;
+            font-weight: 300;
+            font-size: 1.6em;
+        }
+        .login-logo {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            div:first-of-type {
+                position: absolute;
+                top: 94px;
+                left: 0;
+                width: 100%;
+                height: 15px;
+                background-color: #92CC7D;
+            }
+            div:last-of-type {
+                position: absolute;
+                top: 109px;
+                left: 0;
+                width: 100%;
+                height: 25px;
+                background-color: #5FBB46;
+            }
+            img {
+                position: absolute;
+                top: 8px;
+                left: 180px;
+            }
+        }
+        p {
+            text-align: left;
+            margin: 5px 0 20px 0;
+        }
+        .login-form {
+            ul {
+                list-style: none;
+                padding-left: 0;
+                li {
+                    input {
+                        width: 100%;
+                        margin-bottom: 25px;
+                        @include placeholder {
+                            color: #44494D;
+                        }
+                    }
+                    button {
+                        display: inline-block;
+                        padding: 0 20px 0 20px;
+                        width: 128px;
+                        height: 43px;
+                        border: 0;
+                        text-align: center;
+                        font-size: 1.005em;
+                        background-color: #94d074;
+                        color: white;
+                        font-weight: 400;
+                        &:first-of-type {
+                            margin: 0 20px 0 0;
+                        }
+                        &:hover {
+                            background-color: #bce4a5;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 ////////////////////////// App Template /////////////////////////////////

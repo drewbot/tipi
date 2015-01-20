@@ -25,18 +25,23 @@
         <![endif]-->
 
         <!-- Login -->
-
         <script type="text/x-handlebars" id="login">
-          <div class="template-container">
-            <div class="landing-container">
-              <h2>Welcome to TIPI</h2>
+          <div class="landing-container">
+            <div class="landing-inner">
+              <div class="login-logo">
+                <h2>Welcome to TIPI</h2>
+                <div></div>
+                <div></div>
+                <img src="images/background_illustration.png">
+              </div>
+              <p>Please Register or Sign in</p>
               <div class="login-form">
                 <ul>
                   <li>
-                    {{input type="email" id="login-email" name="email"}}
-                    {{input type="password" id="login-password" name="password"}}
-                    <button class="btn btn-primary" {{ action "login" }}>Sign in</button>                       
-                    <button class="btn btn-primary" {{ action "createUser" }}>Sign up</button>
+                    {{input type="email" id="login-email" name="email" placeholder="email address"}}
+                    {{input type="password" id="login-password" name="password" placeholder="password"}}
+                    <button class="btn btn-primary" {{ action "createUser" }}>Register</button>
+                    <button class="btn btn-primary" {{ action "login" }}>Sign in</button>
                   </li>
                 </ul>
               </div>
@@ -201,7 +206,7 @@
                 </div>
               </div>
               <div class="full-width doc-section">
-                <h3>Description:</p>
+                <h3>Description:</h3>
                 <div class="full-field">
                   {{textarea id="description" class="text-field full-width"}}
                 </div>
@@ -401,7 +406,7 @@
                 </div>
               </div>
               <div class="full-width doc-section">
-                <h3>Description:</p>
+                <h3>Description:</h3>
                 <div class="full-field">
                   {{textarea id="description" value=description class="text-field full-width"}}
                 </div>
@@ -733,24 +738,25 @@
                 <h3>Description:</h3>
                 <p>{{description}}</p>
                 <ul>
-                    {{#if professional}}
-                      <li>Client plans to use for professional purposes</li>
-                    {{/if}}
-                    {{#if personal}}
-                      <li>Client plans to use for personal purposes</li>
-                    {{/if}}
-                    <li>Existing or preferred technology: {{technology}}</li>
-                    <li>Examples of similar work: {{examples}}</li>
-                    {{#if hasCopy}}
-                      <li>Client plans to provide copy</li>
-                    {{else}}
-                      <li>Client expects us to provide copy</li>
-                    {{/if}}
-                    {{#if hasArt}}
-                      <li>Client plans to provide art and images</li>
-                    {{else}}
-                      <li>Client expects us to provide art and images</li>
-                    {{/if}}
+                  {{#if professional}}
+                    <li>Client plans to use for professional purposes</li>
+                  {{/if}}
+                  {{#if personal}}
+                    <li>Client plans to use for personal purposes</li>
+                  {{/if}}
+                  <li>Existing or preferred technology: {{technology}}</li>
+                  <li>Examples of similar work: {{examples}}</li>
+                  {{#if hasCopy}}
+                    <li>Client plans to provide copy</li>
+                  {{else}}
+                    <li>Client expects us to provide copy</li>
+                  {{/if}}
+                  {{#if hasArt}}
+                    <li>Client plans to provide art and images</li>
+                  {{else}}
+                    <li>Client expects us to provide art and images</li>
+                  {{/if}}
+                </ul>
               </div>
               <div class="pub-section">
                 <ul class="doc-profile">
