@@ -343,14 +343,24 @@ button {
     }
     .logout {
         position: absolute;
-        top: 22px;
+        top: 17px;
         right: 20px;
         color: #FFFFFF;
-        font-size: 0.96em;
-        font-weight: 300;
+        font-family: 'icon';
+        font-size: 2em;
+        line-height: 1.05;
         cursor: pointer;
+        span {
+            display: none;
+            padding-right: 7px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .49em;
+            font-weight: 300;
+        }
         &:hover {
-            color: #fc5f2a;
+            span {
+                display: inline-block;
+            }
         }
     }
 }
