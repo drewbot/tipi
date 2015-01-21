@@ -221,7 +221,7 @@ button {
 }
 
 .full-field {
-    padding-left: 10px;
+    padding-left: 40px;
 }
 
 // edit
@@ -723,13 +723,14 @@ button {
 ///////////////////////////// go ////////////////////////////////
 
 .go-top {
+    cursor: pointer;
 
     &:hover:after {
-        right: 43px;
+        right: 55px;
     }
 
     &:after {
-        right: 43px;
+        right: 55px;
     }
 
 }
