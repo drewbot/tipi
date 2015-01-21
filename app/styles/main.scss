@@ -237,7 +237,7 @@ button {
         margin: 0 auto;
         padding: 20px;
         width: 320px;
-        height: 398px;
+        height: 380px;
         background-color: #FFFFFF;
         h2 {
             text-align: left;
@@ -247,27 +247,28 @@ button {
         .login-logo {
             position: relative;
             width: 100%;
-            height: 150px;
+            height: 130px;
             div:first-of-type {
                 position: absolute;
-                top: 94px;
+                top: 79px;
                 left: 0;
                 width: 100%;
-                height: 15px;
+                height: 12px;
                 background-color: #92CC7D;
             }
             div:last-of-type {
                 position: absolute;
-                top: 109px;
+                top: 91px;
                 left: 0;
                 width: 100%;
-                height: 25px;
+                height: 20px;
                 background-color: #5FBB46;
             }
             img {
                 position: absolute;
                 top: 8px;
-                left: 180px;
+                left: 183px;
+                width: 80px;
             }
         }
         p {
@@ -323,9 +324,10 @@ button {
     background-color: #44494D;
 }
 
-.header-left, .header-left-inner {
+.header-left {
     position: fixed;
     display: inline-block;
+    padding: 18px 20px 20px 30px;
     width: 240px;
     height: 55px;
     background-color: #44494D;
@@ -333,27 +335,24 @@ button {
     border-right: 1px solid #585d61;
     color: white;
     transition: all .2s ease-in-out;
-
-    & a {
-        color: white;
+    .header-logo {
         position: absolute;
+        top: 9px;
+        left: 23px;
         display: inline-block;
     }
-
-    &:hover {
-        background-color: #4e575d;
+    .logout {
+        position: absolute;
+        top: 22px;
+        right: 20px;
+        color: #FFFFFF;
+        font-size: 0.96em;
+        font-weight: 300;
+        cursor: pointer;
+        &:hover {
+            color: #fc5f2a;
+        }
     }
-}
-
-.header-left-inner {
-    padding: 18px 20px 20px 30px;
-}
-
-.header-logo {
-    position: absolute;
-    top: 9px;
-    left: 23px;
-    display: inline-block;
 }
 
 //////////////////////////////// Nav ///////////////////
@@ -1048,6 +1047,9 @@ button {
     .header-left {
         left: -195px;
         z-index: 10;
+        .logout {
+            right: 65px;
+        }
     }
 
     .nav {

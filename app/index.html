@@ -56,16 +56,14 @@
             <div class="header">
               <div class="header-left">
                 {{#link-to 'dashboard'}}
-                  <div class="header-left-inner">
-                    <img src="images/tipi-logo.png" class="header-logo">
-                  </div>
+                  <img src="images/tipi-logo.png" class="header-logo">
                 {{/link-to}}
+                <p class="logout" {{ action logout }}>logout</p> 
                 <p class="close-nav" {{action 'closeNav'}}>î</p>
               </div>
             </div>
             <div class="nav">
-              <ul>
-                <button class="btn btn-primary" {{ action logout }}>logout</button>     
+              <ul>    
                 {{#link-to 'new'}}<li class="pointer">New</li>{{/link-to}}
                 <li class="pointer" {{action 'showDrafts'}}>Review</li>
                   <div class="draft-drop">
