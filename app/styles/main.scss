@@ -61,6 +61,7 @@ label, input {
 }
 
 button {
+    cursor: pointer;
     &:active,
     &:focus {
         outline: none;
@@ -715,7 +716,7 @@ button {
         border-style: solid;
         border-width: 0 22px 43px 0;
         border-color: transparent #94d074 transparent transparent;
-        webkit-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
         z-index: 7;
     }
 }
@@ -850,7 +851,7 @@ button {
     }
 
     &:hover:after {
-        right: 228px;
+        right: 232px;
     }
 
     &:after {
