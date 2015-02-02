@@ -45,6 +45,9 @@ App.Router.map(function(){
 ////////////////////////// Routes /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
+
+/////// No auth, temp setup
+
 // Index redirect
 App.IndexRoute = Ember.Route.extend({
 	redirect: function() {
@@ -52,38 +55,54 @@ App.IndexRoute = Ember.Route.extend({
     }
 });
 
-App.LoginRoute = Ember.Route.extend({});
-
 App.AppRoute = Ember.Route.extend({
-	beforeModel: function () {
-	  	this.authClient = new window.FirebaseSimpleLogin(new window.Firebase("https://sizzling-fire-4203.firebaseio.com"), function(error, user) {
-	  		if (error) {
-	  			alert('authentication failed' + error)
-	  		} else if (user) {
-	  			console.log('welcome' + user)
-	  		} else {
-	  			this.transitionTo('login')
-	  		}
-
-	  	}.bind(this));
-	},
-
-    model: function(params) {
-      return this.store.findAll("project");
-    },
-
-    actions: {
-    	logout: function () {
-	    	this.authClient.logout()
-	    }
-    }
-});
-
-App.NewRoute = Ember.Route.extend({
     model: function(params) {
       return this.store.findAll("project");
     }
 });
+
+// Index redirect
+App.IndexRoute = Ember.Route.extend({
+	redirect: function() {
+	    this.transitionTo('dashboard');
+    }
+});
+
+
+///////// User auth included, deprecated (doesn't work on gh-pages)
+
+// App.LoginRoute = Ember.Route.extend({});
+
+// App.AppRoute = Ember.Route.extend({
+// 	beforeModel: function () {
+// 	  	this.authClient = new window.FirebaseSimpleLogin(new window.Firebase("https://sizzling-fire-4203.firebaseio.com"), function(error, user) {
+// 	  		if (error) {
+// 	  			alert('authentication failed' + error)
+// 	  		} else if (user) {
+// 	  			console.log('welcome' + user)
+// 	  		} else {
+// 	  			this.transitionTo('login')
+// 	  		}
+
+// 	  	}.bind(this));
+// 	},
+
+//     model: function(params) {
+//       return this.store.findAll("project");
+//     },
+
+//     actions: {
+//     	logout: function () {
+// 	    	this.authClient.logout()
+// 	    }
+//     }
+// });
+
+// App.NewRoute = Ember.Route.extend({
+//     model: function(params) {
+//       return this.store.findAll("project");
+//     }
+// });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 App.DashboardRoute = Ember.Route.extend({

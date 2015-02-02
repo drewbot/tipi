@@ -51,6 +51,8 @@
 
         <!-- App -->
 
+        <!-- Logout button goes above .close-nav when user auth is working -->
+        <!-- <p class="logout" {{ action logout }}><span>Log Out</span>U</p> -->
         <script type="text/x-handlebars" id="app">
           <div class="app-container">
             <div class="header">
@@ -58,7 +60,7 @@
                 {{#link-to 'dashboard'}}
                   <img src="images/tipi-logo.png" class="header-logo">
                 {{/link-to}}
-                <p class="logout" {{ action logout }}><span>Log Out</span>U</p> 
+                 
                 <p class="close-nav" {{action 'closeNav'}}>î</p>
               </div>
             </div>
